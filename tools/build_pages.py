@@ -31,7 +31,7 @@ OFFICES = [
     dict(city='Depok', label='Kantor Depok', addr='Jl. Margonda No.252 D, Kemiri Muka, Kec. Beji', locality='Kota Depok', region='Jawa Barat', zip='', phone='085179988198'),
     dict(city='Tangerang', label='Kantor Tangerang (BSD)', addr='Ruko Pasar Modern No.18 BSD, Rawa Mekar Jaya, Kec. Serpong', locality='Tangerang Selatan', region='Banten', zip='15318', phone='085693883208'),
     dict(city='Bogor', label='Kantor Bogor', addr='Ruko Graha Boulevard GBVD No.10, Jl. Summarecon Bogor, Sukatani, Kec. Sukaraja', locality='Kabupaten Bogor', region='Jawa Barat', zip='16144', phone='082260126394'),
-    dict(city='Bandung', label='Kantor Bandung', addr='Jl. Boulevard Utama Blok RC No.18, Ruby Commercial Summarecon Bandung', locality='Kota Bandung', region='Jawa Barat', zip='', phone='085861345441'),
+    dict(city='Bandung', label='Kantor Bandung', addr='Jl. Boulevard Utama Blok RC No.18, Ruby Commercial Summarecon Bandung', locality='Kota Bandung', region='Jawa Barat', zip='', phone='08132212344'),
 ]
 CITIES = ', '.join(o['city'] for o in OFFICES[:-1]) + ' & ' + OFFICES[-1]['city']
 
@@ -73,9 +73,11 @@ EXTRA_CSS = r'''<style>
 </style>'''
 
 
-def offices_html(with_maps=False, context='paket umroh'):
+def offices_html(with_maps=False, context='paket umroh', only=None):
     cards = []
     for o in OFFICES:
+        if only and o['city'] not in only:
+            continue
         msg = urllib.parse.quote(f"Assalamu'alaikum Elharamain Wisata {o['city']}, saya ingin konsultasi {context}.")
         tag = 'h2' if with_maps else 'h3'
         mapframe = ''
@@ -85,14 +87,15 @@ def offices_html(with_maps=False, context='paket umroh'):
         cards.append(f'''<div class="ehp-o"><{tag} style="font-family:Raleway,sans-serif;font-weight:800;font-size:18px;margin:0;color:#004AAD">{o['label']}</{tag}>
 <address>{o['addr']}, {o['locality']}, {o['region']}{(' ' + o['zip']) if o['zip'] else ''}<br>Telp/WA: <a href="tel:+{intl(o['phone'])}">{fmt_phone(o['phone'])}</a></address>{mapframe}
 <div class="ehp-o-act"><a class="ehp-o-wa" href="https://api.whatsapp.com/send?phone={intl(o['phone'])}&amp;text={msg}" target="_blank" rel="noopener">WhatsApp {o['city']}</a>
-<a class="ehp-o-map" href="{maps_url(o)}" target="_blank" rel="noopener">Petunjuk Arah</a></div></div>''')
+<a class="ehp-o-map" href="{maps_url(o)}" target="_blank" rel="noopener">Petunjuk Arah</a></div>
+<a href="{SITE}/travel-umroh-{o['city'].lower()}/" style="font-size:13px;font-weight:600;color:#004AAD;text-decoration:none">Travel umroh {o['city']} &rarr;</a></div>''')
     return '<div class="ehp-off">' + ''.join(cards) + '</div>'
 
 
 def area_html(what):
     return (f'<p class="ehp-area">Elharamain Wisata melayani pendaftaran <b>{what}</b> untuk jamaah dari '
             f'<b>Bekasi, Jakarta, Depok, Tangerang, Bogor, Bandung</b> dan seluruh Indonesia. '
-            f'Datang langsung ke kantor terdekat untuk konsultasi gratis, manasik, dan pengambilan perlengkapan.</p>')
+            f'Datang langsung ke kantor terdekat untuk konsultasi gratis dan pendaftaran.</p>')
 
 
 def faq_html(faqs):
@@ -333,7 +336,8 @@ def section_index(data, heading_text):
     raise KeyError(heading_text)
 
 
-def build_package_page(name, h1, subtitle, periods, url, booking=None, pkg_title=None, pkg_sub=None):
+def build_package_page(name, h1, subtitle, periods, url, booking=None, pkg_title=None, pkg_sub=None,
+                       faqs=None, office_body=None, office_title=None, office_sub=None, intro=None, schema_extra=()):
     data = copy.deepcopy(BASE)
     for e in data:
         reid(e)
@@ -355,13 +359,17 @@ def build_package_page(name, h1, subtitle, periods, url, booking=None, pkg_title
     col[1] = html_widget(body)
 
     items = [(pr, p) for pr in periods for p in pr['items']]
-    faqs = page_faq(name, items)
+    faqs = faqs or page_faq(name, items)
     faq_sec = light_section(INC_TITLE_TPL, f'Pertanyaan Seputar {name}', 'FAQ', EXTRA_CSS + faq_html(faqs), anchor='faq', bg='#F3F7FD')
-    off_sec = light_section(INC_TITLE_TPL, 'Kantor Elharamain Wisata Terdekat', 'Bekasi · Jakarta · Depok · Tangerang · Bogor · Bandung',
-                            EXTRA_CSS + area_html(name) + offices_html(context=name) +
-                            ld(trip_schema(items, url) + [faq_schema(faqs)]), anchor='kantor')
+    off_sec = light_section(INC_TITLE_TPL, office_title or 'Kantor Elharamain Wisata Terdekat',
+                            office_sub or 'Bekasi · Jakarta · Depok · Tangerang · Bogor · Bandung',
+                            EXTRA_CSS + (office_body or (area_html(name) + offices_html(context=name))) +
+                            ld(list(schema_extra) + trip_schema(items, url) + [faq_schema(faqs)]), anchor='kantor')
     cta_i = section_index(data, 'Wujudkan Ibadah')
     data[cta_i:cta_i] = [faq_sec, off_sec]
+    if intro:
+        title, sub, body = intro
+        data.insert(2, light_section(INC_TITLE_TPL, title, sub, EXTRA_CSS + body, anchor='tentang', bg='#FFFFFF'))
     return to_ascii_safe(data), items
 
 
@@ -413,7 +421,7 @@ json.dump(pin_post_css(data, 9581), open(OUT + '9581.json', 'w'), ensure_ascii=F
 # /kantor-cabang/
 KC_FAQ = COMMON_FAQ[:2] + [
     ('Apakah bisa konsultasi umroh langsung di kantor cabang?',
-     'Bisa. Semua kantor Elharamain Wisata melayani konsultasi gratis, pendaftaran, pembayaran, dan pengambilan perlengkapan umroh setiap hari pukul 09.00–17.00 WIB. Hubungi WhatsApp kantor terdekat sebelum datang.'),
+     'Bisa. Kantor Elharamain Wisata melayani konsultasi gratis dan pendaftaran umroh maupun haji plus. Hubungi WhatsApp kantor terdekat sebelum datang untuk memastikan jadwal konsultasi.'),
 ]
 kc_body = (EXTRA_CSS + area_html('umroh & haji plus') + offices_html(with_maps=True, context='umroh & haji plus')
            + ld(branch_schema() + [faq_schema(KC_FAQ)]))
@@ -436,6 +444,123 @@ json.dump(SEO, open(OUT + 'seo.json', 'w'), ensure_ascii=False, indent=1)
 for k, v in SEO.items():
     print(k, len(v.get('rank_math_title', '')), v.get('rank_math_title', ''), '|', len(v['rank_math_description']))
 
+
+# ---------------------------------------------------------------- city landing pages (travel umroh <kota>)
+CITY_IDS = json.load(open(os.path.join(HERE, 'city_page_ids.json')))
+CITY = {
+    'Bekasi': dict(spot='Ruko Emerald, Harapan Indah (Medan Satria)', role='kantor pusat',
+                   areas=['Bekasi Barat', 'Bekasi Utara', 'Bekasi Timur', 'Bekasi Selatan', 'Medan Satria', 'Harapan Indah', 'Pondok Gede', 'Jatiasih', 'Tambun', 'Cibitung', 'Cikarang'],
+                   trip='sekitar 1 jam lewat tol JORR', near='Harapan Indah, Kota Bekasi'),
+    'Jakarta': dict(spot='Jl. Tebet Raya, Jakarta Selatan', role='kantor cabang',
+                    areas=['Jakarta Selatan', 'Jakarta Timur', 'Jakarta Pusat', 'Jakarta Barat', 'Jakarta Utara', 'Tebet', 'Pancoran', 'Kuningan', 'Cawang', 'Kalibata', 'Pasar Minggu'],
+                    trip='sekitar 45–60 menit lewat tol dalam kota', near='Tebet, Jakarta Selatan'),
+    'Depok': dict(spot='Jl. Margonda Raya, Beji', role='kantor cabang',
+                  areas=['Beji', 'Pancoran Mas', 'Sukmajaya', 'Cimanggis', 'Cilodong', 'Cinere', 'Limo', 'Sawangan', 'Bojongsari', 'Tapos'],
+                  trip='sekitar 1–1,5 jam lewat tol', near='Margonda, Kota Depok'),
+    'Tangerang': dict(spot='Ruko Pasar Modern BSD, Serpong', role='kantor cabang',
+                      areas=['Tangerang Selatan', 'BSD', 'Serpong', 'Pamulang', 'Ciputat', 'Bintaro', 'Pondok Aren', 'Kota Tangerang', 'Kabupaten Tangerang', 'Cikupa', 'Gading Serpong'],
+                      trip='sekitar 45 menit lewat tol', near='BSD, Tangerang Selatan'),
+    'Bogor': dict(spot='Ruko Graha Boulevard, Summarecon Bogor', role='kantor cabang',
+                  areas=['Kota Bogor', 'Kabupaten Bogor', 'Sukaraja', 'Cibinong', 'Sentul', 'Ciawi', 'Citeureup', 'Cileungsi', 'Gunung Putri', 'Dramaga'],
+                  trip='sekitar 1,5–2 jam lewat tol Jagorawi', near='Summarecon Bogor, Sukaraja'),
+    'Bandung': dict(spot='Ruby Commercial, Summarecon Bandung', role='kantor cabang',
+                    areas=['Kota Bandung', 'Kabupaten Bandung', 'Bandung Barat', 'Cimahi', 'Gedebage', 'Buahbatu', 'Rancasari', 'Antapani', 'Arcamanik', 'Soreang'],
+                    trip='sekitar 3 jam lewat tol Cipularang', near='Summarecon Bandung, Gedebage'),
+}
+
+CITY_CSS = r"""<style>
+.ehp-why{max-width:1200px;margin:0 auto 34px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ehp-why div{background:#F3F7FD;border-radius:14px;padding:20px}
+.ehp-why b{display:block;font-family:Raleway,sans-serif;font-weight:800;font-size:17px;color:#004AAD;margin-bottom:6px}
+.ehp-why p{margin:0;font-size:14.5px;line-height:1.65}
+.ehp-lead{max-width:900px;margin:0 auto 28px;text-align:center;font-size:16px;line-height:1.75}
+.ehp-areas{max-width:1000px;margin:0 auto 30px;text-align:center}
+.ehp-areas h3,.ehp-steps h3{font-family:Raleway,sans-serif;font-weight:800;font-size:20px;color:#10213d;margin:0 0 12px}
+.ehp-areas ul{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.ehp-areas li{background:#eef4ff;color:#004AAD;border-radius:999px;padding:6px 14px;font-size:13.5px;font-weight:600}
+.ehp-steps{max-width:1000px;margin:0 auto;text-align:center}
+.ehp-steps ol{list-style:none;counter-reset:s;padding:0;margin:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;text-align:left}
+.ehp-steps li{counter-increment:s;background:#fff;border:1px solid #e3e9f3;border-radius:12px;padding:16px;font-size:14px;line-height:1.55}
+.ehp-steps li::before{content:counter(s);display:flex;width:28px;height:28px;border-radius:50%;background:#004AAD;color:#fff;font-weight:700;align-items:center;justify-content:center;margin-bottom:8px}
+.ehp-others{max-width:1200px;margin:26px auto 0;text-align:center;font-size:14px;line-height:1.9}
+.ehp-others a{color:#004AAD;font-weight:600;text-decoration:none;margin:0 8px;white-space:nowrap}
+@media (max-width:1024px){.ehp-steps ol{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.ehp-why,.ehp-steps ol{grid-template-columns:1fr}}
+</style>"""
+
+
+def city_intro(city, c, o, lo):
+    wa = f"https://api.whatsapp.com/send?phone={intl(o['phone'])}&amp;text=" + urllib.parse.quote(f"Assalamu'alaikum Elharamain Wisata {city}, saya ingin konsultasi paket umroh.")
+    return (CITY_CSS + '<div class="ehp">'
+        f'<p class="ehp-lead">Mencari <b>travel umroh {city}</b> yang resmi dan amanah? Elharamain Wisata memiliki {c["role"]} di '
+        f'<b>{c["spot"]}</b>, sehingga jamaah {city} bisa konsultasi, mendaftar, dan membayar langsung di kantor. '
+        f'<b>Paket umroh {city}</b> tersedia mulai <b>{rp(lo)}</b> dengan hotel bintang 5, direct flight, dan pembimbing lulusan Timur Tengah.</p>'
+        '<div class="ehp-why">'
+        f'<div><b>Kantor di {city}</b><p>{o["addr"]}, {o["locality"]}. Telp/WA <a href="{wa}" target="_blank" rel="noopener" style="color:#004AAD;font-weight:700;text-decoration:none">{fmt_phone(o["phone"])}</a>.</p></div>'
+        f'<div><b>Berangkat dari Soekarno-Hatta</b><p>Rombongan berkumpul di VIP Lounge Umroh Bandara Soekarno-Hatta. Perjalanan dari {c["near"]} ke bandara {c["trip"]} (tergantung lalu lintas).</p></div>'
+        '<div><b>Resmi &amp; terakreditasi</b><p>Izin umroh SK Kemenag No. 63/2020, izin haji SK No. 846/2020, anggota HIMPUH &amp; IATA, terakreditasi A oleh KAN.</p></div>'
+        '</div>'
+        f'<div class="ehp-areas"><h3>Area layanan jamaah {city}</h3><ul>' + ''.join(f'<li>{a}</li>' for a in c['areas']) + '</ul></div>'
+        f'<div class="ehp-steps"><h3>Cara daftar umroh di Elharamain Wisata {city}</h3><ol>'
+        f'<li>Konsultasi gratis via WhatsApp atau datang ke kantor {city}.</li>'
+        '<li>Pilih paket &amp; tanggal, lalu DP Rp 6.000.000 per jamaah.</li>'
+        '<li>Lengkapi paspor &amp; dokumen, pelunasan paling lambat H-35.</li>'
+        '<li>Ikuti manasik di hotel berbintang, lalu berangkat dari Soekarno-Hatta.</li>'
+        '</ol></div></div>')
+
+
+def city_offices(city):
+    others = [o for o in OFFICES if o['city'] != city]
+    return (area_html(f'umroh di {city}') + offices_html(with_maps=True, context=f'paket umroh {city}', only=[city]).replace('ehp-off"', 'ehp-off" style="grid-template-columns:1fr;max-width:640px"', 1)
+            + '<p class="ehp-others">Kantor lain: ' + ' '.join(f'<a href="{SITE}/travel-umroh-{o["city"].lower()}/">Travel umroh {o["city"]}</a>' for o in others) + '</p>')
+
+
+def city_faq(city, c, o, lo):
+    return [
+        (f'Di mana travel umroh resmi di {city}?',
+         f'Elharamain Wisata ({c["role"]} {city}) beralamat di {o["addr"]}, {o["locality"]}, {o["region"]}. Telp/WA {fmt_phone(o["phone"])}. Izin umroh SK Kemenag No. 63/2020.'),
+        (f'Berapa harga paket umroh {city} 2026/2027?',
+         f'Paket umroh untuk jamaah {city} mulai {rp(lo)} per jamaah (sekamar ber-4) untuk keberangkatan November 2026 – Januari 2027, termasuk hotel bintang 5, tiket, visa, dan perlengkapan.'),
+        (f'Jamaah umroh dari {city} berangkat dari bandara mana?',
+         f'Seluruh rombongan berangkat dari Bandara Soekarno-Hatta (berkumpul di VIP Lounge Umroh). Perjalanan dari {c["near"]} ke bandara {c["trip"]}, tergantung lalu lintas.'),
+        (f'Apakah bisa daftar umroh langsung di kantor {city}?',
+         f'Bisa. Jamaah {city} dapat konsultasi gratis dan mendaftar langsung di kantor {city}. Hubungi WhatsApp {fmt_phone(o["phone"])} sebelum datang.'),
+        COMMON_FAQ[2],
+    ]
+
+
+for city, c in CITY.items():
+    o = next(x for x in OFFICES if x['city'] == city)
+    pid = CITY_IDS[city.lower()]
+    url = f'{SITE}/travel-umroh-{city.lower()}/'
+    lo = min(min(p['prices']) for pr in PERIODS for p in pr['items'])
+    faqs = city_faq(city, c, o, lo)
+    branch = next(b for b in branch_schema() if b['name'].endswith(city))
+    branch = dict(branch, url=url)
+    crumbs = {'@type': 'BreadcrumbList', 'itemListElement': [
+        {'@type': 'ListItem', 'position': 1, 'name': 'Home', 'item': SITE + '/'},
+        {'@type': 'ListItem', 'position': 2, 'name': f'Travel Umroh {city}', 'item': url}]}
+    data, _ = build_package_page(
+        f'Paket Umroh {city}', f'Travel Umroh {city} Resmi & Terpercaya – Paket Umroh {city} 2026/2027',
+        f'Elharamain Wisata {city}: {c["role"]} di {c["spot"]}. Paket umroh {city} mulai {rp(lo)} dengan hotel bintang 5, '
+        'direct flight, program Thaif & kereta cepat, dibimbing asatidz lulusan Timur Tengah.',
+        PERIODS, url,
+        pkg_title=f'Paket Umroh {city} Desember 2026 & Januari 2027', pkg_sub=f'Harga per jamaah · berlaku untuk pendaftaran di kantor {city}',
+        faqs=faqs, office_body=city_offices(city), office_title=f'Kantor Elharamain Wisata {city}', office_sub=o['addr'] + ', ' + o['locality'],
+        intro=(f'Travel Umroh {city} Terpercaya', f'Kantor {city} · {c["spot"]}', city_intro(city, c, o, lo)),
+        schema_extra=[branch, crumbs])
+    json.dump(pin_post_css(data, pid), open(OUT + f'{pid}.json', 'w'), ensure_ascii=False)
+    title = f'Travel Umroh {city} | Paket Umroh {city} 2026 - Elharamain'
+    if len(title) > 60:
+        title = f'Travel Umroh {city} | Paket Umroh {city} 2026'
+    desc = (f'Travel umroh {city} resmi Kemenag, kantor di {c["near"]}. Paket umroh {city} Des 2026 & Jan 2027 mulai Rp {jt(lo)}, hotel bintang 5.')
+    SEO[pid] = {'rank_math_title': title, 'rank_math_description': desc,
+                'rank_math_focus_keyword': f'travel umroh {city.lower()},paket umroh {city.lower()},umroh {city.lower()}',
+                'rank_math_facebook_image': SITE + '/wp-content/uploads/2026/02/1.jpg', 'rank_math_facebook_image_id': '8791',
+                'rank_math_twitter_use_facebook': 'on'}
+    print(pid, city, len(title), title, '|', len(desc))
+json.dump(SEO, open(OUT + 'seo.json', 'w'), ensure_ascii=False, indent=1)
+
 # static previews of the HTML widgets (for screenshots)
 def collect_html(data):
     out = []
@@ -447,7 +572,7 @@ def collect_html(data):
     w(data)
     return out
 
-for pid in [s['id'] for s in TIER_PAGES] + [9581, 9099]:
+for pid in [s['id'] for s in TIER_PAGES] + [9581, 9099] + list(CITY_IDS.values()):
     d = json.load(open(OUT + f'{pid}.json'))
     parts = collect_html(d)
     page = ('<html><head><meta name=viewport content="width=device-width,initial-scale=1"><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Raleway:wght@800&display=swap" rel=stylesheet></head><body style="margin:0">'
