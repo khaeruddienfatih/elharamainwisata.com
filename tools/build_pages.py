@@ -300,7 +300,9 @@ def pin_post_css(data, page_id):
     """Load the page's own Elementor CSS directly (bypassing LiteSpeed UCSS, which
     keeps serving CSS generated from the page's previous design until it is purged)."""
     tag = (f'<link rel="stylesheet" data-noptimize="1" data-no-optimize="1" data-no-minify="1" '
-           f'href="{SITE}/wp-content/uploads/elementor/css/post-{page_id}.css?ver={CSS_VER}" media="all">')
+           f'href="{SITE}/wp-content/uploads/elementor/css/post-{page_id}.css?ver={CSS_VER}" media="all">'
+           '<link rel="stylesheet" data-noptimize="1" data-no-optimize="1" data-no-minify="1" '
+           'href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Raleway:wght@600;700;800&amp;display=swap" media="all">')
     first_col = data[0]['elements'][0]
     first_col['elements'].insert(0, html_widget(tag))
     return data
