@@ -48,6 +48,9 @@ ICON_PHONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.
 ICON_CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.4 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>'
 
 CSS = r'''<style>
+/* hide LandingPress theme credit line ("Copyright © ... ") - the footer below has its own copyright bar */
+footer.site-footer .site-info{display:none!important}
+footer#colophon.site-footer{display:none!important}
 /* Elharamain brand: #004AAD (biru tua), #1684CF (biru), #DBC033 (emas), putih */
 .ehf{--ehf-bg:#004AAD;--ehf-bg2:#003C8C;--ehf-blue:#1684CF;--ehf-gold:#DBC033;--ehf-txt:#FFFFFF;--ehf-mut:#DCE8FA;--ehf-line:rgba(255,255,255,.18);
  background:var(--ehf-bg);color:var(--ehf-txt);font-family:Poppins,sans-serif;font-size:14px;line-height:1.65;text-align:left}
