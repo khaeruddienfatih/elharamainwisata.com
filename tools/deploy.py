@@ -33,3 +33,5 @@ for pid in args:
     print(pid, r['status'], r['link'], 'data ok' if ok else 'DATA MISMATCH', '+seo' if s else '')
 call('DELETE', '/elementor/v1/cache')
 print('elementor cache cleared')
+import subprocess as _sp, sys as _sys
+_sp.run([_sys.executable, os.path.join(os.path.dirname(os.path.abspath(__file__)), 'warm.py')])

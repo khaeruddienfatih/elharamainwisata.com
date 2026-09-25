@@ -334,6 +334,16 @@ PKG_I = BASE_IDX['paket-umroh']
 INC_TITLE_TPL = BASE[PKG_I + 1]['elements'][0]['elements'][0]  # light-background heading block
 
 
+def remove_element(root, element_id):
+    for e in root.get('elements', []):
+        if e['id'] == element_id:
+            root['elements'].remove(e)
+            return True
+        if remove_element(e, element_id):
+            return True
+    return False
+
+
 def section_index(data, heading_text):
     for i, e in enumerate(data):
         if find([e], lambda x: x.get('widgetType') == 'heading' and heading_text in x['settings'].get('title', '')):
@@ -348,7 +358,8 @@ def build_package_page(name, h1, subtitle, periods, url, booking=None, pkg_title
         reid(e)
     hero = data[0]
     hs = [x for x in [find([hero], lambda x, t=t: x.get('widgetType') == 'heading' and x['settings'].get('header_size') == t) for t in ('h3', 'h1', 'p')]]
-    hs[0]['settings']['header_size'] = 'div'  # "Elharamain Wisata" label above the H1
+    # drop the "Elharamain Wisata" label above the H1 (the header already shows the logo)
+    remove_element(hero, hs[0]['id'])
     hs[1]['settings']['title'] = h1
     hs[2]['settings']['title'] = subtitle
 
@@ -375,6 +386,10 @@ def build_package_page(name, h1, subtitle, periods, url, booking=None, pkg_title
         new.append(light_section(INC_TITLE_TPL, office_title, office_sub, EXTRA_CSS + office_body + schema, anchor='kantor'))
     cta_i = section_index(data, 'Wujudkan Ibadah')
     data[cta_i:cta_i] = new
+    # The footer now carries the consultation CTA, phone numbers and offices, so drop the
+    # page-level duplicates: "Wujudkan Ibadah" CTA and the "Terima kasih ... Haji / Kontak Kami" block.
+    for text in ('Wujudkan Ibadah', 'Mempercayakan Ibadah Haji'):
+        del data[section_index(data, text)]
     if intro:
         title, sub, body = intro
         data.insert(2, light_section(INC_TITLE_TPL, title, sub, EXTRA_CSS + body, anchor='tentang', bg='#FFFFFF'))
