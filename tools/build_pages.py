@@ -202,22 +202,42 @@ TIER_PAGES = [
 ]
 
 
-# Card images (Cloudinary public ids, cropped to the flyer's title area). Keyed by (period id, package name).
+# Card images: Cloudinary public id, optionally with the share of the flyer height to keep (default 0.45).
+# Only the top (title) part of each flyer is shown, so the flyer's own prices/dates never appear on a card.
+AKHIR = '_Paket_Umroh_Liburan_Akhir_Tahun_Musim_Dingin_By_Saudia_Airlines_Elharamain_Wisata_2026'
+JAN = '_Paket_Umroh_Januari_Musim_Dingin_By_Saudia_Airlines_Elharamain_Wisata_2027'
 CARD_IMAGES = {
+    ('november-2026', 'Paket Umroh Bronze'): '10_Hari_Riyad_Air_5',
+    ('awal-desember-2026', 'Paket Umroh Bronze'): 'saudia_9_hari_1',
+    ('awal-desember-2026', 'Paket Umroh Bronze Plus'): 'saudia_9_hari_4',
+    ('awal-desember-2026', 'Paket Umroh Silver (Makkah First)'): 'saudia_9_hari_3',
+    ('awal-desember-2026', 'Paket Umroh Silver (Madinah First)'): ('saudia_9_hari_10', 0.44),
+    ('awal-desember-2026', 'Paket Umroh Platinum'): ('saudia_9_hari_8', 0.42),
     ('awal-desember-2026', 'Paket Umroh Silver 12 Hari (Madinah First)'): 'saudia_9_hari_2',
-    ('akhir-desember-2026', 'Paket Umroh Silver 12 Hari'): '1._Desain_2_Paket_Umroh_Liburan_Akhir_Tahun_Musim_Dingin_By_Saudia_Airlines_Elharamain_Wisata_2026',
-    ('akhir-desember-2026', 'Paket Umroh Gold 12 Hari'): '2._Desain_2_Paket_Umroh_Liburan_Akhir_Tahun_Musim_Dingin_By_Saudia_Airlines_Elharamain_Wisata_2026',
+    ('akhir-desember-2026', 'Paket Umroh Silver'): ('3._Desain_2' + AKHIR, 0.40),
+    ('akhir-desember-2026', 'Paket Umroh Platinum'): ('4._Desain_2' + AKHIR, 0.38),
+    ('akhir-desember-2026', 'Paket Umroh Silver 12 Hari'): '1._Desain_2' + AKHIR,
+    ('akhir-desember-2026', 'Paket Umroh Gold 12 Hari'): '2._Desain_2' + AKHIR,
+    ('januari-2027', 'Paket Umroh Bronze'): 'januari_3',
+    ('januari-2027', 'Paket Umroh Silver'): '1._Desain_3' + JAN,
+    ('januari-2027', 'Paket Umroh Platinum'): '2._Desain_3' + JAN,
+    ('januari-2027', 'Paket Umroh Premium'): 'januari_5',
     ('januari-2027', 'Paket Umroh Silver 12 Hari'): '12_hari_januari_1',
     ('januari-2027', 'Paket Umroh Gold 12 Hari'): '12_hari_januari_3',
 }
-IMAGE_PAGES = {8910}  # pages that show card images (rolled out page by page)
+for _pr in PERIODS:  # attach to the shared package data, so every page shows them
+    for _p in _pr['items']:
+        _v = CARD_IMAGES.get((_pr['id'], _p['name']))
+        if _v:
+            _p['img'], _p['img_h'] = (_v, 0.45) if isinstance(_v, str) else _v
+_missing = [(pr['id'], p['name']) for pr in PERIODS for p in pr['items'] if not p.get('img')]
+assert not _missing, _missing
 
 
-def tier_periods(filt, with_images=False):
+def tier_periods(filt):
     out = []
     for pr in PERIODS:
-        items = [dict(p, img=CARD_IMAGES.get((pr['id'], p['name']))) if with_images else p
-                 for p in pr['items'] if filt(p)]
+        items = [p for p in pr['items'] if filt(p)]
         if items:
             q = dict(pr, items=items)
             out.append(q)
@@ -341,6 +361,8 @@ base_page = json.load(open(os.path.join(ROOT, 'backup', 'pages', '9581-paket-umr
 BASE = json.loads(base_page['meta']['_elementor_data'])
 for e in BASE:
     reid(e)  # fresh ids, so nothing collides with the ids we add below
+from perlengkapan import replace_slides
+assert replace_slides(BASE) == 1, 'perlengkapan slider not found'
 BASE_IDX = {k: i for i, e in enumerate(BASE) for k in [e['settings'].get('_element_id')] if k}
 PKG_I = BASE_IDX['paket-umroh']
 INC_TITLE_TPL = BASE[PKG_I + 1]['elements'][0]['elements'][0]  # light-background heading block
@@ -433,7 +455,7 @@ def seo_for(name, items, kw, extra=''):
 
 SEO = {}
 for spec in TIER_PAGES:
-    periods = tier_periods(spec['filt'], with_images=spec['id'] in IMAGE_PAGES)
+    periods = tier_periods(spec['filt'])
     url = f"{SITE}/{spec['slug']}/"
     lo = min(min(p['prices']) for pr in periods for p in pr['items'])
     sub = (f"{spec['name']} Elharamain Wisata mulai {rp(lo)}: hotel bintang 5, direct flight, program Thaif & kereta cepat, "

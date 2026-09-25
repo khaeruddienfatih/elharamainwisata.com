@@ -136,7 +136,7 @@ def card(p, period):
     note = f'<div class="ehp-note">★ {p["note"]}</div>' if p['note'] else ''
     img = ''
     if p.get('img'):
-        img = (f'<img class="ehp-img" src="https://res.cloudinary.com/v6gwkqrb/image/upload/c_fill,g_north,w_800,h_450,f_auto,q_auto/{p["img"]}.jpg" '
+        img = (f'<img class="ehp-img" src="https://res.cloudinary.com/v6gwkqrb/image/upload/c_crop,g_north,w_1.0,h_{p.get("img_h", 0.45)}/c_fill,w_800,h_450,f_auto,q_auto/{p["img"]}.jpg" '
                f'width="800" height="450" loading="lazy" alt="{p["name"]} {period["label"]} Elharamain Wisata">')
     return f'''<article class="ehp-card" data-tier="{p['tier']}">{img}
 <div class="ehp-top"><div class="ehp-tier">{p['tier'].title()} · Hotel Bintang 5</div><h4>{p['name']}</h4>
