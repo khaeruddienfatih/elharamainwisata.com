@@ -13,6 +13,8 @@ import os
 import urllib.parse
 
 HERE = os.path.dirname(os.path.abspath(__file__))
+import sys as _sys
+_sys.path.insert(0, HERE)
 ROOT = os.path.dirname(HERE)
 OUT = os.environ.get('OUT', os.path.join(ROOT, 'build')) + '/'
 os.makedirs(OUT, exist_ok=True)
@@ -306,8 +308,9 @@ def pin_post_css(data, page_id):
            f'href="{SITE}/wp-content/uploads/elementor/css/post-{page_id}.css?ver={CSS_VER}" media="all">'
            '<link rel="stylesheet" data-noptimize="1" data-no-optimize="1" data-no-minify="1" '
            'href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;family=Raleway:wght@600;700;800&amp;display=swap" media="all">')
+    from carousel_fix import carousel_css
     first_col = data[0]['elements'][0]
-    first_col['elements'].insert(0, html_widget(tag))
+    first_col['elements'].insert(0, html_widget(tag + carousel_css(data)))
     return data
 
 
