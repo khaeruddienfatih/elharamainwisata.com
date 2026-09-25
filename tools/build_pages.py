@@ -80,6 +80,8 @@ def offices_html(with_maps=False, context='paket umroh', only=None):
     for o in OFFICES:
         if only and o['city'] not in only:
             continue
+        city_link = (f'<a href="{SITE}/travel-umroh-{o["city"].lower()}/" style="font-size:13px;font-weight:600;'
+                     f'color:#004AAD;text-decoration:none">Travel umroh {o["city"]} &rarr;</a>')
         msg = urllib.parse.quote(f"Assalamu'alaikum Elharamain Wisata {o['city']}, saya ingin konsultasi {context}.")
         tag = 'h2' if with_maps else 'h3'
         mapframe = ''
@@ -90,7 +92,7 @@ def offices_html(with_maps=False, context='paket umroh', only=None):
 <address>{o['addr']}, {o['locality']}, {o['region']}{(' ' + o['zip']) if o['zip'] else ''}<br>Telp/WA: <a href="tel:+{intl(o['phone'])}">{fmt_phone(o['phone'])}</a></address>{mapframe}
 <div class="ehp-o-act"><a class="ehp-o-wa" href="https://api.whatsapp.com/send?phone={intl(o['phone'])}&amp;text={msg}" target="_blank" rel="noopener">WhatsApp {o['city']}</a>
 <a class="ehp-o-map" href="{maps_url(o)}" target="_blank" rel="noopener">Petunjuk Arah</a></div>
-<a href="{SITE}/travel-umroh-{o['city'].lower()}/" style="font-size:13px;font-weight:600;color:#004AAD;text-decoration:none">Travel umroh {o['city']} &rarr;</a></div>''')
+{'' if only else city_link}</div>''')
     return '<div class="ehp-off">' + ''.join(cards) + '</div>'
 
 
@@ -363,13 +365,16 @@ def build_package_page(name, h1, subtitle, periods, url, booking=None, pkg_title
 
     items = [(pr, p) for pr in periods for p in pr['items']]
     faqs = faqs or page_faq(name, items)
-    faq_sec = light_section(INC_TITLE_TPL, f'Pertanyaan Seputar {name}', 'FAQ', EXTRA_CSS + faq_html(faqs), anchor='faq', bg='#F3F7FD')
-    off_sec = light_section(INC_TITLE_TPL, office_title or 'Kantor Elharamain Wisata Terdekat',
-                            office_sub or 'Bekasi · Jakarta · Depok · Tangerang · Bogor · Bandung',
-                            EXTRA_CSS + (office_body or (area_html(name) + offices_html(context=name))) +
-                            ld(list(schema_extra) + trip_schema(items, url) + [faq_schema(faqs)]), anchor='kantor')
+    schema = ld(list(schema_extra) + trip_schema(items, url) + [faq_schema(faqs)])
+    # All six offices are listed in the site footer, so package pages carry no office block;
+    # city pages keep only their own office (office_body).
+    faq_sec = light_section(INC_TITLE_TPL, f'Pertanyaan Seputar {name}', 'FAQ',
+                            EXTRA_CSS + faq_html(faqs) + ('' if office_body else schema), anchor='faq', bg='#F3F7FD')
+    new = [faq_sec]
+    if office_body:
+        new.append(light_section(INC_TITLE_TPL, office_title, office_sub, EXTRA_CSS + office_body + schema, anchor='kantor'))
     cta_i = section_index(data, 'Wujudkan Ibadah')
-    data[cta_i:cta_i] = [faq_sec, off_sec]
+    data[cta_i:cta_i] = new
     if intro:
         title, sub, body = intro
         data.insert(2, light_section(INC_TITLE_TPL, title, sub, EXTRA_CSS + body, anchor='tentang', bg='#FFFFFF'))
@@ -513,9 +518,8 @@ def city_intro(city, c, o, lo):
 
 
 def city_offices(city):
-    others = [o for o in OFFICES if o['city'] != city]
-    return (area_html(f'umroh di {city}') + offices_html(with_maps=True, context=f'paket umroh {city}', only=[city]).replace('ehp-off"', 'ehp-off" style="grid-template-columns:1fr;max-width:640px"', 1)
-            + '<p class="ehp-others">Kantor lain: ' + ' '.join(f'<a href="{SITE}/travel-umroh-{o["city"].lower()}/">Travel umroh {o["city"]}</a>' for o in others) + '</p>')
+    # other offices are in the site footer
+    return offices_html(with_maps=True, context=f'paket umroh {city}', only=[city]).replace('ehp-off"', 'ehp-off" style="grid-template-columns:1fr;max-width:640px"', 1)
 
 
 def city_faq(city, c, o, lo):

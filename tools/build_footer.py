@@ -61,7 +61,7 @@ CSS = r'''<style>
 .ehf-cta span{opacity:.9}
 .ehf-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff!important;font-weight:700;padding:13px 22px;border-radius:10px;white-space:nowrap;transition:.2s}
 .ehf-btn:hover{background:#1da851}
-.ehf-btn.ehf-gold{background:var(--ehf-gold);color:#004AAD!important}.ehf-btn.ehf-gold:hover{background:#fff}
+.ehf-btn.ehf-gold{background:var(--ehf-gold);color:#004AAD!important}.ehf-hq .ehf-btn.ehf-gold svg{color:#004AAD}.ehf-btn.ehf-gold:hover{background:#fff}
 .ehf-main{display:grid;grid-template-columns:1.35fr 1fr 1fr 1.15fr;gap:36px;padding-top:48px;padding-bottom:36px}
 .ehf-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .ehf-brand img{width:52px;height:auto;aspect-ratio:317/384;background:#fff;border-radius:12px;padding:4px}
@@ -85,16 +85,23 @@ CSS = r'''<style>
 .ehf-hq a.ehf-tel{font-weight:700;color:#fff}
 .ehf-offices{border-top:1px solid var(--ehf-line);padding-top:30px;padding-bottom:34px}
 .ehf-offices .ehf-h{margin-bottom:18px}
-.ehf-og{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.ehf-og{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
 .ehf-o{background:rgba(255,255,255,.08);border:1px solid var(--ehf-line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
 .ehf-o a.ehf-on{font-weight:700;color:#fff;font-size:15px}
 .ehf-o a.ehf-on:hover{color:var(--ehf-gold)}
 .ehf-o address{font-style:normal;font-size:12.5px;line-height:1.55;color:var(--ehf-mut);flex:1}
 .ehf-o a.ehf-op{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:13px;font-weight:700;color:#004AAD!important;background:#fff;padding:6px 12px;border-radius:8px}
 .ehf-o a.ehf-op:hover{background:var(--ehf-gold)}
+.ehf-o .ehf-oa{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.ehf-o a.ehf-or{font-size:12.5px;font-weight:600;color:#fff!important;text-decoration:underline;text-underline-offset:3px}
+.ehf-o a.ehf-or:hover{color:var(--ehf-gold)}
+.ehf-o address a,.ehf-hq address a{color:#fff;font-weight:600}
+.ehf-hq address{font-style:normal}
+.ehf-area{font-size:13px;color:var(--ehf-mut);margin:0 0 16px}
 .ehf-bottom{background:var(--ehf-bg2);font-size:12.5px;color:var(--ehf-mut)}
 .ehf-bottom .ehf-wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
 .ehf-bottom a:hover{color:var(--ehf-gold)}
+@media (max-width:1100px){.ehf-og{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media (max-width:1024px){.ehf-main{grid-template-columns:1fr 1fr}.ehf-og{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.ehf-wrap{padding:0 16px}.ehf-cta b{font-size:20px}.ehf-cta .ehf-btn{width:100%;justify-content:center}
  .ehf-main{grid-template-columns:1fr 1fr;gap:28px 18px;padding-top:36px}.ehf-main>div:first-child,.ehf-main>div:last-child{grid-column:1/-1}
@@ -104,6 +111,38 @@ CSS = r'''<style>
 
 def svg(path):
     return f'<svg viewBox="0 0 24 24" aria-hidden="true">{path}</svg>'
+
+
+def tel(phone):
+    return '+62' + phone.replace('-', '')[1:]
+
+
+def maps(city, addr):
+    return 'https://www.google.com/maps/search/?api=1&amp;query=' + urllib.parse.quote(f'Elharamain Wisata {addr}')
+
+
+def org_schema():
+    """Site-wide TravelAgency graph: HQ + branches, same @ids as the /kantor-cabang/ page."""
+    def addr(a):
+        parts = [x.strip() for x in a.split(',')]
+        zip_ = parts[-1].split()[-1] if parts[-1].split()[-1].isdigit() else None
+        region = ' '.join(parts[-1].split()[:-1]) if zip_ else parts[-1]
+        out = {'@type': 'PostalAddress', 'streetAddress': ', '.join(parts[:-2]), 'addressLocality': parts[-2],
+               'addressRegion': region, 'addressCountry': 'ID'}
+        if zip_:
+            out['postalCode'] = zip_
+        return out
+    branches = [{'@type': 'TravelAgency', '@id': f'{SITE}/kantor-cabang/#{c.lower()}', 'name': f'Elharamain Wisata {c}',
+                 'url': f'{SITE}/travel-umroh-{c.lower()}/', 'telephone': tel(phone), 'address': addr(a),
+                 'parentOrganization': {'@id': f'{SITE}/#organization'}}
+                for c, _, a, phone, _l in OFFICES]
+    org = {'@type': 'TravelAgency', '@id': f'{SITE}/#organization', 'name': 'Elharamain Wisata',
+           'legalName': 'PT Dhiyaa El Haramain El Mubarakah', 'url': SITE + '/', 'logo': LOGO,
+           'telephone': tel(OFFICES[0][3]), 'address': addr(OFFICES[0][2]),
+           'areaServed': [c for c, *_ in OFFICES], 'sameAs': [u for n, u, _ in SOCIAL if 'whatsapp' not in u],
+           'department': [{'@id': b['@id']} for b in branches]}
+    return ('<script type="application/ld+json">' + json.dumps({'@context': 'https://schema.org', '@graph': [org] + branches},
+                                                              ensure_ascii=False) + '</script>')
 
 
 def footer_html():
@@ -120,6 +159,7 @@ def footer_html():
     h += (f'<div><div class="ehf-brand"><img src="{LOGO}" alt="Logo Elharamain Wisata" width="317" height="384" loading="lazy" data-no-lazy="1">'
           f'<div><b>Elharamain Wisata</b><small>PT Dhiyaa El Haramain El Mubarakah</small></div></div>'
           f'<p class="ehf-about">Travel umroh &amp; haji plus resmi dengan hotel bintang 5, direct flight, dan bimbingan ibadah sesuai sunnah.</p>'
+          f'<p class="ehf-area">Melayani jamaah umroh &amp; haji plus dari Bekasi, Jakarta, Depok, Tangerang, Bogor, Bandung dan sekitarnya.</p>'
           '<ul class="ehf-legal">' + ''.join(f'<li>{ICON_CHECK}<span>{x}</span></li>' for x in legal) + '</ul>'
           '<div class="ehf-social">' + ''.join(f'<a href="{u}" target="_blank" rel="noopener" aria-label="{n}">{svg(p)}</a>' for n, u, p in SOCIAL) + '</div></div>')
     h += ('<div><div class="ehf-h">Paket Umroh</div><ul class="ehf-links">'
@@ -127,19 +167,21 @@ def footer_html():
     h += ('<div><div class="ehf-h">Travel Umroh Terdekat</div><ul class="ehf-links">'
           + ''.join(f'<li><a href="{SITE}/travel-umroh-{c.lower()}/">Travel Umroh {c}</a></li>' for c, *_ in OFFICES)
           + f'<li><a href="{SITE}/kantor-cabang/">Semua Kantor Cabang</a></li></ul></div>')
-    h += (f'<div class="ehf-hq"><div class="ehf-h">Kantor Pusat</div>'
-          f'<p>{ICON_PIN}<span>{hq[2]}</span></p>'
-          f'<p>{ICON_PHONE}<a class="ehf-tel" href="{hq[4]}">{hq[3]}</a></p>'
+    h += (f'<div class="ehf-hq"><div class="ehf-h">Kantor Pusat Bekasi</div><address>'
+          f'<p>{ICON_PIN}<span><b style="color:#fff">Elharamain Wisata</b><br>{hq[2]}</span></p>'
+          f'<p>{ICON_PHONE}<a class="ehf-tel" href="tel:{tel(hq[3])}">{hq[3]}</a></p></address>'
           f'<p><a class="ehf-btn ehf-gold" style="padding:10px 16px;font-size:13.5px" href="https://www.google.com/maps/search/?api=1&amp;query='
           + urllib.parse.quote('Elharamain Wisata Harapan Indah Bekasi') + f'" target="_blank" rel="noopener">{ICON_PIN} Petunjuk Arah</a></p></div>')
     h += '</div>'
-    h += ('<div class="ehf-wrap ehf-offices"><div class="ehf-h">Kantor Elharamain Wisata</div><div class="ehf-og">'
-          + ''.join(f'<div class="ehf-o"><a class="ehf-on" href="{SITE}/travel-umroh-{c.lower()}/">{label}</a>'
-                    f'<address>{addr}</address><a class="ehf-op" href="{link}" target="_blank" rel="noopener">{ICON_PHONE}{phone}</a></div>'
-                    for c, label, addr, phone, link in OFFICES) + '</div></div>')
+    h += ('<div class="ehf-wrap ehf-offices"><div class="ehf-h">Kantor Cabang Elharamain Wisata</div><div class="ehf-og">'
+          + ''.join(f'<div class="ehf-o"><a class="ehf-on" href="{SITE}/travel-umroh-{c.lower()}/">Elharamain Wisata {c}</a>'
+                    f'<address>{addr}<br>Telp: <a href="tel:{tel(phone)}">{phone}</a></address>'
+                    f'<div class="ehf-oa"><a class="ehf-op" href="{link}" target="_blank" rel="noopener">{ICON_PHONE}Hubungi</a>'
+                    f'<a class="ehf-or" href="{maps(c, addr)}" target="_blank" rel="noopener">Rute</a></div></div>'
+                    for c, label, addr, phone, link in OFFICES[1:]) + '</div></div>')
     h += (f'<div class="ehf-bottom"><div class="ehf-wrap"><span>© 2026 Elharamain Wisata · PT Dhiyaa El Haramain El Mubarakah. All rights reserved.</span>'
           f'<span><a href="{SITE}/kantor-cabang/">Kantor Cabang</a> · <a href="{SITE}/privacy-policy/">Kebijakan Privasi</a></span></div></div>')
-    return h + '</footer>'
+    return h + '</footer>' + org_schema()
 
 
 import urllib.parse  # noqa: E402  (used inside footer_html)
