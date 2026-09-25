@@ -48,18 +48,20 @@ ICON_PHONE = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.
 ICON_CHECK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm-1.4 14.2-4-4 1.4-1.4 2.6 2.6 5.6-5.6 1.4 1.4-7 7z"/></svg>'
 
 CSS = r'''<style>
-.ehf{--ehf-bg:#0b1f45;--ehf-bg2:#081735;--ehf-blue:#1684CF;--ehf-gold:#dbc033;--ehf-txt:#d6def0;--ehf-mut:#9fb0cf;--ehf-line:rgba(255,255,255,.1);
+/* Elharamain brand: #004AAD (biru tua), #1684CF (biru), #DBC033 (emas), putih */
+.ehf{--ehf-bg:#004AAD;--ehf-bg2:#003C8C;--ehf-blue:#1684CF;--ehf-gold:#DBC033;--ehf-txt:#FFFFFF;--ehf-mut:#DCE8FA;--ehf-line:rgba(255,255,255,.18);
  background:var(--ehf-bg);color:var(--ehf-txt);font-family:Poppins,sans-serif;font-size:14px;line-height:1.65;text-align:left}
 .ehf *{box-sizing:border-box}
 .ehf a{color:inherit;text-decoration:none}
 .ehf svg{width:16px;height:16px;fill:currentColor;flex:0 0 16px}
 .ehf-wrap{max-width:1200px;margin:0 auto;padding:0 24px}
-.ehf-cta{background:linear-gradient(135deg,#004AAD,#1684CF);color:#fff}
+.ehf-cta{background:#1684CF;color:#fff}
 .ehf-cta .ehf-wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:28px;padding-bottom:28px;flex-wrap:wrap}
 .ehf-cta b{display:block;font-family:Raleway,sans-serif;font-weight:800;font-size:24px;line-height:1.25;color:#fff}
 .ehf-cta span{opacity:.9}
 .ehf-btn{display:inline-flex;align-items:center;gap:8px;background:#25D366;color:#fff!important;font-weight:700;padding:13px 22px;border-radius:10px;white-space:nowrap;transition:.2s}
 .ehf-btn:hover{background:#1da851}
+.ehf-btn.ehf-gold{background:var(--ehf-gold);color:#004AAD!important}.ehf-btn.ehf-gold:hover{background:#fff}
 .ehf-main{display:grid;grid-template-columns:1.35fr 1fr 1fr 1.15fr;gap:36px;padding-top:48px;padding-bottom:36px}
 .ehf-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
 .ehf-brand img{width:52px;height:auto;aspect-ratio:317/384;background:#fff;border-radius:12px;padding:4px}
@@ -70,29 +72,29 @@ CSS = r'''<style>
 .ehf-legal li{display:flex;gap:8px;align-items:flex-start;font-size:13px}
 .ehf-legal svg{color:var(--ehf-gold);margin-top:3px}
 .ehf-social{display:flex;gap:10px}
-.ehf-social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:inline-flex;align-items:center;justify-content:center;transition:.2s}
-.ehf-social a:hover{background:var(--ehf-blue)}
+.ehf-social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.14);display:inline-flex;align-items:center;justify-content:center;transition:.2s}
+.ehf-social a:hover{background:var(--ehf-gold);color:#004AAD}
 .ehf-social svg{width:18px;height:18px;flex-basis:18px}
 .ehf-h{font-family:Raleway,sans-serif;font-weight:800;font-size:16px;color:#fff;margin:0 0 14px;letter-spacing:.02em}
 .ehf-h::after{content:"";display:block;width:32px;height:3px;background:var(--ehf-gold);border-radius:2px;margin-top:8px}
 .ehf-links{list-style:none;margin:0;padding:0;display:grid;gap:7px}
 .ehf-links a{color:var(--ehf-txt);transition:.15s}
-.ehf-links a:hover{color:#fff;padding-left:3px}
+.ehf-links a:hover{color:var(--ehf-gold);padding-left:3px}
 .ehf-hq p{display:flex;gap:8px;margin:0 0 10px;align-items:flex-start}
-.ehf-hq svg{margin-top:3px;color:var(--ehf-blue)}
+.ehf-hq svg{margin-top:3px;color:var(--ehf-gold)}
 .ehf-hq a.ehf-tel{font-weight:700;color:#fff}
 .ehf-offices{border-top:1px solid var(--ehf-line);padding-top:30px;padding-bottom:34px}
 .ehf-offices .ehf-h{margin-bottom:18px}
 .ehf-og{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
-.ehf-o{background:rgba(255,255,255,.04);border:1px solid var(--ehf-line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.ehf-o{background:rgba(255,255,255,.08);border:1px solid var(--ehf-line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:8px}
 .ehf-o a.ehf-on{font-weight:700;color:#fff;font-size:15px}
 .ehf-o a.ehf-on:hover{color:var(--ehf-gold)}
 .ehf-o address{font-style:normal;font-size:12.5px;line-height:1.55;color:var(--ehf-mut);flex:1}
-.ehf-o a.ehf-op{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:13px;font-weight:600;color:#fff;background:rgba(22,132,207,.25);border:1px solid rgba(22,132,207,.6);padding:6px 12px;border-radius:8px}
-.ehf-o a.ehf-op:hover{background:var(--ehf-blue)}
+.ehf-o a.ehf-op{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;font-size:13px;font-weight:700;color:#004AAD!important;background:#fff;padding:6px 12px;border-radius:8px}
+.ehf-o a.ehf-op:hover{background:var(--ehf-gold)}
 .ehf-bottom{background:var(--ehf-bg2);font-size:12.5px;color:var(--ehf-mut)}
 .ehf-bottom .ehf-wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:16px;padding-bottom:16px}
-.ehf-bottom a:hover{color:#fff}
+.ehf-bottom a:hover{color:var(--ehf-gold)}
 @media (max-width:1024px){.ehf-main{grid-template-columns:1fr 1fr}.ehf-og{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:640px){.ehf-wrap{padding:0 16px}.ehf-cta b{font-size:20px}.ehf-cta .ehf-btn{width:100%;justify-content:center}
  .ehf-main{grid-template-columns:1fr 1fr;gap:28px 18px;padding-top:36px}.ehf-main>div:first-child,.ehf-main>div:last-child{grid-column:1/-1}
@@ -128,7 +130,7 @@ def footer_html():
     h += (f'<div class="ehf-hq"><div class="ehf-h">Kantor Pusat</div>'
           f'<p>{ICON_PIN}<span>{hq[2]}</span></p>'
           f'<p>{ICON_PHONE}<a class="ehf-tel" href="{hq[4]}">{hq[3]}</a></p>'
-          f'<p><a class="ehf-btn" style="padding:10px 16px;font-size:13.5px" href="https://www.google.com/maps/search/?api=1&amp;query='
+          f'<p><a class="ehf-btn ehf-gold" style="padding:10px 16px;font-size:13.5px" href="https://www.google.com/maps/search/?api=1&amp;query='
           + urllib.parse.quote('Elharamain Wisata Harapan Indah Bekasi') + f'" target="_blank" rel="noopener">{ICON_PIN} Petunjuk Arah</a></p></div>')
     h += '</div>'
     h += ('<div class="ehf-wrap ehf-offices"><div class="ehf-h">Kantor Elharamain Wisata</div><div class="ehf-og">'
