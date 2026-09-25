@@ -91,6 +91,7 @@ CSS = r'''
 .ehp-pdf:hover{background:#fff;color:var(--b)!important}
 .ehp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
 .ehp-card{background:#fff;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(0,20,60,.18)}
+.ehp-img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover;object-position:top;background:#dbe7f7}
 .ehp-top{padding:20px 22px 16px;background:linear-gradient(135deg,var(--b),var(--b2));color:#fff;position:relative}
 .ehp-card[data-tier=platinum] .ehp-top,.ehp-card[data-tier=premium] .ehp-top{background:linear-gradient(135deg,#0b1f45,#2a3f6e)}
 .ehp-card[data-tier=gold] .ehp-top{background:linear-gradient(135deg,#7a5a00,#c9a227)}
@@ -133,7 +134,11 @@ def card(p, period):
     if p['bonus']:
         bonus = '<div class="ehp-bonus"><b>Bonus Paket</b><ul>' + ''.join(f'<li>{b}</li>' for b in p['bonus']) + '</ul></div>'
     note = f'<div class="ehp-note">★ {p["note"]}</div>' if p['note'] else ''
-    return f'''<article class="ehp-card" data-tier="{p['tier']}">
+    img = ''
+    if p.get('img'):
+        img = (f'<img class="ehp-img" src="https://res.cloudinary.com/v6gwkqrb/image/upload/c_fill,g_north,w_800,h_450,f_auto,q_auto/{p["img"]}.jpg" '
+               f'width="800" height="450" loading="lazy" alt="{p["name"]} {period["label"]} Elharamain Wisata">')
+    return f'''<article class="ehp-card" data-tier="{p['tier']}">{img}
 <div class="ehp-top"><div class="ehp-tier">{p['tier'].title()} · Hotel Bintang 5</div><h4>{p['name']}</h4>
 <div class="ehp-chips"><span>{p['days']} Hari</span><span>{period['airline']}</span><span>+ Thaif</span></div></div>
 <div class="ehp-body">

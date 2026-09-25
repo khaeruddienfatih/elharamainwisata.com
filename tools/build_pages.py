@@ -202,10 +202,22 @@ TIER_PAGES = [
 ]
 
 
-def tier_periods(filt):
+# Card images (Cloudinary public ids, cropped to the flyer's title area). Keyed by (period id, package name).
+CARD_IMAGES = {
+    ('awal-desember-2026', 'Paket Umroh Silver 12 Hari (Madinah First)'): 'saudia_9_hari_2',
+    ('akhir-desember-2026', 'Paket Umroh Silver 12 Hari'): '1._Desain_2_Paket_Umroh_Liburan_Akhir_Tahun_Musim_Dingin_By_Saudia_Airlines_Elharamain_Wisata_2026',
+    ('akhir-desember-2026', 'Paket Umroh Gold 12 Hari'): '2._Desain_2_Paket_Umroh_Liburan_Akhir_Tahun_Musim_Dingin_By_Saudia_Airlines_Elharamain_Wisata_2026',
+    ('januari-2027', 'Paket Umroh Silver 12 Hari'): '12_hari_januari_1',
+    ('januari-2027', 'Paket Umroh Gold 12 Hari'): '12_hari_januari_3',
+}
+IMAGE_PAGES = {8910}  # pages that show card images (rolled out page by page)
+
+
+def tier_periods(filt, with_images=False):
     out = []
     for pr in PERIODS:
-        items = [p for p in pr['items'] if filt(p)]
+        items = [dict(p, img=CARD_IMAGES.get((pr['id'], p['name']))) if with_images else p
+                 for p in pr['items'] if filt(p)]
         if items:
             q = dict(pr, items=items)
             out.append(q)
@@ -421,7 +433,7 @@ def seo_for(name, items, kw, extra=''):
 
 SEO = {}
 for spec in TIER_PAGES:
-    periods = tier_periods(spec['filt'])
+    periods = tier_periods(spec['filt'], with_images=spec['id'] in IMAGE_PAGES)
     url = f"{SITE}/{spec['slug']}/"
     lo = min(min(p['prices']) for pr in periods for p in pr['items'])
     sub = (f"{spec['name']} Elharamain Wisata mulai {rp(lo)}: hotel bintang 5, direct flight, program Thaif & kereta cepat, "
