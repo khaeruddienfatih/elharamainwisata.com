@@ -7,6 +7,7 @@ Dropdowns (desktop) and the mobile menu work with CSS only, so they keep working
 delays JavaScript or serves a UCSS file without the UAE menu rules.
 """
 import base64, html, json, os, sys, urllib.request
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = 'https://www.elharamainwisata.com'
@@ -107,7 +108,8 @@ def header_html(tree):
                       f'<ul class="ehh-sub">{sub}</ul></li>')
         else:
             li.append(f'<li><a href="{url}"{tgt}>{title}</a></li>')
-    return (CSS + '<header class="ehh" aria-label="Menu utama Elharamain Wisata"><div class="ehh-bar">'
+    from typography import CSS as TYPO
+    return (TYPO + CSS + '<header class="ehh" aria-label="Menu utama Elharamain Wisata"><div class="ehh-bar">'
             f'<a class="ehh-logo" href="{SITE}/" aria-label="Elharamain Wisata - Beranda">'
             f'<img src="{LOGO}" alt="Elharamain Wisata" width="1366" height="591" data-no-lazy="1" fetchpriority="high"></a>'
             '<input type="checkbox" id="ehh-tgl" class="ehh-tgl" aria-label="Buka menu">'
