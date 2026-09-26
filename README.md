@@ -9,6 +9,11 @@ Situs: WordPress + Elementor (tema LandingPress), di belakang Cloudflare + LiteS
 - Kredensial dibaca dari environment `WP_USER` (username login, bukan nama Application Password) dan `WP_APP_PASSWORD`.
 - Tes login: `curl -u "$WP_USER:$WP_APP_PASSWORD" https://www.elharamainwisata.com/wp-json/wp/v2/users/me`
 
+## Perubahan live
+- 2026-09-26 — Beranda (page 7840): slider atas (widget image-carousel `5e65f052`) diganti 25 foto dari Cloudinary
+  folder `Elharamainwisata/Header` (`c_fill,g_auto,w_1600,h_900,q_auto,f_auto`). Backup `_elementor_data` sebelum perubahan:
+  `wordpress/backup-beranda-7840-elementor-data-2026-09-26.json` (kembalikan lewat `POST /wp/v2/pages/7840` field `meta._elementor_data`).
+
 ## Pekerjaan berikutnya
 1. Pasang `landing-pages/umroh-riyadh-air-10-hari.html` sebagai halaman **Draft** (Umroh Premium Musim Sejuk 10 Hari by Riyadh Air,
    berangkat 26 Nov 2026, mulai 37 jt). Nomor WhatsApp di LP sementara nomor pusat 6281287292422 — konfirmasi dulu (Fifi atau pusat).
