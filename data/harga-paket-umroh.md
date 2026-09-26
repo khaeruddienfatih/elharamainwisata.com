@@ -57,4 +57,4 @@ Bonus Silver 12D & Gold 12D: free GMC tour night Jabal Uhud.
 
 ## Ketentuan umum (semua brosur)
 - DP pendaftaran Rp 6.000.000/jamaah; pelunasan 35 hari sebelum keberangkatan.
-- Rekening: Bank Mandiri 156.0011.50.115.4 · Bank BSI 710.857.755.4 a.n. PT Dhiyaa El Haramain El Mubarakah.
+- Rekening: Bank Mandiri 156.001.150.115.4 · Bank BSI 710.857.755.4 a.n. PT Dhiyaa El Haramain El Mubarakah.
