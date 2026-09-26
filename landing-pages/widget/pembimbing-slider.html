@@ -1,0 +1,65 @@
+<!-- Slider Pembimbing Ibadah — geser (scroll-snap) tanpa JS; panah, titik & autoplay dengan JS kecil. -->
+<style>
+.ehpb{--ink:#1d2433;--navy:#1f3553;--line:#e6e8ee;--gap:20px;--per:4;position:relative;max-width:1160px;margin:0 auto;padding:4px 48px 8px;font-family:Mulish,Poppins,system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+.ehpb *{box-sizing:border-box}
+.ehpb .track{display:flex;gap:var(--gap);overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;scrollbar-width:none;padding:6px 2px 14px;-webkit-overflow-scrolling:touch}
+.ehpb .track::-webkit-scrollbar{display:none}
+.ehpb .slide{flex:0 0 calc((100% - (var(--per) - 1) * var(--gap)) / var(--per));scroll-snap-align:start;margin:0;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(29,36,51,.08)}
+.ehpb .slide img{display:block;width:100%;height:auto;aspect-ratio:1/1;object-fit:cover}
+.ehpb figcaption{padding:12px 10px 14px;text-align:center;font-weight:800;font-size:14px;line-height:1.35;color:var(--navy);min-height:58px;display:grid;place-items:center}
+.ehpb .nav{position:absolute;top:calc(50% - 30px);width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;box-shadow:0 4px 12px rgba(29,36,51,.15);transition:.2s;padding:0}
+.ehpb .nav:hover{background:var(--navy);color:#fff}
+.ehpb .nav svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ehpb .prev{left:0}.ehpb .next{right:0}
+.ehpb .dots{display:flex;justify-content:center;gap:8px;margin-top:4px}
+.ehpb .dots button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:#c9d1de;cursor:pointer;transition:.2s}
+.ehpb .dots button.on{background:var(--navy);width:22px;border-radius:5px}
+@media (max-width:1024px){.ehpb{--per:3}}
+@media (max-width:760px){.ehpb{--per:2;--gap:14px;padding:4px 0 8px}.ehpb .nav{display:none}}
+@media (max-width:420px){.ehpb{--per:1.3}}
+@media (max-width:760px){.ehpb .track{padding-left:16px;padding-right:16px;scroll-padding-left:16px}}
+</style>
+<div class="ehpb" id="ehpb" aria-roledescription="carousel" aria-label="Pembimbing Ibadah Elharamain Wisata">
+<button type="button" class="nav prev" aria-label="Sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+<div class="track">
+<figure class="slide"><img src="https://www.elharamainwisata.com/wp-content/uploads/2025/03/12-5.jpg" alt="Ust Ahmad Shobirin Lc.Ma - Pembimbing Ibadah Elharamain Wisata" width="577" height="577" loading="lazy" decoding="async"><figcaption>UST AHMAD SHOBIRIN LC.MA</figcaption></figure>
+<figure class="slide"><img src="https://www.elharamainwisata.com/wp-content/uploads/2025/03/11-5.jpg" alt="Ust Dr.Muhammad Tahir Lc.Ma - Pembimbing Ibadah Elharamain Wisata" width="577" height="577" loading="lazy" decoding="async"><figcaption>UST DR.MUHAMMAD TAHIR LC.MA</figcaption></figure>
+<figure class="slide"><img src="https://www.elharamainwisata.com/wp-content/uploads/2025/03/10-9.jpg" alt="Ust Didi Wibawa Lc.Ma - Pembimbing Ibadah Elharamain Wisata" width="577" height="577" loading="lazy" decoding="async"><figcaption>UST DIDI WIBAWA LC.MA</figcaption></figure>
+<figure class="slide"><img src="https://www.elharamainwisata.com/wp-content/uploads/2025/03/9-9.jpg" alt="Ust Furqon Abdurohman Lc.Ma - Pembimbing Ibadah Elharamain Wisata" width="577" height="577" loading="lazy" decoding="async"><figcaption>UST FURQON ABDUROHMAN LC.MA</figcaption></figure>
+<figure class="slide"><img src="https://www.elharamainwisata.com/wp-content/uploads/2025/03/8-8.jpg" alt="Ust Ahmad Husain Lc.Mpd - Pembimbing Ibadah Elharamain Wisata" width="577" height="577" loading="lazy" decoding="async"><figcaption>UST AHMAD HUSAIN LC.MPD</figcaption></figure>
+<figure class="slide"><img src="https://www.elharamainwisata.com/wp-content/uploads/2025/03/7-5.jpg" alt="Ust Idrus Abidin Lc Ma - Pembimbing Ibadah Elharamain Wisata" width="577" height="577" loading="lazy" decoding="async"><figcaption>UST IDRUS ABIDIN LC MA</figcaption></figure>
+<figure class="slide"><img src="https://www.elharamainwisata.com/wp-content/uploads/2025/03/13-5.jpg" alt="Ust Zulfahmi Yusuf Spdi - Pembimbing Ibadah Elharamain Wisata" width="577" height="577" loading="lazy" decoding="async"><figcaption>UST ZULFAHMI YUSUF SPDI</figcaption></figure>
+<figure class="slide"><img src="https://www.elharamainwisata.com/wp-content/uploads/2025/03/6-5.jpg" alt="Ust Ade Abu Yusuf Lc - Pembimbing Ibadah Elharamain Wisata" width="577" height="577" loading="lazy" decoding="async"><figcaption>UST ADE ABU YUSUF LC</figcaption></figure>
+</div>
+<button type="button" class="nav next" aria-label="Berikutnya"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+<div class="dots"></div>
+</div>
+<script data-no-optimize="1" data-no-defer="1" data-cfasync="false">
+(function(){
+  function init(){
+    var root=document.getElementById('ehpb'); if(!root||root.dataset.ok) return; root.dataset.ok=1;
+    var track=root.querySelector('.track'), slides=track.children, dots=root.querySelector('.dots'), timer;
+    function step(){return slides[0].getBoundingClientRect().width+parseFloat(getComputedStyle(track).columnGap||20);}
+    function perView(){var g=parseFloat(getComputedStyle(track).columnGap||20);return Math.max(1,Math.floor((track.clientWidth+g+1)/step()));}
+    function pages(){return Math.max(1,slides.length-perView()+1);}
+    function cur(){return Math.round(track.scrollLeft/step());}
+    function go(i){var n=pages();i=(i+n)%n;track.scrollTo({left:i*step(),behavior:'smooth'});}
+    function drawDots(){
+      var n=pages(),html='';for(var i=0;i<n;i++)html+='<button type="button" aria-label="Slide '+(i+1)+'"></button>';
+      dots.innerHTML=html;mark();
+    }
+    function mark(){var c=cur();[].forEach.call(dots.children,function(b,i){b.classList.toggle('on',i===c);});}
+    root.querySelector('.prev').addEventListener('click',function(){go(cur()-1);restart();});
+    root.querySelector('.next').addEventListener('click',function(){go(cur()+1);restart();});
+    dots.addEventListener('click',function(e){var i=[].indexOf.call(dots.children,e.target);if(i>-1){go(i);restart();}});
+    track.addEventListener('scroll',function(){clearTimeout(track._t);track._t=setTimeout(mark,80);},{passive:true});
+    function restart(){clearInterval(timer);timer=setInterval(function(){if(!document.hidden)go(cur()+1);},4000);}
+    root.addEventListener('mouseenter',function(){clearInterval(timer);});
+    root.addEventListener('mouseleave',restart);
+    track.addEventListener('touchstart',function(){clearInterval(timer);},{passive:true});
+    window.addEventListener('resize',drawDots);
+    drawDots();restart();
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
