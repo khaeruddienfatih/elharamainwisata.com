@@ -1,120 +1,86 @@
 <!-- Section Harga Paket Umroh — gaya kartu paket (referensi: jejakimani.com/umroh).
      Tempel ke widget HTML Elementor. Gambar dari Cloudinary folder Elharamainwisata/Header.
      Ubah data paket cukup di array PAKET pada <script> di bawah.
-     price: angka rupiah (mis. 37000000) atau null → tampil "Hubungi Kami". -->
+     price: angka rupiah (mis. 37000000) atau null → tampil "Hubungi Kami".
+     warna label: 'merah' atau 'biru'. Kartu mengarah ke `detail` bila diisi, selain itu ke WhatsApp. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800&family=Literata:wght@600&display=swap" rel="stylesheet">
 <style>
-.ehpk{--b1:#0b3fa8;--b2:#1a73d9;--b3:#e8f1ff;--gold:#f5b400;--ink:#10213f;--muted:#51607a;--line:#e3e9f4;--wa:#1fae4b;--red:#e0342b;font-family:Poppins,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);line-height:1.5;max-width:1200px;margin:0 auto;padding:48px 16px}
+.ehpk{--ink:#1d2433;--muted:#5b6474;--line:#e6e8ee;--merah:linear-gradient(90deg,#8e1b1b,#c0504d);--biru:linear-gradient(90deg,#1f3553,#5b7494);font-family:Mulish,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink);line-height:1.5;max-width:1000px;margin:0 auto;padding:48px 16px}
 .ehpk *{box-sizing:border-box}
-.ehpk .hd{text-align:center;margin-bottom:24px}
-.ehpk .hd small{display:inline-block;color:var(--b2);font-weight:700;letter-spacing:1px;text-transform:uppercase;font-size:13px}
-.ehpk .hd h2{font-size:clamp(24px,4vw,36px);font-weight:800;color:var(--b1);margin:6px 0 8px;line-height:1.2}
-.ehpk .hd p{color:var(--muted);max-width:640px;margin:0 auto}
-.ehpk .tabs{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:0 0 28px}
-.ehpk .tab{border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:8px 18px;font:600 14px/1 inherit;font-family:inherit;cursor:pointer;transition:.2s}
-.ehpk .tab:hover{border-color:var(--b2);color:var(--b2)}
-.ehpk .tab.on{background:var(--b1);border-color:var(--b1);color:#fff}
-.ehpk .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
-.ehpk .card{background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 22px rgba(16,33,63,.07);transition:transform .2s,box-shadow .2s}
-.ehpk .card:hover{transform:translateY(-4px);box-shadow:0 14px 32px rgba(16,33,63,.14)}
-.ehpk .img{position:relative;aspect-ratio:16/10;background:var(--b3)}
+.ehpk .hd{margin-bottom:36px}
+.ehpk .hd h2{font-family:Literata,Georgia,serif;font-weight:600;font-size:clamp(28px,4.5vw,40px);line-height:1.15;margin:0 0 8px;color:var(--ink)}
+.ehpk .hd p{margin:0;color:var(--muted);font-size:17px}
+.ehpk .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:32px;align-items:start}
+.ehpk .card{display:flex;flex-direction:column;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;color:inherit;transition:box-shadow .2s,transform .2s}
+.ehpk .card:hover{box-shadow:0 12px 28px rgba(29,36,51,.12);transform:translateY(-3px)}
+.ehpk .img{aspect-ratio:7/5;background:#eef1f6}
 .ehpk .img img{width:100%;height:100%;object-fit:cover;display:block}
-.ehpk .tag{position:absolute;top:12px;left:12px;background:var(--gold);color:var(--ink);font-weight:700;font-size:12px;padding:5px 12px;border-radius:999px}
-.ehpk .seat{position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-weight:700;font-size:12px;padding:5px 10px;border-radius:999px}
-.ehpk .date{position:absolute;left:12px;bottom:-18px;background:#fff;border-radius:12px;padding:6px 12px;text-align:center;box-shadow:0 4px 14px rgba(16,33,63,.15);min-width:62px}
-.ehpk .date b{display:block;font-size:20px;color:var(--b1);line-height:1.1}
-.ehpk .date span{font-size:11px;font-weight:600;color:var(--muted);text-transform:uppercase}
-.ehpk .body{padding:28px 18px 18px;display:flex;flex-direction:column;flex:1}
-.ehpk .body h3{font-size:18px;font-weight:700;margin:0 0 12px;line-height:1.3}
-.ehpk .info{list-style:none;margin:0 0 16px;padding:0;display:grid;gap:8px;font-size:14px;color:var(--muted)}
-.ehpk .info li{display:flex;gap:10px;align-items:flex-start}
-.ehpk .info i{font-style:normal;width:20px;text-align:center;flex:none}
-.ehpk .info .stars{color:var(--gold);letter-spacing:1px}
-.ehpk .foot{margin-top:auto;border-top:1px dashed var(--line);padding-top:14px}
-.ehpk .from{font-size:12px;color:var(--muted)}
-.ehpk .price{font-size:24px;font-weight:800;color:var(--b1);line-height:1.2}
-.ehpk .price small{font-size:13px;font-weight:600;color:var(--muted)}
-.ehpk .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.ehpk .btn{display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;font-weight:700;font-size:14px;padding:11px 10px;border-radius:12px;transition:.2s}
-.ehpk .btn.o{border:1.5px solid var(--b1);color:var(--b1)!important}
-.ehpk .btn.o:hover{background:var(--b3)}
-.ehpk .btn.wa{background:var(--wa);color:#fff!important}
-.ehpk .btn.wa:hover{filter:brightness(1.06)}
-.ehpk .btn.full{grid-column:1/-1}
-.ehpk .empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:32px}
-@media (max-width:640px){.ehpk{padding:36px 14px}.ehpk .tabs{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding-bottom:4px}.ehpk .tab{flex:none}}
+.ehpk .body{padding:16px 16px 18px}
+.ehpk .tag{display:inline-block;color:#fff;font-weight:800;font-size:14px;padding:3px 26px 3px 12px;border-radius:4px 999px 999px 4px;background:var(--biru)}
+.ehpk .tag.merah{background:var(--merah)}
+.ehpk .desc{margin:14px 0 16px;font-size:14px;color:var(--muted)}
+.ehpk .rows{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:14px;color:var(--muted)}
+.ehpk .rows li{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.ehpk .rows .k{display:flex;align-items:center;gap:8px;flex:none}
+.ehpk .rows svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ehpk .rows .v{text-align:right}
+.ehpk .foot{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-top:28px}
+.ehpk .foot small{font-size:12px;color:var(--muted)}
+.ehpk .foot b{font-size:16px;font-weight:800;color:var(--ink)}
+@media (max-width:640px){.ehpk{padding:36px 16px}.ehpk .grid{gap:20px}}
 </style>
 
 <div class="ehpk" id="paket-umroh">
   <div class="hd">
-    <small>Jadwal &amp; Harga</small>
-    <h2>Paket Umroh Elharamain Wisata</h2>
-    <p>Pilih jadwal keberangkatan yang paling pas. Harga dapat berubah sewaktu-waktu, konfirmasi seat via WhatsApp.</p>
+    <h2>Umroh Lebih Nyaman</h2>
+    <p>Pilih jadwal keberangkatan yang paling pas untuk ibadah Anda.</p>
   </div>
-  <div class="tabs" role="tablist"></div>
   <div class="grid"></div>
 </div>
 
 <script>
 (function(){
   var WA = '6281287292422';
-  var IMG = 'https://res.cloudinary.com/v6gwkqrb/image/upload/c_fill,g_auto,w_720,h_450,q_auto,f_auto/';
+  var IMG = 'https://res.cloudinary.com/v6gwkqrb/image/upload/c_fill,g_auto,w_700,h_500,q_auto,f_auto/';
 
   // Gambar = public_id di folder Cloudinary Elharamainwisata/Header (1–21, 28–31).
-  // TODO: lengkapi harga/hotel/tanggal paket yang masih null sebelum publish.
+  // TODO: lengkapi harga/hotel/durasi paket yang masih null sebelum publish.
   var PAKET = [
-    {img:'1',  bulan:'November', tanggal:'2026-11-26', hari:10, judul:'Umroh Premium Musim Sejuk by Riyadh Air', maskapai:'Riyadh Air', hotel:'Hotel Bintang 5 Makkah & Madinah', bintang:5, price:37000000, tag:'Premium', seat:'Seat Terbatas', detail:''},
-    {img:'5',  bulan:'Desember', tanggal:null, hari:9,  judul:'Umroh Musim Dingin 9 Hari by Saudia', maskapai:'Saudia Airlines', hotel:null, bintang:null, price:null, tag:'Musim Dingin', seat:'', detail:''},
-    {img:'9',  bulan:'Desember', tanggal:null, hari:null, judul:'Umroh Liburan Akhir Tahun by Saudia', maskapai:'Saudia Airlines', hotel:null, bintang:null, price:null, tag:'Liburan Sekolah', seat:'', detail:''},
-    {img:'13', bulan:'Januari',  tanggal:null, hari:9,  judul:'Umroh Januari Musim Dingin 9 Hari by Saudia', maskapai:'Saudia Airlines', hotel:null, bintang:null, price:null, tag:'2027', seat:'', detail:''},
-    {img:'17', bulan:'Januari',  tanggal:null, hari:12, judul:'Umroh Januari 12 Hari', maskapai:null, hotel:null, bintang:null, price:null, tag:'2027', seat:'', detail:''}
+    {img:'1',  label:'Premium Riyadh Air', warna:'merah', desc:'Umroh musim sejuk 10 hari, berangkat 26 November 2026.', hari:10, maskapai:'Riyadh Air', hotel:'Bintang 5', price:37000000, detail:''},
+    {img:'5',  label:'Musim Dingin',       warna:'biru',  desc:'Umroh musim dingin bulan Desember.', hari:9, maskapai:'Saudia Airlines', hotel:null, price:null, detail:''},
+    {img:'9',  label:'Liburan Akhir Tahun',warna:'biru',  desc:'Umroh bersama keluarga di liburan akhir tahun.', hari:null, maskapai:'Saudia Airlines', hotel:null, price:null, detail:''},
+    {img:'13', label:'Januari 9 Hari',     warna:'biru',  desc:'Umroh musim dingin Januari 2027.', hari:9, maskapai:'Saudia Airlines', hotel:null, price:null, detail:''},
+    {img:'17', label:'Januari 12 Hari',    warna:'merah', desc:'Umroh 12 hari Januari 2027.', hari:12, maskapai:null, hotel:null, price:null, detail:''}
   ];
 
-  var BLN = ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
-  var root = document.getElementById('paket-umroh');
-  var tabs = root.querySelector('.tabs'), grid = root.querySelector('.grid');
+  var IC = {
+    durasi:'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>',
+    maskapai:'<svg viewBox="0 0 24 24"><path d="M10.5 3.5 13 10h5.5a2 2 0 0 1 0 4H13l-2.5 6.5H8.5L10 14H6l-1.5 2H3l1-4-1-4h1.5L6 10h4L8.5 3.5z"/></svg>',
+    hotel:'<svg viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="1"/><path d="M8 7h2M14 7h2M8 11h2M14 11h2M10 21v-4h4v4"/></svg>'
+  };
+  var grid = document.querySelector('#paket-umroh .grid');
 
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
-  function rp(n){return 'Rp ' + n.toLocaleString('id-ID');}
-  function wa(p){return 'https://api.whatsapp.com/send?phone=' + WA + '&text=' + encodeURIComponent('Assalamualaikum, saya mau info ' + p.judul + (p.tanggal ? ' keberangkatan ' + p.tanggal : ''));}
-
-  function card(p){
-    var d = p.tanggal ? new Date(p.tanggal + 'T00:00:00') : null;
-    var info = '';
-    if (p.hari) info += '<li><i>🗓️</i>Program ' + p.hari + ' Hari</li>';
-    if (p.maskapai) info += '<li><i>✈️</i>' + esc(p.maskapai) + '</li>';
-    info += '<li><i>🏨</i><span>' + (p.hotel ? esc(p.hotel) : 'Hotel: hubungi kami') + (p.bintang ? ' <span class="stars">' + '★'.repeat(p.bintang) + '</span>' : '') + '</span></li>';
-    info += '<li><i>🕋</i>Bimbingan ustadz sesuai sunnah</li>';
-    return '<article class="card">' +
-      '<div class="img"><img loading="lazy" src="' + IMG + esc(p.img) + '.jpg" alt="' + esc(p.judul) + '">' +
-        (p.tag ? '<span class="tag">' + esc(p.tag) + '</span>' : '') +
-        (p.seat ? '<span class="seat">' + esc(p.seat) + '</span>' : '') +
-        '<div class="date">' + (d ? '<b>' + d.getDate() + '</b><span>' + BLN[d.getMonth()] + ' ' + d.getFullYear() + '</span>' : '<b>' + esc(p.bulan.slice(0,3)) + '</b><span>Jadwal</span>') + '</div>' +
-      '</div>' +
-      '<div class="body"><h3>' + esc(p.judul) + '</h3><ul class="info">' + info + '</ul>' +
-        '<div class="foot"><div class="from">' + (p.price ? 'Mulai dari' : 'Harga') + '</div>' +
-          '<div class="price">' + (p.price ? rp(p.price) + ' <small>/pax</small>' : 'Hubungi Kami') + '</div>' +
-          '<div class="acts">' +
-            (p.detail ? '<a class="btn o" href="' + esc(p.detail) + '">Lihat Detail</a>' : '') +
-            '<a class="btn wa' + (p.detail ? '' : ' full') + '" href="' + wa(p) + '" target="_blank" rel="noopener">💬 Tanya Seat</a>' +
-          '</div></div>' +
-      '</div></article>';
+  function row(k, label, v){return '<li><span class="k">' + IC[k] + label + '</span><span class="v">' + esc(v) + '</span></li>';}
+  function link(p){
+    if (p.detail) return esc(p.detail) + '"';
+    return 'https://api.whatsapp.com/send?phone=' + WA + '&amp;text=' + encodeURIComponent('Assalamualaikum, saya mau info paket umroh ' + p.label) + '" target="_blank" rel="noopener"';
   }
 
-  var bulanList = ['Semua'];
-  PAKET.forEach(function(p){ if (bulanList.indexOf(p.bulan) < 0) bulanList.push(p.bulan); });
-  tabs.innerHTML = bulanList.map(function(b, i){
-    return '<button type="button" role="tab" class="tab' + (i ? '' : ' on') + '" data-b="' + esc(b) + '">' + esc(b) + '</button>';
+  grid.innerHTML = PAKET.map(function(p){
+    return '<a class="card" href="' + link(p) + '>' +
+      '<div class="img"><img loading="lazy" src="' + IMG + esc(p.img) + '.jpg" alt="Paket umroh ' + esc(p.label) + '"></div>' +
+      '<div class="body">' +
+        '<span class="tag ' + esc(p.warna) + '">' + esc(p.label) + '</span>' +
+        '<p class="desc">' + esc(p.desc) + '</p>' +
+        '<ul class="rows">' +
+          row('durasi', 'Durasi', p.hari ? 'Mulai dari ' + p.hari + ' hari' : 'Hubungi kami') +
+          row('maskapai', 'Maskapai', p.maskapai || 'Hubungi kami') +
+          row('hotel', 'Hotel', p.hotel || 'Hubungi kami') +
+        '</ul>' +
+        '<div class="foot"><small>' + (p.price ? 'Mulai dari' : 'Harga') + '</small><b>' + (p.price ? 'Rp ' + p.price.toLocaleString('id-ID') : 'Hubungi Kami') + '</b></div>' +
+      '</div></a>';
   }).join('');
-
-  function render(b){
-    var list = PAKET.filter(function(p){ return b === 'Semua' || p.bulan === b; });
-    grid.innerHTML = list.length ? list.map(card).join('') : '<div class="empty">Belum ada paket untuk bulan ini.</div>';
-  }
-  tabs.addEventListener('click', function(e){
-    var t = e.target.closest('.tab'); if (!t) return;
-    tabs.querySelectorAll('.tab').forEach(function(x){ x.classList.toggle('on', x === t); });
-    render(t.getAttribute('data-b'));
-  });
-  render('Semua');
 })();
 </script>
