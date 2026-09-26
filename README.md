@@ -50,6 +50,11 @@ ke builder dulu, kalau tidak akan hilang.
 
 Nomor WA cabang: Bekasi (pusat) 6281287292422 · Jakarta 6281214178056 · Depok 6285179988198 · Tangerang 6285693883208 ·
 Bogor 6282260126394 · Bandung 628132212344 (11 digit — belum dikonfirmasi).
+Nomor admin lain (bukan cabang): 6282320722940, 6285199381590.
+
+Rotasi tombol WA melayang (Click to Chat Pro, diatur di WP Admin karena endpoint REST plugin butuh nonce sesi login):
+6281287292422, 6285179988198, 6285693883208, 6282320722940, 6281214178056, 6285843372026, 628132212344, 6285199381590,
+6282260126394. Di 6 halaman cabang rotasi dikunci ke nomor cabang oleh `widget/wa-cabang-template.html`.
 
 ## Tracking (semua lewat GTM-PJVND2F9, versi 15 per 26 Sep)
 - Di situs hanya tersisa snippet GTM. Kode lama (UA-98624123-1, gtag AW-11511018347, Facebook Pixel tema LandingPress,
