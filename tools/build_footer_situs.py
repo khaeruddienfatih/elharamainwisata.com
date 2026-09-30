@@ -15,6 +15,11 @@ SITUS_KAMI = [('Elharamain Wisata (Web Utama)', MAIN + '/'), ('Elharamain Haji (
               ('Haji.biz (Info Haji)', HAJI_BIZ + '/'), ('Elharamain.id (Info Umroh)', ID + '/')]
 KANTOR = [(f'Travel Umroh {c}', f'{MAIN}/travel-umroh-{c.lower()}/') for c, *_ in bf.OFFICES] + [('Semua Kantor Cabang', MAIN + '/kantor-cabang/')]
 
+PAKET_ID = [('Paket Umroh Musim Dingin 2026/2027', ID + '/paket-umroh-musim-dingin-2026-2027/'), ('Umroh Bronze', ID + '/umroh-bronze/'),
+            ('Umroh Silver', ID + '/paket-umroh-silver/'), ('Umroh Platinum', ID + '/paket-umroh-platinum/'),
+            ('Umroh Premium', ID + '/umroh-premium/'), ('Umroh Silver 12 Hari', ID + '/umroh-silver-12-hari/'),
+            ('Haji Plus', ID + '/haji-plus-elharamain-wisata/')]
+
 SITES = {
     'haji-biz': dict(
         nama='Haji.biz', wa='Assalamu\'alaikum Elharamain Wisata, saya ingin konsultasi haji plus.',
@@ -31,7 +36,7 @@ SITES = {
         btn='Daftar Haji Plus via WhatsApp',
         about='Travel haji plus (haji khusus) resmi dengan porsi Kemenag RI, fasilitas VIP, dan bimbingan ibadah sesuai sunnah.',
         area='Melayani jamaah haji plus dari Bekasi, Jakarta, Depok, Tangerang, Bogor, Bandung dan sekitarnya.',
-        col2=('Haji Plus', [('Beranda Elharamain Haji', HAJI + '/'), ('Paket Haji Plus', MAIN + '/paket-haji-plus/'),
+        col2=('Haji Plus', [('Beranda Elharamain Haji', HAJI + '/'), ('Paket Haji Plus', HAJI + '/paket-haji-plus/'),
                             ('Info Haji Khusus (Haji.biz)', HAJI_BIZ + '/'), ('Paket Umroh Musim Dingin', MAIN + '/paket-umroh-musim-dingin/')]),
         col3=('Situs Elharamain', SITUS_KAMI)),
     'elharamain-id': dict(
@@ -40,7 +45,7 @@ SITES = {
         btn='Konsultasi Umroh via WhatsApp',
         about='Portal informasi &amp; panduan umroh dari Elharamain Wisata: persiapan, manasik, biaya, dan tips ibadah sesuai sunnah.',
         area='Untuk pendaftaran paket umroh, hubungi tim kami di Bekasi, Jakarta, Depok, Tangerang, Bogor dan Bandung.',
-        col2=('Paket Umroh', [(t, MAIN + u) for t, u in bf.PAKET if 'haji' not in u]),
+        col2=('Paket Umroh', PAKET_ID),
         col3=('Travel Umroh Terdekat', KANTOR)),
 }
 
@@ -74,7 +79,9 @@ def build(key, c):
     open(os.path.join(root, f'build/preview-footer-{key}.html'), 'w', encoding='utf-8').write(
         '<html><head><meta name=viewport content="width=device-width,initial-scale=1"></head><body style="margin:0"><div style="height:60px"></div>' + html + '</body></html>')
     print(key, len(html))
+    return html
 
 
-for k, v in SITES.items():
-    build(k, v)
+if __name__ == '__main__':
+    for k, v in SITES.items():
+        build(k, v)

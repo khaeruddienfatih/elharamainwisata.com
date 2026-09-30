@@ -215,7 +215,8 @@ PAGES = {
 ENV = {'elharamain-id': ('https://www.elharamain.id', 'ELHARAMAINID'), 'elharamainhaji-com': ('https://www.elharamainhaji.com', 'ELHARAMAINHAJI')}
 
 
-def deploy(situs, slug, pg):
+def rest(situs):
+    """Fungsi call(method, path, body) ke REST situs, kredensial dari env <PREFIX>_WP_USER / _WP_APP_PASSWORD."""
     base, pre = ENV[situs]
     auth = 'Basic ' + base64.b64encode(f"{os.environ[pre + '_WP_USER']}:{os.environ[pre + '_WP_APP_PASSWORD']}".encode()).decode()
 
@@ -237,11 +238,21 @@ def deploy(situs, slug, pg):
         if not raw.strip():
             return None
         sys.exit(f'Jawaban bukan JSON untuk {m} {u}: ' + raw[:600])
-    data = [{'id': 'a0' + slug[:6].replace('-', 'x'), 'elType': 'section', 'isInner': False, 'settings': {'layout': 'full_width', 'gap': 'no',
-             'padding': {'unit': 'px', 'top': '0', 'right': '0', 'bottom': '0', 'left': '0', 'isLinked': True}},
-             'elements': [{'id': 'b0' + slug[:6].replace('-', 'x'), 'elType': 'column', 'isInner': False, 'settings': {'_column_size': 100},
-                           'elements': [{'id': 'c0' + slug[:6].replace('-', 'x'), 'elType': 'widget', 'widgetType': 'html', 'isInner': False,
-                                         'settings': {'html': pg['body']}, 'elements': []}]}]}]
+    return call
+
+
+def elementor_html(uid, html_):
+    """Satu section full-width berisi satu widget HTML (format yang sama dengan header/footer situs utama)."""
+    pad = {'unit': 'px', 'top': '0', 'right': '0', 'bottom': '0', 'left': '0', 'isLinked': True}
+    return [{'id': 'a0' + uid, 'elType': 'section', 'isInner': False, 'settings': {'layout': 'full_width', 'gap': 'no', 'padding': pad},
+             'elements': [{'id': 'b0' + uid, 'elType': 'column', 'isInner': False, 'settings': {'_column_size': 100, 'padding': pad},
+                           'elements': [{'id': 'c0' + uid, 'elType': 'widget', 'widgetType': 'html', 'isInner': False,
+                                         'settings': {'html': html_}, 'elements': []}]}]}]
+
+
+def deploy(situs, slug, pg):
+    call = rest(situs)
+    data = elementor_html(slug[:6].replace('-', 'x'), pg['body'])
     body = {'title': pg['title'].split(' | ')[0], 'slug': slug, 'template': 'elementor_header_footer',
             'meta': {'_elementor_edit_mode': 'builder', '_elementor_data': json.dumps(data, ensure_ascii=True),
                      'rank_math_title': pg['title'], 'rank_math_description': pg['desc'],

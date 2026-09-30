@@ -31,5 +31,6 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 ## Status & tugas
 Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
-- Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (footer per situs via `tools/build_footer_situs.py`: haji-biz, elharamainhaji-com, elharamain-id) (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
+- Header/footer UAE 3 situs: `tools/build_header_footer_situs.py` (`--deploy` menimpa post 805/807 elharamain.id & 3512/3514 elharamainhaji.com; haji.biz tempel manual).
 - Konektor MCP `Elharamainhaji` & `Elharamain_id` sudah diotorisasi (30 Sep) — CLAUDE.md bagian Akses perlu sesi baru untuk dipakai penuh.
+- Halaman paket: `tools/build_halaman_paket.py --deploy` (dijalankan pemilik di Windows). elharamain.id: Silver 234 & Platinum 460 publish; Draft 809/811/814/815. elharamainhaji.com: Draft 3516. Foto fasilitas di Cloudinary `Elharamainwisata/Fasilitas`.
