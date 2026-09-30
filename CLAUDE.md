@@ -22,6 +22,7 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 
 ## Aturan kerja
 - **JANGAN ubah elharamainwisata.com** (situs utama sudah bagus, kata pemilik). Hanya boleh baca/audit. Perubahan hanya jika pemilik minta eksplisit.
+- **haji.biz = khusus haji**: jangan tautkan/buat halaman umroh di menu, header, footer, atau konten haji.biz.
 - Istilah pemilik: "UAE" = plugin Ultimate Addons for Elementor. Kalau istilah ambigu, cek dulu di sini sebelum bertanya.
 - Konfirmasi dulu sebelum aksi di situs live yang sulit dibatalkan (pasang/hapus plugin, publish halaman). Halaman baru dibuat sebagai Draft.
 - Jangan buat PR kecuali diminta. Commit ke branch sesi, push di akhir.
@@ -31,5 +32,5 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 ## Status & tugas
 Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
-- Header/footer haji.biz **siap tempel**: `wordpress/uae/haji-biz-*.html` + langkah di `wordpress/uae/README.md` (menu HP hamburger, link dicek). Menunggu pemilik menempel manual di UAE (MCP tak bisa buat `elementor-hf`; build-composition butuh Atomic Editor).
+- Header/footer haji.biz **siap tempel**: `wordpress/uae/haji-biz-*.html` + langkah di `wordpress/uae/README.md` (menu HP hamburger, link dicek, tanpa link umroh). Menunggu pemilik menempel manual di UAE (MCP tak bisa buat `elementor-hf`; build-composition butuh Atomic Editor).
 - Audit Rank Math 30 Sep: elharamainhaji.com skor 78 (59 post + 12 halaman tanpa focus keyword, GSC belum ditautkan); elharamain.id skor 80 (meta deskripsi beranda 170 kar., 42 gambar tanpa alt, og:image kosong, GSC belum ditautkan).
