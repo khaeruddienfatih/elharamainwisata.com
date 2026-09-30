@@ -16,7 +16,7 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 
 ## Akses
 - MCP WordPress tersambung: `elharamainwisata_com`, `haji_biz` (tool: elementor/*, rank-math/*, marketplace/*).
-- Belum diotorisasi (perlu dilakukan pemilik di pengaturan konektor claude.ai): `Elharamainhaji`, `Elharamain_id`.
+- `Elharamainhaji` & `Elharamain_id` **sudah tersambung** (30 Sep, kemampuan sama).
 - REST API elharamainwisata.com: lihat `README.md` (snippet WPCode `wordpress/wpcode-bantu-login-api.php`, kredensial dari env `WP_USER` / `WP_APP_PASSWORD`, jangan pernah tulis kredensial di repo).
 - Tool marketplace hanya memasang plugin dari URL download; plugin berbayar butuh file zip/lisensi dari pemilik.
 
@@ -32,4 +32,8 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
 - Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
-- Konektor MCP `Elharamainhaji` & `Elharamain_id` belum diotorisasi di claude.ai.
+- Konektor `Elharamainhaji` & `Elharamain_id` sudah tersambung; audit kedua situs ada di `catatan/2026-09-30-sesi.md`.
+- Spam elharamainhaji.com = drip post terjadwal (153 masih `future`). Tunggu keputusan pemilik: trash/draft via wp-admin
+  (filter Scheduled). Jangan cari "generator" lagi.
+- Usulan (butuh izin): bahasa id_ID + timezone Asia/Jakarta di elharamain.id, LiteSpeed Cache di elharamainhaji.com & elharamain.id,
+  update Elementor Pro di elharamain.id.
