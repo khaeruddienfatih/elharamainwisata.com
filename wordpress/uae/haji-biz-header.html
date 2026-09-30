@@ -1,23 +1,25 @@
-<!-- Header haji.biz (news haji) — tempel ke widget "HTML" Elementor di UAE > Header. Edit bagian TODO. -->
+<!-- Header haji.biz (info haji). Tempel ke widget "HTML" Elementor di UAE > Header (Display: Entire Website).
+     Token brand & logo sama dengan header elharamainwisata.com (tools/build_header.py). -->
 <style>
-.eh-hd{background:#0b2545;color:#fff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-.eh-hd .in{max-width:1180px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.eh-hd a{color:#fff;text-decoration:none}
-.eh-hd .logo{font-weight:700;font-size:20px;letter-spacing:.3px}
-.eh-hd .logo small{display:block;font-size:11px;font-weight:400;opacity:.75}
-.eh-hd nav{display:flex;gap:18px;flex:1;flex-wrap:wrap}
-.eh-hd nav a{font-size:15px;opacity:.9}.eh-hd nav a:hover{opacity:1;color:#f5c542}
-.eh-hd .cta{background:#f5c542;color:#0b2545;padding:9px 16px;border-radius:6px;font-weight:600;font-size:14px}
-@media(max-width:700px){.eh-hd nav{order:3;flex-basis:100%}}
+.ehh{--hb:#004AAD;--hg:#DBC033;background:var(--hb);font-family:Poppins,sans-serif;position:relative;z-index:999}
+.ehh *{box-sizing:border-box}.ehh a{text-decoration:none}
+.ehh-bar{max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:24px;min-height:74px;flex-wrap:wrap}
+.ehh-logo img{display:block;width:150px;height:65px;object-fit:contain}
+.ehh-nav{margin-left:auto;display:flex;align-items:center;gap:4px;flex-wrap:wrap}
+.ehh-nav a.l{color:#fff;font-weight:600;font-size:15px;padding:12px 14px;border-radius:8px;white-space:nowrap}
+.ehh-nav a.l:hover{color:var(--hg)}
+.ehh-cta{display:inline-flex;align-items:center;background:#25D366;color:#fff!important;font-weight:700;font-size:14px;padding:10px 16px;border-radius:10px;margin-left:8px;white-space:nowrap}
+.ehh-cta:hover{background:#1da851}
+@media(max-width:800px){.ehh-bar{padding:8px 16px}.ehh-logo img{width:120px;height:52px}.ehh-nav{width:100%;margin:0}.ehh-cta{width:100%;justify-content:center;margin:8px 0 0}}
 </style>
-<header class="eh-hd"><div class="in">
-  <a class="logo" href="/">Haji.biz<small>Berita &amp; Panduan Haji oleh Elharamain Wisata</small></a> <!-- TODO: ganti dengan <img> logo jika ada -->
-  <nav>
-    <a href="/">Beranda</a>
-    <a href="/paket-haji-plus-2028-elharamain-wisata/">Paket Haji Plus 2028</a>
-    <a href="/umroh-desember-2026/">Umroh Desember 2026</a>
-    <a href="https://www.elharamainhaji.com/">Elharamain Haji</a>
-    <a href="https://www.elharamainwisata.com/">Elharamain Wisata</a>
+<header class="ehh" aria-label="Menu utama Haji.biz"><div class="ehh-bar">
+  <a class="ehh-logo" href="/" aria-label="Haji.biz - Beranda"><img src="https://www.elharamainwisata.com/wp-content/uploads/2024/02/AAssets-haji-biz-7.webp" alt="Haji.biz by Elharamain Wisata" width="1366" height="591" data-no-lazy="1" fetchpriority="high"></a>
+  <nav class="ehh-nav">
+    <a class="l" href="/">Beranda</a>
+    <a class="l" href="/paket-haji-plus-2028-elharamain-wisata/">Paket Haji Plus 2028</a>
+    <a class="l" href="/umroh-desember-2026/">Umroh Desember 2026</a>
+    <a class="l" href="https://www.elharamainhaji.com/">Daftar Haji</a>
+    <a class="l" href="https://www.elharamainwisata.com/">Elharamain Wisata</a>
+    <a class="ehh-cta" href="https://api.whatsapp.com/send?phone=6281287292422&amp;text=Assalamu%27alaikum%20Elharamain%20Wisata%2C%20saya%20ingin%20konsultasi%20haji." target="_blank" rel="noopener">Konsultasi Gratis</a>
   </nav>
-  <a class="cta" href="https://wa.me/6281287292422">Konsultasi WhatsApp</a> <!-- TODO: konfirmasi nomor -->
 </div></header>

@@ -2,15 +2,17 @@
 
 Baca file ini di awal sesi. Bahasa kerja: Indonesia. Jangan minta pemilik mengulang info yang sudah tertulis di sini.
 
-## 4 domain (semua WordPress + Elementor + Rank Math)
+## 4 domain (WordPress + Elementor + Rank Math)
 | Domain | Peran |
 |---|---|
-| elharamainwisata.com | Domain utama & branding (travel umroh) |
-| elharamainhaji.com | Khusus haji |
-| elharamain.id | News/berita umroh |
-| haji.biz | News/berita haji |
+| elharamainwisata.com | Web utama, hub brand (umroh + haji). **Sudah bagus — JANGAN diubah.** |
+| elharamainhaji.com | Web haji utama (jualan/transaksional). Ada 1.376 post spam di-noindex; lihat README |
+| elharamain.id | Info/edukasi umroh |
+| haji.biz | Info/edukasi haji. **Auth REST rusak** — jangan pasang snippet WPCode lagi tanpa investigasi |
 
-Stack elharamainwisata.com: tema LandingPress, Cloudflare + LiteSpeed.
+**Sumber kebenaran: `README.md` (branch `main`).** Baca itu dulu; berisi peran domain, tools, widget live, tracking GTM,
+pelajaran teknis LiteSpeed, dan daftar "Pekerjaan berikutnya". Branch kerja utama = `main`; jangan mulai dari branch `claude/*` lama.
+Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 
 ## Akses
 - MCP WordPress tersambung: `elharamainwisata_com`, `haji_biz` (tool: elementor/*, rank-math/*, marketplace/*).
@@ -26,16 +28,8 @@ Stack elharamainwisata.com: tema LandingPress, Cloudflare + LiteSpeed.
 - Simpan ringkasan tiap sesi di `catatan/AAAA-BB-HH-sesi.md` (keputusan, pekerjaan, temuan; tanpa kredensial). Lakukan otomatis di akhir sesi tanpa diminta, lalu commit & push. Transkrip mentah tidak bisa disimpan; hanya ringkasan.
 - Di akhir sesi, perbarui bagian "Status & tugas" di bawah supaya sesi berikutnya tidak mengulang.
 
-## Status & tugas (perbarui tiap sesi)
-Selesai:
-- Akses REST API WordPress elharamainwisata.com (.htaccess + snippet WPCode).
-- Draft landing page `landing-pages/umroh-riyadh-air-10-hari.html` (26 Nov 2026, mulai 37 jt).
-
-- Plugin UAE (= Ultimate Addons for Elementor versi gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com. "UAE" TIDAK berarti Uni Emirat Arab.
-
-Belum:
-1. Pasang LP Riyadh Air sebagai halaman Draft; konfirmasi nomor WhatsApp (Fifi atau pusat 6281287292422).
-2. Rapikan isi elharamainhaji.com & elharamain.id (plugin UAE sudah dipasang pemilik, isinya belum bagus) → audit setelah konektornya diotorisasi. Buat header/footer UAE di haji.biz meniru elharamain.id (template post type `elementor-hf` tidak terjangkau tool MCP; pakai Import/Export Elementor).
-3. (DIBATALKAN pemilik 2026-09-30) Perbaikan beranda elharamainwisata.com — jangan dikerjakan.
-4. Cek plugin mencurigakan "Block Widget".
-5. Setelah selesai: hapus snippet WPCode & cabut Application Password.
+## Status & tugas
+Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
+- Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
+- Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
+- Konektor MCP `Elharamainhaji` & `Elharamain_id` belum diotorisasi di claude.ai.
