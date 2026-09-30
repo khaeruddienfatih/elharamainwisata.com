@@ -10,6 +10,7 @@ import json
 import os
 import re
 import sys
+import time
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 ROOT = os.path.dirname(os.path.dirname(HERE))
@@ -22,6 +23,7 @@ from extra import X, blok_haji, blok_umroh  # noqa: E402
 from extra2 import X2  # noqa: E402
 
 START = dt.date(2026, 10, 1)
+MANIFEST = os.path.join(ROOT, 'data', 'jadwal-artikel-2026-10.json')
 JAM = {'elharamainid': [6, 9, 12, 15, 19], 'hajibiz': [7, 10, 13, 16, 20]}
 WIB = dt.timezone(dt.timedelta(hours=7))
 EXISTING = {  # artikel yang sudah terbit, boleh ditautkan
@@ -77,6 +79,8 @@ def main():
     manifest = []
     if '--publish' in sys.argv:
         from deploy_uae import rest
+    only = next((x.split('=', 1)[1] for x in sys.argv if x.startswith('--site=')), None)
+    old = {(r['site'], r['slug']): r for r in json.load(open(MANIFEST))} if os.path.exists(MANIFEST) else {}
     for a in arts:
         html, links = build(a, arts)
         open(os.path.join(ROOT, 'build', 'artikel', f"{a['site']}-{a['slug']}.html"), 'w').write(
@@ -84,7 +88,11 @@ def main():
             f'<h1 style="font-family:Poppins;max-width:820px;margin:30px auto 10px">{a["title"]}</h1>' + html)
         rec = {'site': a['site'], 'slug': a['slug'], 'title': a['title'], 'kw': a['kw'],
                'terbit_wib': a['when'].strftime('%Y-%m-%d %H:%M'), 'links': len(links)}
-        if '--publish' in sys.argv:
+        prev = old.get((a['site'], a['slug']), {})
+        if '--publish' in sys.argv and (only and a['site'] != only or prev.get('status') == 'future'):
+            rec.update({k: prev[k] for k in ('id', 'status', 'link') if k in prev})
+        elif '--publish' in sys.argv:
+            time.sleep(15)  # WAF hosting memblokir IP bila request terlalu rapat
             data = {'title': a['title'], 'slug': a['slug'], 'status': 'future', 'excerpt': a['desc'],
                     'content': f'<!-- wp:html -->\n{html}\n<!-- /wp:html -->', 'categories': [a['cat']],
                     'date_gmt': a['when'].astimezone(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S')}
@@ -101,7 +109,8 @@ def main():
             rec.update(id=r['id'], status=r['status'], link=r['link'])
             print(a['site'], r['id'], r['status'], rec['terbit_wib'], a['slug'], flush=True)
         manifest.append(rec)
-    json.dump(manifest, open(os.path.join(ROOT, 'data', 'jadwal-artikel-2026-10.json'), 'w'), ensure_ascii=False, indent=1)
+        json.dump(manifest + [r for r in old.values() if (r['site'], r['slug']) not in {(m['site'], m['slug']) for m in manifest}],
+                  open(MANIFEST, 'w'), ensure_ascii=False, indent=1)  # simpan tiap artikel (bisa dilanjutkan)
     print('artikel:', len(manifest))
 
 
