@@ -85,8 +85,12 @@ def pasang(key, bagian, post_id, h):
     data = hp.elementor_html(('hd' if bagian == 'header' else 'ft') + key[:4].replace('-', 'x'), h)
     r = call('POST', f'/wp/v2/elementor-hf/{post_id}', {'meta': {'_elementor_edit_mode': 'builder',
                                                                   '_elementor_data': json.dumps(data, ensure_ascii=True)}})
+    tersimpan = (r.get('meta') or {}).get('_elementor_data')
+    if not tersimpan or json.loads(tersimpan) != data:  # WordPress diam-diam membuang meta yang tidak terdaftar untuk REST
+        sys.exit(f'{key} {bagian}: isi TIDAK tersimpan (meta _elementor_data tidak diterima REST untuk elementor-hf). '
+                 f'Kunci meta di jawaban: {sorted((r.get("meta") or {}).keys())[:15]}')
     call('DELETE', '/elementor/v1/cache')
-    print(f'  {key} {bagian} -> post {r["id"]} ({r["status"]}) terpasang; cadangan di backup/situs/{key}/')
+    print(f'  {key} {bagian} -> post {r["id"]} ({r["status"]}) terpasang & terverifikasi; cadangan di backup/situs/{key}/')
 
 
 if __name__ == '__main__':
