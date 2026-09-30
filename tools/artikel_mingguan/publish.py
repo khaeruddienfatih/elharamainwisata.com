@@ -23,7 +23,7 @@ from extra import X, blok_haji, blok_umroh  # noqa: E402
 from extra2 import X2  # noqa: E402
 
 START = dt.date(2026, 10, 1)
-MANIFEST = os.path.join(ROOT, 'data', 'jadwal-artikel-2026-10.json')
+MANIFEST = os.environ.get('MANIFEST') or os.path.join(ROOT, 'data', 'jadwal-artikel-2026-10.json')
 JAM = {'elharamainid': [6, 9, 12, 15, 19], 'hajibiz': [7, 10, 13, 16, 20]}
 WIB = dt.timezone(dt.timedelta(hours=7))
 EXISTING = {  # artikel yang sudah terbit, boleh ditautkan
