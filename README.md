@@ -12,8 +12,6 @@ Situs: WordPress + Elementor (tema LandingPress), di belakang Cloudflare + LiteS
 ## Pekerjaan berikutnya
 1. Pasang `landing-pages/umroh-riyadh-air-10-hari.html` sebagai halaman **Draft** (Umroh Premium Musim Sejuk 10 Hari by Riyadh Air,
    berangkat 26 Nov 2026, mulai 37 jt). Nomor WhatsApp di LP sementara nomor pusat 6281287292422 — konfirmasi dulu (Fifi atau pusat).
-2. Perbaikan beranda hasil audit: link telepon `http://0812-8729-2422` → `tel:081287292422`, "ZIN UMRAH" → "IZIN UMRAH",
-   "WIsata" → "Wisata", "Kuliner Khas Nusantara" → "Kuliner Khas Arab Saudi", "Ibadah Haji Anda" → "Ibadah Umroh & Haji Anda",
-   bahasa situs → id_ID, header/footer tema dobel, gambar 404 `Assets-Elaramin-Umroh.webp`, tag GA lama `UA-98624123-1`.
+2. (Dibatalkan) Perbaikan beranda: situs utama tidak boleh diubah, lihat CLAUDE.md.
 3. Cek plugin mencurigakan "Block Widget" (Auto generated plugin, by Admin).
 4. Setelah selesai: hapus snippet WPCode dan cabut Application Password.

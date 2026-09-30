@@ -19,6 +19,7 @@ Stack elharamainwisata.com: tema LandingPress, Cloudflare + LiteSpeed.
 - Tool marketplace hanya memasang plugin dari URL download; plugin berbayar butuh file zip/lisensi dari pemilik.
 
 ## Aturan kerja
+- **JANGAN ubah elharamainwisata.com** (situs utama sudah bagus, kata pemilik). Hanya boleh baca/audit. Perubahan hanya jika pemilik minta eksplisit.
 - Istilah pemilik: "UAE" = plugin Ultimate Addons for Elementor. Kalau istilah ambigu, cek dulu di sini sebelum bertanya.
 - Konfirmasi dulu sebelum aksi di situs live yang sulit dibatalkan (pasang/hapus plugin, publish halaman). Halaman baru dibuat sebagai Draft.
 - Jangan buat PR kecuali diminta. Commit ke branch sesi, push di akhir.
@@ -35,6 +36,6 @@ Selesai:
 Belum:
 1. Pasang LP Riyadh Air sebagai halaman Draft; konfirmasi nomor WhatsApp (Fifi atau pusat 6281287292422).
 2. Rapikan isi elharamainhaji.com & elharamain.id (plugin UAE sudah dipasang pemilik, isinya belum bagus) → audit setelah konektornya diotorisasi. Buat header/footer UAE di haji.biz meniru elharamain.id (template post type `elementor-hf` tidak terjangkau tool MCP; pakai Import/Export Elementor).
-3. Perbaikan beranda elharamainwisata.com: link `http://0812-8729-2422` → `tel:081287292422`; "ZIN UMRAH" → "IZIN UMRAH"; "WIsata" → "Wisata"; "Kuliner Khas Nusantara" → "Kuliner Khas Arab Saudi"; "Ibadah Haji Anda" → "Ibadah Umroh & Haji Anda"; bahasa situs id_ID; header/footer tema dobel; gambar 404 `Assets-Elaramin-Umroh.webp`; tag GA lama `UA-98624123-1`.
+3. (DIBATALKAN pemilik 2026-09-30) Perbaikan beranda elharamainwisata.com — jangan dikerjakan.
 4. Cek plugin mencurigakan "Block Widget".
 5. Setelah selesai: hapus snippet WPCode & cabut Application Password.
