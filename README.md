@@ -24,7 +24,20 @@ Aktif di elharamainwisata.com, elharamainhaji.com, elharamain.id: `GET/POST /wp-
 `get-post-schema`, `get-post-seo-meta`. Endpoint REST lama `rankmath/v1/updateMeta` (`{"objectType":"post","objectID":N,"meta":{"rank_math_title":...,"rank_math_description":...,"rank_math_robots":[...]}}`)
 masih jalan untuk meta per-post kalau ability belum cukup; `rankmath/v1/updateSettings` **selalu 403** lewat Application Password (butuh sesi login).
 
-### haji.biz — auth REST bermasalah, JANGAN pasang snippet WPCode lagi tanpa investigasi
+### Status akses otomatis (tes 30 Sep 2026)
+| Situs | Login REST | Template UAE via REST |
+|---|---|---|
+| elharamainwisata.com | OK | OK (snippet lama) |
+| elharamainhaji.com | OK (env `ELHARAMAINHAJI_USER`) | perlu snippet `wordpress/wpcode-uae-rest.php` |
+| elharamain.id | 401: env `ELHARAMAINID_WP_USER` kosong | perlu snippet |
+| haji.biz | **OK tanpa snippet** (sekarang jalan) | perlu snippet |
+
+Hosting kadang membalas halaman HTML "reload 5 detik" (anti-bot) untuk request ber-login; cukup ulangi
+beberapa detik kemudian (`tools/deploy_uae.py` sudah otomatis mengulang). Setelah snippet terpasang:
+`python3 tools/deploy_uae.py hajibiz header wordpress/uae/haji-biz-header.html`.
+
+### haji.biz — auth REST bermasalah (catatan lama), JANGAN pasang snippet penambal LOGIN lagi
+Snippet `wpcode-uae-rest.php` aman karena tidak menyentuh proses login.
 Server haji.biz meneruskan header `Authorization` tapi PHP tidak memecahnya jadi `PHP_AUTH_USER`/`PHP_AUTH_PW` (beda
 dari elharamainwisata.com). Snippet WPCode penambal sempat dipasang (urai manual dari `HTTP_AUTHORIZATION`), tapi
 begitu berhasil mengisi `PHP_AUTH_USER`, malah memicu proses lain di situs mencoba login normal dengan nilai itu
