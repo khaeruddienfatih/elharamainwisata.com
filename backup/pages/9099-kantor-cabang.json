@@ -1,0 +1,24 @@
+{
+ "id": 9099,
+ "slug": "kantor-cabang",
+ "status": "publish",
+ "title": {
+  "raw": "Kantor Cabang",
+  "rendered": "Kantor Cabang"
+ },
+ "content": {
+  "raw": "[landingpage url=\"https://linktr.ee/mapselharamainwisata\"]",
+  "rendered": "\t\t<div data-elementor-type=\"wp-page\" data-elementor-id=\"9099\" class=\"elementor elementor-9099\" data-elementor-post-type=\"page\">\n\t\t\t\t<div class=\"elementor-element elementor-element-774eb95 e-flex e-con-boxed e-con e-parent\" data-id=\"774eb95\" data-element_type=\"container\" data-e-type=\"container\">\n\t\t\t\t\t<div class=\"e-con-inner\">\n\t\t\t\t<div class=\"elementor-element elementor-element-a81ab17 elementor-widget elementor-widget-shortcode\" data-id=\"a81ab17\" data-element_type=\"widget\" data-e-type=\"widget\" data-widget_type=\"shortcode.default\">\n\t\t\t\t<div class=\"elementor-widget-container\">\n\t\t\t\t\t\t\t<div class=\"elementor-shortcode\">Gagal mengambil halaman.</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t",
+  "protected": false,
+  "block_version": 0
+ },
+ "template": "elementor_header_footer",
+ "meta": {
+  "footnotes": "",
+  "_elementor_edit_mode": "builder",
+  "_elementor_template_type": "wp-page",
+  "_elementor_data": "[{\"id\":\"774eb95\",\"elType\":\"container\",\"settings\":[],\"elements\":[{\"id\":\"a81ab17\",\"elType\":\"widget\",\"settings\":{\"shortcode\":\"[landingpage url=\\\"https:\\/\\/linktr.ee\\/mapselharamainwisata\\\"]\"},\"elements\":[],\"widgetType\":\"shortcode\"}],\"isInner\":false}]",
+  "_elementor_page_settings": null,
+  "_elementor_conditions": []
+ }
+}

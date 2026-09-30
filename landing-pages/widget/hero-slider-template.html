@@ -1,0 +1,34 @@
+<!-- Slider header ringan (pengganti Image Carousel Elementor). Foto: Cloudinary folder Elharamainwisata/Header.
+     Foto 1 dimuat langsung (prioritas tinggi); foto lain lazy native. Ukuran responsif 480/800/1200px. Tanpa jQuery/Swiper. -->
+<style>
+.ehhs{position:relative;margin:0 auto;border:10px solid #fff;border-radius:30px;overflow:hidden;aspect-ratio:16/9;background:#dfe6f1}
+.ehhs .tr{display:flex;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;scroll-behavior:smooth}
+.ehhs .tr::-webkit-scrollbar{display:none}
+.ehhs .tr img{flex:0 0 100%;width:100%;height:100%;object-fit:cover;scroll-snap-align:start;display:block}
+.ehhs .nv{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border:0;border-radius:50%;background:rgba(0,0,0,.28);color:#fff;display:grid;place-items:center;cursor:pointer;padding:0;transition:background .2s}
+.ehhs .nv:hover{background:rgba(0,0,0,.5)}
+.ehhs .nv svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round}
+.ehhs .pv{left:10px}.ehhs .nx{right:10px}
+@media (max-width:767px){.ehhs{border-width:5px}}
+</style>
+<div class="ehhs" id="__ID__" aria-roledescription="carousel" aria-label="Galeri jamaah Elharamain Wisata">
+<div class="tr">
+__IMGS__
+</div>
+<button type="button" class="nv pv" aria-label="Foto sebelumnya"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button type="button" class="nv nx" aria-label="Foto berikutnya"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+<script data-no-optimize="1" data-no-defer="1" data-cfasync="false">
+(function(){
+  var r=document.getElementById('__ID__'); if(!r) return;
+  var t=r.querySelector('.tr'), n=t.children.length, tm;
+  function cur(){return Math.round(t.scrollLeft/t.clientWidth);}
+  function go(i){t.scrollTo({left:((i%n)+n)%n*t.clientWidth,behavior:'smooth'});}
+  function play(){clearInterval(tm);tm=setInterval(function(){if(!document.hidden)go(cur()+1);},__MS__);}
+  r.querySelector('.pv').addEventListener('click',function(){go(cur()-1);play();});
+  r.querySelector('.nx').addEventListener('click',function(){go(cur()+1);play();});
+  t.addEventListener('touchstart',function(){clearInterval(tm);},{passive:true});
+  t.addEventListener('touchend',play,{passive:true});
+  play();
+})();
+</script>

@@ -1,0 +1,97 @@
+{
+ "id": 8556,
+ "date": "2024-02-19T10:21:16",
+ "date_gmt": "2024-02-19T03:21:16",
+ "guid": {
+  "rendered": "https://www.elharamainwisata.com/?post_type=elementor-hf&#038;p=8556",
+  "raw": "https://www.elharamainwisata.com/?post_type=elementor-hf&#038;p=8556"
+ },
+ "modified": "2026-03-10T19:05:02",
+ "modified_gmt": "2026-03-10T12:05:02",
+ "password": "",
+ "slug": "header",
+ "status": "publish",
+ "type": "elementor-hf",
+ "link": "https://www.elharamainwisata.com/elementor-hf/header/",
+ "title": {
+  "raw": "Header",
+  "rendered": "Header"
+ },
+ "featured_media": 0,
+ "template": "elementor_canvas",
+ "meta": {
+  "_elementor_data": "[{\"id\":\"602c230e\",\"elType\":\"container\",\"settings\":{\"flex_direction\":\"row\",\"flex_justify_content\":\"space-between\",\"flex_align_items\":\"center\",\"flex_wrap_mobile\":\"nowrap\",\"padding\":{\"unit\":\"px\",\"top\":\"15\",\"right\":\"0\",\"bottom\":\"15\",\"left\":\"0\",\"isLinked\":false},\"padding_tablet\":{\"unit\":\"px\",\"top\":\"0\",\"right\":\"30\",\"bottom\":\"0\",\"left\":\"30\",\"isLinked\":false},\"padding_mobile\":{\"unit\":\"px\",\"top\":\"5\",\"right\":\"20\",\"bottom\":\"5\",\"left\":\"20\",\"isLinked\":false},\"css_classes\":\"wrapper\",\"_title\":\"Header\",\"min_height\":{\"unit\":\"px\",\"size\":0,\"sizes\":[]},\"min_height_tablet\":{\"unit\":\"px\",\"size\":60,\"sizes\":[]},\"background_background\":\"classic\",\"background_color\":\"#168CD4\"},\"elements\":[{\"id\":\"51b9ec53\",\"elType\":\"widget\",\"settings\":{\"site_logo_size_size\":\"full\",\"width\":{\"unit\":\"px\",\"size\":170,\"sizes\":[]},\"width_tablet\":{\"unit\":\"px\",\"size\":210,\"sizes\":[]},\"width_mobile\":{\"unit\":\"px\",\"size\":150,\"sizes\":[]},\"align\":\"left\",\"custom_image\":{\"id\":8688,\"url\":\"https:\\/\\/www.elharamainwisata.com\\/wp-content\\/uploads\\/2024\\/02\\/AAssets-haji-biz-7.webp\",\"alt\":\"\",\"source\":\"library\",\"size\":\"\"},\"_flex_align_self_tablet\":\"center\",\"site_logo_fallback\":\"yes\"},\"elements\":[],\"widgetType\":\"site-logo\"},{\"id\":\"650a0e58\",\"elType\":\"widget\",\"settings\":{\"menu\":\"menu-1\",\"dropdown_icon\":{\"value\":{\"url\":\"https:\\/\\/www.elharamainwisata.com\\/wp-content\\/uploads\\/2024\\/02\\/svg-nav.svg\",\"id\":9083},\"library\":\"svg\"},\"dropdown_close_icon\":{\"value\":{\"url\":\"https:\\/\\/www.elharamainwisata.com\\/wp-content\\/uploads\\/2024\\/02\\/svg-nav-clode.svg\",\"id\":9082},\"library\":\"svg\"},\"menu_typography_typography\":\"custom\",\"menu_typography_font_size\":{\"unit\":\"px\",\"size\":16,\"sizes\":[]},\"menu_typography_font_weight\":\"600\",\"dropdown_border_border\":\"none\",\"padding_horizontal_dropdown_item\":{\"unit\":\"px\",\"size\":0,\"sizes\":[]},\"padding_horizontal_dropdown_item_tablet\":{\"unit\":\"px\",\"size\":30,\"sizes\":[]},\"padding_vertical_dropdown_item\":{\"unit\":\"px\",\"size\":12,\"sizes\":[]},\"padding_vertical_dropdown_item_tablet\":{\"unit\":\"px\",\"size\":15,\"sizes\":[]},\"distance_from_menu_tablet\":{\"unit\":\"px\",\"size\":0,\"sizes\":[]},\"divider_border_color\":\"#0000000D\",\"toggle_color\":\"#000000\",\"toggle_size\":{\"unit\":\"px\",\"size\":30,\"sizes\":[]},\"_element_width_mobile\":\"initial\",\"_element_custom_width_mobile\":{\"unit\":\"px\",\"size\":120,\"sizes\":[]},\"__globals__\":{\"toggle_color\":\"\",\"divider_border_color\":\"\",\"color_menu_item\":\"\",\"color_dropdown_item\":\"\"},\"distance_from_menu_mobile\":{\"unit\":\"px\",\"size\":0,\"sizes\":[]},\"toggle_size_tablet\":{\"unit\":\"px\",\"size\":24,\"sizes\":[]},\"_margin_mobile\":{\"unit\":\"px\",\"top\":\"0\",\"right\":\"-10\",\"bottom\":\"0\",\"left\":\"0\",\"isLinked\":false},\"padding_horizontal_menu_item\":{\"unit\":\"px\",\"size\":0,\"sizes\":[]},\"_css_classes\":\"top_nav\",\"navmenu_align\":\"right\",\"padding_vertical_menu_item\":{\"unit\":\"px\",\"size\":8,\"sizes\":[]},\"dropdown_box_shadow_box_shadow\":{\"horizontal\":0,\"vertical\":0,\"blur\":10,\"spread\":0,\"color\":\"rgba(157, 157, 157, 0.15)\"},\"width_dropdown_item\":{\"unit\":\"px\",\"size\":280,\"sizes\":[]},\"distance_from_menu\":{\"unit\":\"px\",\"size\":12,\"sizes\":[]},\"menu_space_between\":{\"unit\":\"px\",\"size\":41,\"sizes\":[]},\"color_menu_item\":\"#FFFFFF\",\"color_dropdown_item\":\"#000000\",\"color_menu_item_hover\":\"#FE5B3E\",\"color_menu_item_active\":\"#FE5B3E\",\"menu_row_space_mobile\":{\"unit\":\"px\",\"size\":5,\"sizes\":[]},\"padding_horizontal_dropdown_item_mobile\":{\"unit\":\"px\",\"size\":20,\"sizes\":[]},\"dropdown_border_width_tablet\":{\"unit\":\"px\",\"top\":\"10\",\"right\":\"0\",\"bottom\":\"0\",\"left\":\"0\",\"isLinked\":false},\"dropdown_border_color\":\"#FFFFFF\",\"dropdown_border_radius_tablet\":{\"unit\":\"px\",\"top\":\"0\",\"right\":\"0\",\"bottom\":\"0\",\"left\":\"0\",\"isLinked\":false},\"dropdown\":\"mobile\",\"dropdown_typography_typography\":\"custom\",\"dropdown_typography_font_family\":\"Roboto\",\"dropdown_typography_font_weight\":\"500\",\"schema_support\":\"\"},\"elements\":[],\"widgetType\":\"navigation-menu\"}],\"isInner\":false}]",
+  "_elementor_edit_mode": "builder",
+  "_elementor_template_type": "wp-post",
+  "_elementor_page_settings": {
+   "ep_grid_line_columns": "",
+   "jet_conditions": [],
+   "conditions_top": "entire"
+  },
+  "_elementor_conditions": []
+ },
+ "permalink_template": "https://www.elharamainwisata.com/elementor-hf/%pagename%/",
+ "generated_slug": "header",
+ "class_list": [
+  "post-8556",
+  "elementor-hf",
+  "type-elementor-hf",
+  "status-publish",
+  "entry"
+ ],
+ "acf": [],
+ "_links": {
+  "self": [
+   {
+    "href": "https://www.elharamainwisata.com/wp-json/wp/v2/elementor-hf/8556",
+    "targetHints": {
+     "allow": [
+      "GET",
+      "POST",
+      "PUT",
+      "PATCH",
+      "DELETE"
+     ]
+    }
+   }
+  ],
+  "collection": [
+   {
+    "href": "https://www.elharamainwisata.com/wp-json/wp/v2/elementor-hf"
+   }
+  ],
+  "about": [
+   {
+    "href": "https://www.elharamainwisata.com/wp-json/wp/v2/types/elementor-hf"
+   }
+  ],
+  "version-history": [
+   {
+    "count": 0,
+    "href": "https://www.elharamainwisata.com/wp-json/wp/v2/elementor-hf/8556/revisions"
+   }
+  ],
+  "wp:attachment": [
+   {
+    "href": "https://www.elharamainwisata.com/wp-json/wp/v2/media?parent=8556"
+   }
+  ],
+  "wp:action-publish": [
+   {
+    "href": "https://www.elharamainwisata.com/wp-json/wp/v2/elementor-hf/8556"
+   }
+  ],
+  "wp:action-unfiltered-html": [
+   {
+    "href": "https://www.elharamainwisata.com/wp-json/wp/v2/elementor-hf/8556"
+   }
+  ],
+  "curies": [
+   {
+    "name": "wp",
+    "href": "https://api.w.org/{rel}",
+    "templated": true
+   }
+  ]
+ }
+}
