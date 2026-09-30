@@ -92,7 +92,8 @@ def halaman(judul, sub, kartu_html, judul_kartu, alasan, ketentuan, wa_teks, cat
 def umroh(judul, seo_title, sub, filt, wa_teks):
     ps = [p for p in PAKET if filt(p)]
     lo = min(p['q'] for p in ps)
-    return dict(title=seo_title, body=halaman(judul, sub.format(lo=jt(lo)), ''.join(map(kartu_umroh, ps)),
+    desc = f'{judul} Elharamain Wisata: hotel bintang 5, Thaif & kereta cepat, mulai {jt(lo)}. DP Rp 6 juta, izin resmi Kemenag.'
+    return dict(title=seo_title, desc=desc, body=halaman(judul, sub.format(lo=jt(lo)), ''.join(map(kartu_umroh, ps)),
                                               f'{len(ps)} Pilihan Jadwal &amp; Harga', UMROH_ALASAN, KETENTUAN, wa_teks),
                 n=len(ps))
 
@@ -137,6 +138,7 @@ PAGES = {
     ],
     'elharamainhaji-com': [  # situs jualan haji
         ('paket-haji-plus', dict(title='Paket Haji Plus 2027 Resmi PIHK Kemenag | Elharamain Haji', n=3,
+            desc='Paket Haji Plus resmi PIHK Kemenag: masa tunggu 5-9 tahun, hotel bintang 4 & 5, mulai USD 12.000 (estimasi 2027). Konsultasi gratis.',
             body=halaman('Paket Haji Plus Resmi PIHK Kemenag', 'Masa tunggu 5-9 tahun, fasilitas hotel bintang 4 &amp; 5, pembimbing berpengalaman. Kuota terbatas.',
                          ''.join(kartu_haji(*h) for h in HAJI), '3 Pilihan Paket Haji ONH Plus', HAJI_ALASAN, HAJI_KET, HAJI_WA, ket_judul='Catatan Biaya', sub_kartu='Biaya paket per jamaah dalam USD. Pilih sesuai kelas hotel yang Anda inginkan.',
                          catatan='<div class="ehp-note">Biaya paket di atas adalah estimasi keberangkatan tahun 2027. Untuk detail dan simulasi cicilan, hubungi tim kami.</div>'))),
@@ -174,14 +176,19 @@ def deploy(situs, slug, pg):
                                          'settings': {'html': pg['body']}, 'elements': []}]}]}]
     body = {'title': pg['title'].split(' | ')[0], 'slug': slug, 'template': 'elementor_header_footer',
             'meta': {'_elementor_edit_mode': 'builder', '_elementor_data': json.dumps(data, ensure_ascii=True),
-                     'rank_math_title': pg['title']}}
+                     'rank_math_title': pg['title'], 'rank_math_description': pg['desc'],
+                     'rank_math_facebook_description': pg['desc']}}
     ada = call('GET', f'/wp/v2/pages?slug={slug}&status=any&context=edit&_fields=id,status')
     if ada:
         lama = call('GET', f'/wp/v2/pages/{ada[0]["id"]}?context=edit')
         bk = os.path.join(ROOT, 'backup', 'situs', situs)
         os.makedirs(bk, exist_ok=True)
-        with open(os.path.join(bk, f'{ada[0]["id"]}-{slug}-sebelum.json'), 'w', encoding='utf-8') as f:
-            json.dump(lama, f, ensure_ascii=False, indent=1)
+        fbk = os.path.join(bk, f'{ada[0]["id"]}-{slug}-sebelum.json')
+        if os.path.exists(fbk):  # cadangan asli sudah ada: jangan ditimpa versi hasil skrip
+            print('  (cadangan asli sudah ada, tidak ditimpa)')
+        else:
+            with open(fbk, 'w', encoding='utf-8') as f:
+                json.dump(lama, f, ensure_ascii=False, indent=1)
         print(f'  cadangan halaman lama id {ada[0]["id"]} ({ada[0]["status"]}) disimpan di backup/situs/{situs}/')
         body.pop('template')  # halaman lama: pertahankan template-nya
         r = call('POST', f'/wp/v2/pages/{ada[0]["id"]}', body)   # status tidak diubah (draft tetap draft, publish tetap publish)
