@@ -32,10 +32,18 @@ def rest(site, method, path, body=None):
     for attempt in range(5):
         out = subprocess.run(cmd, input=cfg, capture_output=True, text=True).stdout
         raw, _, code = out.rpartition('\n')
-        if raw.lstrip().startswith(('[', '{')):
+        if not raw.lstrip().startswith(('[', '{')) and '{"' in raw and '<html' not in raw[:2000].lower():
+            raw = raw[raw.find('{"'):]  # plugin/notice PHP kadang mencetak teks sebelum JSON
+        if code.startswith('2') and not raw.strip():
+            return True  # sukses tanpa isi (mis. DELETE /elementor/v1/cache)
+        try:
+            val = json.loads(raw)
+        except ValueError:
+            val = None  # halaman HTML anti-bot
+        if val is not None:
             if int(code) >= 400:
                 sys.exit(f'{code}: {raw[:300]}')
-            return json.loads(raw)
+            return val
         time.sleep(8)  # halaman anti-bot "reload" / 403 WAF sesekali; coba lagi
     sys.exit(f'Tetap diblokir anti-bot hosting ({code})')
 
