@@ -53,8 +53,9 @@ Template halaman: `elementor_canvas` (landing page, tanpa header/footer tema).
 |---|---|---|---|
 | elharamainwisata.com | 9733 | Paket Umroh Musim Dingin Desember 2026 | draft |
 | elharamainwisata.com | 9735 | Panduan Lengkap Haji Plus 1448H | draft |
-| elharamainhaji.com | 3509 | Panduan Lengkap Haji Plus 1448H | draft, robots di-override `index` (post type "post" di-noindex massal, lihat bawah) |
-| elharamain.id | 801 | Paket Umroh Musim Dingin Desember 2026 | draft |
+| elharamainhaji.com | 3509 | Panduan Lengkap Haji Plus 1448H | **terbit 30 Sep**, template elementor_header_footer, robots `index` |
+| elharamain.id | 801 | Paket Umroh Musim Dingin Desember 2026 | **terbit 30 Sep**, template elementor_header_footer |
+| elharamain.id | 832 | Umroh Januari 2027 (dari brosur) | **terbit 30 Sep** |
 
 ### elharamainhaji.com — 1.376 post spam terdeteksi & di-noindex (30 Sep 2026)
 Post type "post" berisi 1.376 halaman auto-generate 1/kabupaten-kota se-Indonesia (judul diawali nomor WA,
