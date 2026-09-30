@@ -16,8 +16,47 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WA = '6281287292422'
 CLD = 'https://res.cloudinary.com/v6gwkqrb/image/upload/'
 IMG = CLD + 'c_fill,g_auto,w_700,h_500,q_auto,f_auto/'
-HERO = CLD + 'c_fill,g_auto,w_1600,h_700,q_auto:eco,f_auto/'
 foto = lambda p: f'kartu-paket-{int(p["img"]):02d}.jpg'  # foto kartu tanpa logo, folder Elharamainwisata/Kartu Paket
+WIDGET = lambda f: open(os.path.join(ROOT, 'landing-pages/widget', f), encoding='utf-8').read()
+SLIDER = WIDGET('hero-slider.html')           # slider header (foto berlogo, folder Header)
+TAB_FASILITAS = WIDGET('fasilitas-ketentuan-tab.html')  # tab Sudah/Belum Termasuk, Dokumen, Pendaftaran
+FAS = 'https://res.cloudinary.com/v6gwkqrb/image/upload/c_fill,g_auto,w_400,h_256,q_auto,f_auto/fasilitas-'
+# 15 fasilitas dari halaman "Umroh lebih nyaman" di brosur (foto: Cloudinary folder Elharamainwisata/Fasilitas)
+FASILITAS = [('penyelenggara-resmi', 'Penyelenggara Resmi', 'Ibadah haji &amp; umroh'),
+             ('maskapai', 'Maskapai Premium', ''),
+             ('hotel-bintang-5', 'Hotel Bintang 5', 'Fasilitas hotel terbaik'),
+             ('transportasi-bus', 'Transportasi Bus', 'Menggunakan bus terbaru'),
+             ('manasik-eksklusif', 'Manasik Eksklusif', 'Fasilitas hotel berbintang'),
+             ('perlengkapan-eksklusif', 'Perlengkapan Eksklusif', 'Terlengkap &amp; terbaik'),
+             ('vip-lounge', 'VIP Lounge Umroh', 'Lounge umroh terbaik'),
+             ('full-bimbingan', 'Full Bimbingan', 'Dibimbing sesuai sunnah'),
+             ('program-bersama', 'Program Bersama', 'Tahajjud &amp; kajian Islami'),
+             ('free-unta-atv', 'Free Unta + ATV', 'Ziarah tambahan Kota Madinah'),
+             ('ziarah-thaif', 'Program Ziarah Thaif', 'Belajar sirah &amp; tadabbur alam'),
+             ('umroh-3x', 'Fasilitasi Umroh 3x', 'Difasilitasi dan dibimbing'),
+             ('audio-haji', 'Audio Haj Elharamain', 'Umroh dan kajian menggunakan audio haj'),
+             ('kuliner-arab-saudi', 'Kuliner Arab Saudi', 'Nasi mandhi + kunafa + albaik'),
+             ('oleh-oleh', 'Oleh-oleh Elharamain', 'Album foto, kurma, zamzam &amp; lainnya')]
+HAJI_FASILITAS = ['penyelenggara-resmi', 'hotel-bintang-5', 'transportasi-bus', 'manasik-eksklusif',
+                  'perlengkapan-eksklusif', 'full-bimbingan', 'program-bersama', 'audio-haji']
+
+
+def tiles_fasilitas(maskapai=('saudia',), pilih=None):
+    out = []
+    for key, judul, sub in FASILITAS:
+        if pilih and key not in pilih:
+            continue
+        if key == 'maskapai':
+            for m in maskapai:  # brosur Saudia & Riyadh Air punya foto maskapai sendiri
+                nama, img = {'saudia': ('Saudia Airlines · direct flight', 'maskapai-saudia-direct-flight'),
+                             'riyadh': ('Riyadh Air', 'maskapai-riyadh-air')}[m]
+                out.append((img, 'Maskapai Premium', nama))
+            continue
+        out.append((key, judul, sub))
+    return ''.join(f'<div class="ehp-fas"><img loading="lazy" src="{FAS}{k}.jpg" alt="{e(j)} Elharamain Wisata" width="400" height="256">'
+                   f'<div><b>{j}</b><span>{s}</span></div></div>' for k, j, s in out)
+
+
 PAKET = json.load(open(os.path.join(ROOT, 'data/paket-umroh.json'), encoding='utf-8'))['paket']
 
 e = html.escape
@@ -58,8 +97,15 @@ CSS = '''<style>
 .ehp-list li{padding-left:26px;position:relative}
 .ehp-list li::before{content:"\\2713";position:absolute;left:0;top:0;color:#fff;background:var(--b);width:18px;height:18px;border-radius:50%;font-size:11px;line-height:18px;text-align:center;top:4px}
 .ehp-note{background:#fff8dc;border:1px solid var(--g);border-radius:12px;padding:14px 18px;font-size:13.5px;margin-top:20px}
+.ehp-fasg{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.ehp-fas{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 20px rgba(0,74,173,.08);display:flex;flex-direction:column}
+.ehp-fas img{display:block;width:100%;height:auto;aspect-ratio:25/16;object-fit:cover}
+.ehp-fas div{background:var(--b);color:#fff;padding:10px 14px;flex:1}
+.ehp-fas b{display:block;font-family:Raleway,sans-serif;font-weight:800;font-size:15px;text-transform:uppercase;letter-spacing:.02em}
+.ehp-fas span{font-size:12.5px;opacity:.9}
+.ehp-slider{padding:24px 0 8px}
 .ehp-cta{background:var(--n);color:#fff;text-align:center;padding:44px 0}.ehp-cta h2{color:#fff}.ehp-cta p{margin:0 0 20px;opacity:.9}
-@media(max-width:900px){.ehp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.ehp-hero h1{font-size:30px}}
+@media(max-width:900px){.ehp-grid,.ehp-fasg{grid-template-columns:repeat(2,minmax(0,1fr))}.ehp-hero h1{font-size:30px}}
 @media(max-width:600px){.ehp-w{padding:0 16px}.ehp-grid,.ehp-list{grid-template-columns:1fr}.ehp-hero{padding:40px 0 34px}.ehp-hero h1{font-size:26px}}
 </style>'''
 
@@ -86,35 +132,37 @@ def kartu_umroh(p):
             f'<a class="ehp-btn" href="{wa(teks)}" target="_blank" rel="noopener">Tanya Paket Ini via WhatsApp</a></div></div>')
 
 
-def halaman(judul, sub, kartu_html, judul_kartu, alasan, ketentuan, wa_teks, catatan='', ket_judul='Ketentuan', hero_foto='', perl=False,
-            sub_kartu='Harga per jamaah. Pilih jadwal yang paling pas untuk Anda.'):
+def halaman(judul, sub, kartu_html, judul_kartu, wa_teks, fasilitas, alasan=(), ketentuan=(), tab=False, catatan='',
+            ket_judul='Ketentuan', perl=False, sub_kartu='Harga per jamaah. Pilih jadwal yang paling pas untuk Anda.'):
+    """Urutan: slider header -> judul -> kartu paket -> tab Termasuk/Belum Termasuk -> perlengkapan -> Kenapa (ikon) -> CTA."""
     li = lambda xs: ''.join(f'<li>{x}</li>' for x in xs)
     wa_btn = lambda t: f'<a class="ehp-btn" href="{wa(wa_teks)}" target="_blank" rel="noopener">{t}</a>'
-    if hero_foto:  # foto header (berlogo) khusus hero, sama seperti header slider situs utama
-        buka = (f'<section class="ehp-hero foto" style="background-image:linear-gradient(135deg,rgba(0,74,173,.78),rgba(22,132,207,.35)),'
-                f'url({hero_foto})"><div class="ehp-w">')
-    else:
-        buka = '<section class="ehp-hero"><div class="ehp-w">'
-    h = CSS + '<div class="ehp">' + buka + f'<h1>{judul}</h1><p>{sub}</p>' + wa_btn('Konsultasi Gratis via WhatsApp') + '</div></section>'
+    h = CSS + '<div class="ehp"><section class="ehp-slider"><div class="ehp-w">' + SLIDER + '</div></section>'
+    h += f'<section class="ehp-hero"><div class="ehp-w"><h1>{judul}</h1><p>{sub}</p>' + wa_btn('Konsultasi Gratis via WhatsApp') + '</div></section>'
     h += (f'<section class="ehp-sec"><div class="ehp-w"><h2>{judul_kartu}</h2><p class="sub">{sub_kartu}</p>'
           f'<div class="ehp-grid">{kartu_html}</div>{catatan}</div></section>')
+    if tab:
+        h += ('<section class="ehp-sec alt"><div class="ehp-w"><h2>Fasilitas &amp; Ketentuan</h2>'
+              '<p class="sub">Yang sudah dan belum termasuk dalam harga paket.</p>' + TAB_FASILITAS + '</div></section>')
     if perl:
         h += PERLENGKAPAN
-    h += (f'<section class="ehp-sec alt"><div class="ehp-w"><h2>Kenapa Elharamain Wisata?</h2><p class="sub">Penyelenggara resmi, pelayanan dari awal sampai pulang.</p>'
-          f'<ul class="ehp-list">{li(alasan)}</ul></div></section>'
-          f'<section class="ehp-sec"><div class="ehp-w"><h2>{ket_judul}</h2><ul class="ehp-list">{li(ketentuan)}</ul></div></section>'
-          f'<section class="ehp-cta"><div class="ehp-w"><h2>Masih ada pertanyaan?</h2><p>Tim kami siap membantu memilih paket, jadwal, dan pembayaran.</p>'
+    h += (f'<section class="ehp-sec alt"><div class="ehp-w"><h2>Kenapa Elharamain Wisata?</h2><p class="sub">Umroh &amp; haji lebih nyaman dan berkesan bersama Elharamain Wisata.</p>'
+          f'<div class="ehp-fasg">{fasilitas}</div>' + (f'<ul class="ehp-list" style="margin-top:28px">{li(alasan)}</ul>' if alasan else '') + '</div></section>')
+    if ketentuan:
+        h += f'<section class="ehp-sec"><div class="ehp-w"><h2>{ket_judul}</h2><ul class="ehp-list">{li(ketentuan)}</ul></div></section>'
+    h += ('<section class="ehp-cta"><div class="ehp-w"><h2>Masih ada pertanyaan?</h2><p>Tim kami siap membantu memilih paket, jadwal, dan pembayaran.</p>'
           + wa_btn('Hubungi Kami di WhatsApp') + '</div></section></div>')
     return h
 
 
-def umroh(judul, seo_title, sub, filt, wa_teks, hero=1):
+def umroh(judul, seo_title, sub, filt, wa_teks):
     ps = [p for p in PAKET if filt(p)]
     lo = min(p['q'] for p in ps)
     desc = f'{judul} Elharamain Wisata: hotel bintang 5, Thaif & kereta cepat, mulai {jt(lo)}. DP Rp 6 juta, izin resmi Kemenag.'
-    return dict(title=seo_title, desc=desc, body=halaman(judul, sub.format(lo=jt(lo)), ''.join(map(kartu_umroh, ps)),
-                                              f'{len(ps)} Pilihan Jadwal &amp; Harga', UMROH_ALASAN, KETENTUAN, wa_teks, hero_foto=f'{HERO}{hero}.jpg', perl=True),
-                n=len(ps))
+    maskapai = tuple(m for m, n in (('saudia', 'Saudia'), ('riyadh', 'Riyadh')) if any(n in p['maskapai'] for p in ps))
+    return dict(title=seo_title, desc=desc, n=len(ps), body=halaman(
+        judul, sub.format(lo=jt(lo)), ''.join(map(kartu_umroh, ps)), f'{len(ps)} Pilihan Jadwal &amp; Harga', wa_teks,
+        tiles_fasilitas(maskapai), tab=True, perl=True))
 
 
 HAJI = [('Haji Plus Bintang 4', 12000, 'Royal Majestik ★4', 'Concorde Dar Alkhair ★4'),
@@ -143,23 +191,24 @@ HAJI_WA = "Assalamualaikum Elharamain Wisata, saya ingin konsultasi daftar haji 
 PAGES = {
     'elharamain-id': [  # situs info umroh
         ('paket-umroh-musim-dingin-2026-2027', umroh('Paket Umroh Musim Dingin 2026/2027', 'Paket Umroh Musim Dingin 2026/2027 | Elharamain Wisata',
-            'Umroh November 2026 - Januari 2027, hotel bintang 5, program Thaif &amp; kereta cepat. Mulai {lo}.', lambda p: True, 'Assalamualaikum, saya ingin info paket umroh musim dingin 2026/2027.', hero=1)),
+            'Umroh November 2026 - Januari 2027, hotel bintang 5, program Thaif &amp; kereta cepat. Mulai {lo}.', lambda p: True, 'Assalamualaikum, saya ingin info paket umroh musim dingin 2026/2027.')),
         ('umroh-bronze', umroh('Paket Umroh Bronze', 'Paket Umroh Bronze Nov 2026 & Jan 2027 | Elharamain Wisata',
-            'Paket umroh hemat hotel bintang 5, mulai {lo}.', lambda p: p['tier'] == 'bronze', 'Assalamualaikum, saya ingin info paket umroh Bronze.', hero=2)),
+            'Paket umroh hemat hotel bintang 5, mulai {lo}.', lambda p: p['tier'] == 'bronze', 'Assalamualaikum, saya ingin info paket umroh Bronze.')),
         ('paket-umroh-silver', umroh('Paket Umroh Silver', 'Paket Umroh Silver Des 2026 & Jan 2027 | Elharamain Wisata',
-            'Paket umroh Silver 9 hari, hotel bintang 5, Thaif &amp; kereta cepat, mulai {lo}.', lambda p: p['tier'] == 'silver' and p['hari'] == 9, 'Assalamualaikum, saya ingin info paket umroh Silver.', hero=3)),
+            'Paket umroh Silver 9 hari, hotel bintang 5, Thaif &amp; kereta cepat, mulai {lo}.', lambda p: p['tier'] == 'silver' and p['hari'] == 9, 'Assalamualaikum, saya ingin info paket umroh Silver.')),
         ('paket-umroh-platinum', umroh('Paket Umroh Platinum', 'Paket Umroh Platinum Des 2026 & Jan 2027 | Elharamain Wisata',
-            'Umroh Platinum: Marwa Rotana / Movenpick, bonus hotel H-1, abaya &amp; jaket eksklusif, mulai {lo}.', lambda p: p['tier'] == 'platinum', 'Assalamualaikum, saya ingin info paket umroh Platinum.', hero=4)),
+            'Umroh Platinum: Marwa Rotana / Movenpick, bonus hotel H-1, abaya &amp; jaket eksklusif, mulai {lo}.', lambda p: p['tier'] == 'platinum', 'Assalamualaikum, saya ingin info paket umroh Platinum.')),
         ('umroh-premium', umroh('Paket Umroh Premium', 'Paket Umroh Premium Januari 2027 | Elharamain Wisata',
-            'Umroh Premium dengan Fairmont Makkah &amp; Movenpick Madinah, mulai {lo}.', lambda p: p['tier'] == 'premium', 'Assalamualaikum, saya ingin info paket umroh Premium.', hero=5)),
+            'Umroh Premium dengan Fairmont Makkah &amp; Movenpick Madinah, mulai {lo}.', lambda p: p['tier'] == 'premium', 'Assalamualaikum, saya ingin info paket umroh Premium.')),
         ('umroh-silver-12-hari', umroh('Paket Umroh Silver 12 Hari', 'Paket Umroh Silver 12 Hari Des 2026 & Jan 2027 | Elharamain Wisata',
-            'Umroh 12 hari lebih santai, hotel bintang 5, mulai {lo}.', lambda p: p['tier'] == 'silver' and p['hari'] == 12, 'Assalamualaikum, saya ingin info paket umroh Silver 12 Hari.', hero=6)),
+            'Umroh 12 hari lebih santai, hotel bintang 5, mulai {lo}.', lambda p: p['tier'] == 'silver' and p['hari'] == 12, 'Assalamualaikum, saya ingin info paket umroh Silver 12 Hari.')),
     ],
     'elharamainhaji-com': [  # situs jualan haji
         ('paket-haji-plus', dict(title='Paket Haji Plus 2027 Resmi PIHK Kemenag | Elharamain Haji', n=3,
             desc='Paket Haji Plus resmi PIHK Kemenag: masa tunggu 5-9 tahun, hotel bintang 4 & 5, mulai USD 12.000 (estimasi 2027). Konsultasi gratis.',
             body=halaman('Paket Haji Plus Resmi PIHK Kemenag', 'Masa tunggu 5-9 tahun, fasilitas hotel bintang 4 &amp; 5, pembimbing berpengalaman. Kuota terbatas.',
-                         ''.join(kartu_haji(*h) for h in HAJI), '3 Pilihan Paket Haji ONH Plus', HAJI_ALASAN, HAJI_KET, HAJI_WA, ket_judul='Catatan Biaya', hero_foto=f'{HERO}7.jpg', sub_kartu='Biaya paket per jamaah dalam USD. Pilih sesuai kelas hotel yang Anda inginkan.',
+                         ''.join(kartu_haji(*h) for h in HAJI), '3 Pilihan Paket Haji ONH Plus', HAJI_WA,
+                         tiles_fasilitas(pilih=HAJI_FASILITAS), alasan=HAJI_ALASAN, ketentuan=HAJI_KET, ket_judul='Catatan Biaya', sub_kartu='Biaya paket per jamaah dalam USD. Pilih sesuai kelas hotel yang Anda inginkan.',
                          catatan='<div class="ehp-note">Biaya paket di atas adalah estimasi keberangkatan tahun 2027. Untuk detail dan simulasi cicilan, hubungi tim kami.</div>'))),
     ],
 }
