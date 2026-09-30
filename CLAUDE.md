@@ -16,7 +16,7 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 
 ## Akses
 - MCP WordPress tersambung: `elharamainwisata_com`, `haji_biz` (tool: elementor/*, rank-math/*, marketplace/*).
-- Belum diotorisasi (perlu dilakukan pemilik di pengaturan konektor claude.ai): `Elharamainhaji`, `Elharamain_id`.
+- Konektor `Elharamainhaji`, `Elharamain_id` sudah diotorisasi (30 Sep 2026); tool serupa haji.biz.
 - REST API elharamainwisata.com: lihat `README.md` (snippet WPCode `wordpress/wpcode-bantu-login-api.php`, kredensial dari env `WP_USER` / `WP_APP_PASSWORD`, jangan pernah tulis kredensial di repo).
 - Tool marketplace hanya memasang plugin dari URL download; plugin berbayar butuh file zip/lisensi dari pemilik.
 
@@ -32,4 +32,4 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
 - Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (footer per situs via `tools/build_footer_situs.py`: haji-biz, elharamainhaji-com, elharamain-id) (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
-- Konektor MCP `Elharamainhaji` & `Elharamain_id` belum diotorisasi di claude.ai.
+- Konektor MCP `Elharamainhaji` & `Elharamain_id` sudah diotorisasi (30 Sep) — CLAUDE.md bagian Akses perlu sesi baru untuk dipakai penuh.
