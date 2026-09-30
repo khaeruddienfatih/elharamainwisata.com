@@ -1,6 +1,6 @@
 """Generate header/footer UAE untuk haji.biz, elharamainhaji.com, elharamain.id dari satu template.
 
-Menu (arahan pemilik 30 Sep 2026): Home, Paket, Tentang Kami, Lokasi Kantor (+ tombol WA).
+Menu (arahan pemilik 30 Sep 2026): Home, Paket, Tentang Kami, Lokasi Kantor, Blog (+ tombol WA).
 "Lokasi Kantor" = halaman /lokasi-kantor/ (tools/build_info_pages.py); footer juga memuat 6 kantor.
 Aturan: haji.biz khusus haji (tanpa link umroh).
 Output: wordpress/uae/<situs>-header.html & -footer.html. Pasang: tools/deploy_uae.py."""
@@ -50,7 +50,7 @@ SITES = {
 
 HEADER_CSS = '''
 .bhf-hidden{display:none!important}
-body.ehf-header #masthead.site-header{display:none!important}
+body.ehf-header #masthead.site-header,body.ehf-header #site-navigation.main-navigation{display:none!important}
 .ehh{--hb:#004AAD;--hg:#DBC033;background:var(--hb);font-family:Poppins,sans-serif;position:relative;z-index:999}
 .ehh *{box-sizing:border-box}.ehh a{text-decoration:none}
 .ehh-bar{max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:24px;min-height:74px;flex-wrap:wrap}
@@ -125,6 +125,7 @@ def header(s):
 {paket}
     <a class="l" href="{s['tentang']}">Tentang Kami</a>
     <a class="l" href="/lokasi-kantor/">Lokasi Kantor</a>
+    <a class="l" href="/blog/">Blog</a>
     <a class="ehh-cta" href="{wa}" target="_blank" rel="noopener">{s['cta']}</a>
   </nav>
 </div></header>
@@ -151,6 +152,7 @@ def footer(s):
       <h4>Paket</h4>
 {paket}
       <a class="b" href="{s['tentang']}">Tentang Kami</a>
+      <a class="b" href="/blog/">Blog</a>
     </div>
     <div>
       <h4>Situs Kami</h4>
