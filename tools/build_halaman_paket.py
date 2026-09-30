@@ -7,7 +7,8 @@ Semua gaya inline & di-scope ke .ehp; HTML statis tanpa JavaScript (LiteSpeed me
   python3 tools/build_halaman_paket.py             -> landing-pages/situs/<situs>/<slug>.html (+ preview di build/)
   python3 tools/build_halaman_paket.py --deploy    -> juga membuat/memperbarui halaman sebagai DRAFT lewat REST
 Deploy butuh env: ELHARAMAINID_WP_USER/_WP_APP_PASSWORD (elharamain.id), ELHARAMAINHAJI_WP_USER/_WP_APP_PASSWORD.
-Halaman tidak pernah dipublish oleh skrip ini.
+Halaman baru dibuat sebagai draft; halaman yang sudah ada (cocok slug) ditimpa isinya dengan status tetap dan
+cadangan lama disimpan di backup/situs/<situs>/. Skrip tidak pernah mempublish halaman draft.
 """
 import base64, html, json, os, sys, urllib.parse, urllib.request, urllib.error
 
@@ -125,9 +126,9 @@ PAGES = {
             'Umroh November 2026 - Januari 2027, hotel bintang 5, program Thaif &amp; kereta cepat. Mulai {lo}.', lambda p: True, 'Assalamualaikum, saya ingin info paket umroh musim dingin 2026/2027.')),
         ('umroh-bronze', umroh('Paket Umroh Bronze', 'Paket Umroh Bronze Nov 2026 & Jan 2027 | Elharamain Wisata',
             'Paket umroh hemat hotel bintang 5, mulai {lo}.', lambda p: p['tier'] == 'bronze', 'Assalamualaikum, saya ingin info paket umroh Bronze.')),
-        ('umroh-silver', umroh('Paket Umroh Silver', 'Paket Umroh Silver Des 2026 & Jan 2027 | Elharamain Wisata',
+        ('paket-umroh-silver', umroh('Paket Umroh Silver', 'Paket Umroh Silver Des 2026 & Jan 2027 | Elharamain Wisata',
             'Paket umroh Silver 9 hari, hotel bintang 5, Thaif &amp; kereta cepat, mulai {lo}.', lambda p: p['tier'] == 'silver' and p['hari'] == 9, 'Assalamualaikum, saya ingin info paket umroh Silver.')),
-        ('umroh-platinum', umroh('Paket Umroh Platinum', 'Paket Umroh Platinum Des 2026 & Jan 2027 | Elharamain Wisata',
+        ('paket-umroh-platinum', umroh('Paket Umroh Platinum', 'Paket Umroh Platinum Des 2026 & Jan 2027 | Elharamain Wisata',
             'Umroh Platinum: Marwa Rotana / Movenpick, bonus hotel H-1, abaya &amp; jaket eksklusif, mulai {lo}.', lambda p: p['tier'] == 'platinum', 'Assalamualaikum, saya ingin info paket umroh Platinum.')),
         ('umroh-premium', umroh('Paket Umroh Premium', 'Paket Umroh Premium Januari 2027 | Elharamain Wisata',
             'Umroh Premium dengan Fairmont Makkah &amp; Movenpick Madinah, mulai {lo}.', lambda p: p['tier'] == 'premium', 'Assalamualaikum, saya ingin info paket umroh Premium.')),
@@ -170,7 +171,14 @@ def deploy(situs, slug, pg):
                      'rank_math_title': pg['title']}}
     ada = call('GET', f'/wp/v2/pages?slug={slug}&status=any&context=edit&_fields=id,status')
     if ada:
-        r = call('POST', f'/wp/v2/pages/{ada[0]["id"]}', body)   # status tidak diubah (tetap seperti sekarang)
+        lama = call('GET', f'/wp/v2/pages/{ada[0]["id"]}?context=edit')
+        bk = os.path.join(ROOT, 'backup', 'situs', situs)
+        os.makedirs(bk, exist_ok=True)
+        with open(os.path.join(bk, f'{ada[0]["id"]}-{slug}-sebelum.json'), 'w', encoding='utf-8') as f:
+            json.dump(lama, f, ensure_ascii=False, indent=1)
+        print(f'  cadangan halaman lama id {ada[0]["id"]} ({ada[0]["status"]}) disimpan di backup/situs/{situs}/')
+        body.pop('template')  # halaman lama: pertahankan template-nya
+        r = call('POST', f'/wp/v2/pages/{ada[0]["id"]}', body)   # status tidak diubah (draft tetap draft, publish tetap publish)
     else:
         r = call('POST', '/wp/v2/pages', dict(body, status='draft'))
     call('DELETE', '/elementor/v1/cache')
