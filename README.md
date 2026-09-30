@@ -29,7 +29,7 @@ masih jalan untuk meta per-post kalau ability belum cukup; `rankmath/v1/updateSe
 |---|---|---|
 | elharamainwisata.com | OK | OK (snippet lama) |
 | elharamainhaji.com | OK (env `ELHARAMAINHAJI_USER`) | perlu snippet `wordpress/wpcode-uae-rest.php` |
-| elharamain.id | 401: env `ELHARAMAINID_WP_USER` kosong | perlu snippet |
+| elharamain.id | OK (username `elharamain`, administrator) | perlu snippet |
 | haji.biz | **OK tanpa snippet** (sekarang jalan) | perlu snippet |
 
 Hosting kadang membalas halaman HTML "reload 5 detik" (anti-bot) untuk request ber-login; cukup ulangi

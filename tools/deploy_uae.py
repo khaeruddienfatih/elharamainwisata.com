@@ -12,14 +12,18 @@ SITES = {
     'elharamainid': ('https://www.elharamain.id', 'ELHARAMAINID_WP_USER', 'ELHARAMAINID_WP_APP_PASSWORD'),
 }
 
+DEFAULT_USER = {'elharamainid': 'elharamain'}  # username bukan rahasia; env boleh menimpa
+
 
 def call(site, method, body=None):
     base, u, p = SITES[site]
-    auth = 'Basic ' + base64.b64encode(f"{os.environ[u]}:{os.environ[p]}".encode()).decode()
+    user = os.environ.get(u) or DEFAULT_USER.get(site)
+    auth = 'Basic ' + base64.b64encode(f"{user}:{os.environ[p]}".encode()).decode()
     data = json.dumps(body).encode() if body is not None else None
     for attempt in range(4):
         req = urllib.request.Request(base + '/wp-json/eh/v1/hf', data=data, method=method,
-                                     headers={'Authorization': auth, 'Content-Type': 'application/json'})
+                                     headers={'Authorization': auth, 'Content-Type': 'application/json',
+                                              'User-Agent': 'curl/8.5.0'})  # UA Python diblokir Cloudflare (1010)
         try:
             raw = urllib.request.urlopen(req, timeout=60).read().decode()
         except urllib.error.HTTPError as e:
