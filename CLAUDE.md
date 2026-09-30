@@ -37,5 +37,6 @@ Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Paket di beranda elharamain.id & elharamainhaji.com sudah sesuai brosur PDF (`tools/update_home_paket.py`).
 - Menunggu keputusan pemilik: di haji.biz masih terbit 2 **halaman** umroh (ID 778, 135) → draft/redirect? (Artikel umroh ID 293, 263 & kategori "Haji & Umroh" dibiarkan: artikel boleh campur.)
 - Artikel TERBIT 30 Sep: elharamain.id 832 & 801, elharamainhaji.com 3509. Draft halaman elharamain.id 809/811/814/815 & elharamainhaji 3516 + draft elharamainwisata.com 9733/9735 belum diterbitkan. Sumber berita luar (HIMPUH, news.elharamainwisata.com, Kemenag) diblok egress environment.
+- **70 artikel terjadwal 1–7 Okt 2026** (35 elharamain.id, 35 haji.biz) — lihat `data/jadwal-artikel-2026-10.json` & `tools/artikel_mingguan/`. Hosting membatasi laju request: beri jeda 20–30 dtk.
 - SEO Rank Math per post bisa diisi via REST `POST /rankmath/v1/updateMeta` {objectID, objectType:'post', meta}.
 - Audit Rank Math 30 Sep: elharamainhaji.com skor 78 (59 post + 12 halaman tanpa focus keyword, GSC belum ditautkan); elharamain.id skor 80 (meta deskripsi beranda 170 kar., 42 gambar tanpa alt, og:image kosong, GSC belum ditautkan).
