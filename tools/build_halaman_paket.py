@@ -156,11 +156,17 @@ def deploy(situs, slug, pg):
             raw = urllib.request.urlopen(r, timeout=120).read().decode('utf-8', 'replace')
         except urllib.error.HTTPError as ex:
             sys.exit(f'HTTP {ex.code} {m} {u}: ' + ex.read().decode('utf-8', 'replace')[:600])
-        i = min([x for x in (raw.find('{'), raw.find('[')) if x >= 0] or [len(raw)])  # abaikan notice PHP/BOM sebelum JSON
-        try:
-            return json.loads(raw[i:]) if raw[i:].strip() else None
-        except ValueError:
-            sys.exit(f'Jawaban bukan JSON untuk {m} {u}: ' + raw[:600])
+        # server kadang menyelipkan <style> Elementor / notice PHP sebelum JSON: cari awal JSON sebenarnya
+        dec = json.JSONDecoder()
+        for i in range(len(raw)):
+            if raw[i:i + 2] in ('{"', '[{', '[]') or raw[i:i + 4] == 'null':
+                try:
+                    return dec.raw_decode(raw[i:])[0]
+                except ValueError:
+                    continue
+        if not raw.strip():
+            return None
+        sys.exit(f'Jawaban bukan JSON untuk {m} {u}: ' + raw[:600])
     data = [{'id': 'a0' + slug[:6].replace('-', 'x'), 'elType': 'section', 'isInner': False, 'settings': {'layout': 'full_width', 'gap': 'no',
              'padding': {'unit': 'px', 'top': '0', 'right': '0', 'bottom': '0', 'left': '0', 'isLinked': True}},
              'elements': [{'id': 'b0' + slug[:6].replace('-', 'x'), 'elType': 'column', 'isInner': False, 'settings': {'_column_size': 100},
