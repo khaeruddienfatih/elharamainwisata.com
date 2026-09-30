@@ -5,8 +5,8 @@ dengan menu statis per situs. Footer = tools/build_footer_situs.py.
 
   python3 tools/build_header_footer_situs.py            -> wordpress/uae/<situs>-header.html & -footer.html (+ preview di build/)
   python3 tools/build_header_footer_situs.py --deploy   -> juga menimpa isi post Header/Footer UAE yang SUDAH ADA
-                                                           (elharamain.id 805/807, elharamainhaji.com 3512/3514); cadangan lama
-                                                           disimpan di backup/situs/<situs>/. haji.biz: REST rusak -> tempel manual.
+                                                           (elharamain.id 805/807, elharamainhaji.com 3512/3514, haji.biz dicari dari judul);
+                                                           cadangan lama disimpan di backup/situs/<situs>/.
 """
 import json, os, re, sys, urllib.parse
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
@@ -46,7 +46,7 @@ SITES = {
               m('Umroh', '#', [('Paket Umroh Musim Dingin 2026/2027', MAIN + '/paket-umroh-musim-dingin/'), ('Info Umroh', ID + '/')]),
               m('Kantor Cabang', '#', KANTOR),
               m('Situs Kami', '#', SITUS)]),
-    'haji-biz': dict(nama='Haji.biz', root=HAJI_BIZ, id_header=None, id_footer=None,
+    'haji-biz': dict(nama='Haji.biz', root=HAJI_BIZ, id_header='cari', id_footer='cari',  # id dicari dari judul
         wa="Assalamu'alaikum Elharamain Wisata, saya ingin konsultasi haji plus.",
         menu=[m('Beranda', HAJI_BIZ + '/'),
               m('Paket Haji Plus 2028', HAJI_BIZ + '/paket-haji-plus-2028-elharamain-wisata/'),
@@ -73,8 +73,14 @@ def simpan(key, bagian, h):
 
 def pasang(key, bagian, post_id, h):
     call = hp.rest(key)
+    if post_id == 'cari':  # cari post UAE berjudul Header/Footer
+        cocok = [p for p in call('GET', f'/wp/v2/elementor-hf?search={bagian}&status=any&context=edit&_fields=id,title')
+                 if p['title']['raw'].strip().lower().startswith(bagian)]
+        if not cocok:
+            sys.exit(f'{key}: post UAE "{bagian.title()}" belum ada; buat dulu di UAE (kosong saja), lalu jalankan lagi')
+        post_id = cocok[0]['id']
     lama = call('GET', f'/wp/v2/elementor-hf/{post_id}?context=edit')
-    if lama.get('title', {}).get('raw', '').strip().lower() != bagian:
+    if not lama.get('title', {}).get('raw', '').strip().lower().startswith(bagian):
         sys.exit(f'{key}: post {post_id} berjudul "{lama.get("title", {}).get("raw")}", bukan "{bagian}" - dibatalkan')
     bk = os.path.join(ROOT, 'backup', 'situs', key)
     os.makedirs(bk, exist_ok=True)
@@ -102,8 +108,6 @@ if __name__ == '__main__':
         with open(os.path.join(ROOT, 'build', f'preview-hf-{key}.html'), 'w', encoding='utf-8') as f:
             f.write('<html><head><meta name=viewport content="width=device-width,initial-scale=1"></head><body style="margin:0">'
                     + hd + '<div style="height:400px;background:#f3f7fd"></div>' + ft + '</body></html>')
-        if '--deploy' in sys.argv and c['id_header']:
+        if '--deploy' in sys.argv:
             pasang(key, 'header', c['id_header'], hd)
             pasang(key, 'footer', c['id_footer'], ft)
-        elif '--deploy' in sys.argv:
-            print(f'  {key}: REST rusak, tempel manual wordpress/uae/{key}-header.html & -footer.html di UAE')

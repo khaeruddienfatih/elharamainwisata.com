@@ -212,7 +212,8 @@ PAGES = {
                          catatan='<div class="ehp-note">Biaya paket di atas adalah estimasi keberangkatan tahun 2027. Untuk detail dan simulasi cicilan, hubungi tim kami.</div>'))),
     ],
 }
-ENV = {'elharamain-id': ('https://www.elharamain.id', 'ELHARAMAINID'), 'elharamainhaji-com': ('https://www.elharamainhaji.com', 'ELHARAMAINHAJI')}
+ENV = {'elharamain-id': ('https://www.elharamain.id', 'ELHARAMAINID'), 'elharamainhaji-com': ('https://www.elharamainhaji.com', 'ELHARAMAINHAJI'),
+       'haji-biz': ('https://www.haji.biz', 'HAJIBIZ')}
 
 
 def rest(situs):
