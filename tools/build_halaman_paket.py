@@ -14,7 +14,7 @@ import base64, html, json, os, sys, urllib.parse, urllib.request, urllib.error
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 WA = '6281287292422'
 IMG = 'https://res.cloudinary.com/v6gwkqrb/image/upload/c_fill,g_auto,w_700,h_500,q_auto,f_auto/'
-PAKET = json.load(open(os.path.join(ROOT, 'data/paket-umroh.json')))['paket']
+PAKET = json.load(open(os.path.join(ROOT, 'data/paket-umroh.json'), encoding='utf-8'))['paket']
 
 e = html.escape
 rp = lambda n: 'Rp ' + f'{n:,}'.replace(',', '.')
@@ -174,8 +174,8 @@ if __name__ == '__main__':
     for situs, pages in PAGES.items():
         os.makedirs(os.path.join(ROOT, 'landing-pages/situs', situs), exist_ok=True)
         for slug, pg in pages:
-            open(os.path.join(ROOT, 'landing-pages/situs', situs, slug + '.html'), 'w').write(pg['body'])
-            open(os.path.join(ROOT, 'build', f'preview-{situs}-{slug}.html'), 'w').write(
+            open(os.path.join(ROOT, 'landing-pages/situs', situs, slug + '.html'), 'w', encoding='utf-8').write(pg['body'])
+            open(os.path.join(ROOT, 'build', f'preview-{situs}-{slug}.html'), 'w', encoding='utf-8').write(
                 '<html><head><meta name=viewport content="width=device-width,initial-scale=1"></head><body style="margin:0">' + pg['body'] + '</body></html>')
             print(situs, slug, pg['n'], 'paket', len(pg['body']), 'char')
             if '--deploy' in sys.argv:

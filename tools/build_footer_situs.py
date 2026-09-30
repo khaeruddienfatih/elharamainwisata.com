@@ -69,9 +69,9 @@ def build(key, c):
     head = (f'<!-- Footer {c["nama"]}. Tempel ke widget "HTML" Elementor di UAE > Footer (Display: Entire Website).\n'
             '     Dibuat oleh tools/build_footer_situs.py; jangan edit manual. -->\n')
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    open(os.path.join(root, f'wordpress/uae/{key}-footer.html'), 'w').write(head + html)
+    open(os.path.join(root, f'wordpress/uae/{key}-footer.html'), 'w', encoding='utf-8').write(head + html)
     os.makedirs(os.path.join(root, 'build'), exist_ok=True)
-    open(os.path.join(root, f'build/preview-footer-{key}.html'), 'w').write(
+    open(os.path.join(root, f'build/preview-footer-{key}.html'), 'w', encoding='utf-8').write(
         '<html><head><meta name=viewport content="width=device-width,initial-scale=1"></head><body style="margin:0"><div style="height:60px"></div>' + html + '</body></html>')
     print(key, len(html))
 
