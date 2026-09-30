@@ -50,6 +50,7 @@ SITES = {
 
 HEADER_CSS = '''
 .bhf-hidden{display:none!important}
+body.ehf-header #masthead.site-header{display:none!important}
 .ehh{--hb:#004AAD;--hg:#DBC033;background:var(--hb);font-family:Poppins,sans-serif;position:relative;z-index:999}
 .ehh *{box-sizing:border-box}.ehh a{text-decoration:none}
 .ehh-bar{max-width:1240px;margin:0 auto;padding:10px 24px;display:flex;align-items:center;gap:24px;min-height:74px;flex-wrap:wrap}
@@ -84,10 +85,11 @@ HEADER_CSS = '''
 '''
 
 FOOTER_CSS = '''
+body.ehf-footer #colophon.site-footer{display:none!important}
 .ehf{background:#0a2e6b;color:#dbe6f7;font-family:Poppins,sans-serif;font-size:14px;line-height:1.6}
 .ehf *{box-sizing:border-box}.ehf a{color:#dbe6f7;text-decoration:none}.ehf a:hover{color:#DBC033}
 .ehf-w{max-width:1240px;margin:0 auto;padding:36px 24px 18px;display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:32px}
-.ehf h4{color:#fff;font-size:15px;margin:0 0 10px}.ehf a.b{display:block;margin:5px 0}
+.ehf h4{color:#fff;font-size:15px;margin:0 0 10px;font-family:Poppins,sans-serif!important;font-weight:700!important}.ehf a.b{display:block;margin:5px 0}
 .ehf-legal{font-size:12.5px;opacity:.85;margin-top:8px}
 .ehf-k{max-width:1240px;margin:0 auto;padding:8px 24px 28px;scroll-margin-top:90px}
 .ehf-kg{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
