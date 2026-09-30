@@ -3,6 +3,54 @@
 Situs: WordPress + Elementor (tema LandingPress, Rank Math), di belakang Cloudflare + LiteSpeed Cache.
 Konten halaman dibangun di repo ini lalu dikirim lewat WP REST API (`meta._elementor_data`).
 
+## 4 domain Elharamain Wisata — peran masing-masing (ditentukan 30 Sep 2026)
+| Domain | Peran | Kredensial (env var Windows) |
+|---|---|---|
+| **elharamainwisata.com** | Web utama (hub brand, umroh + haji) | `WP_USER` / `WP_APP_PASSWORD` |
+| **elharamainhaji.com** | Web haji **utama** (situs jualan/transaksional haji #1) | `ELHARAMAINHAJI_WP_USER` / `ELHARAMAINHAJI_WP_APP_PASSWORD` |
+| **elharamain.id** | Info-info seputar **umroh** (konten/edukasi) | `ELHARAMAINID_WP_USER` / `ELHARAMAINID_WP_APP_PASSWORD` |
+| **haji.biz** | Info-info seputar **haji** (konten/edukasi) | `HAJIBIZ_WP_USER` / `HAJIBIZ_WP_APP_PASSWORD` — **auth REST rusak**, lihat catatan di bawah |
+
+Sebelum bikin/pindah konten baru: sales & paket → elharamainwisata.com & elharamainhaji.com. Artikel edukasi/SEO
+long-tail → elharamain.id (umroh) & haji.biz (haji). **Belum ditindaklanjuti:** elharamainhaji.com (situs jualan)
+saat ini juga berisi banyak artikel edukasi haji (cara daftar, biaya, perbandingan paket dll) yang menurut strategi
+ini semestinya lebih cocok dipindah ke haji.biz — tunggu arahan sebelum memindahkan.
+
+### Rank Math Pro + WordPress Abilities API (jauh lebih reliable dari REST lama)
+Aktif di elharamainwisata.com, elharamainhaji.com, elharamain.id: `GET/POST /wp-json/wp-abilities/v1/abilities/rank-math/<nama>/run`
+(readonly = GET dengan `?input[field]=value`, write = POST dengan body `{"input": {...}}`). Ability yang berguna:
+`get-settings`, `set-post-type-seo-settings` (noindex/sitemap per post type), `set-sitemap-settings`,
+`audit-site-seo` (skor + temuan fail/warning), `fix-site-seo` (auto-fix test_id: `focus_keywords`, `post_titles`, dll),
+`get-post-schema`, `get-post-seo-meta`. Endpoint REST lama `rankmath/v1/updateMeta` (`{"objectType":"post","objectID":N,"meta":{"rank_math_title":...,"rank_math_description":...,"rank_math_robots":[...]}}`)
+masih jalan untuk meta per-post kalau ability belum cukup; `rankmath/v1/updateSettings` **selalu 403** lewat Application Password (butuh sesi login).
+
+### haji.biz — auth REST bermasalah, JANGAN pasang snippet WPCode lagi tanpa investigasi
+Server haji.biz meneruskan header `Authorization` tapi PHP tidak memecahnya jadi `PHP_AUTH_USER`/`PHP_AUTH_PW` (beda
+dari elharamainwisata.com). Snippet WPCode penambal sempat dipasang (urai manual dari `HTTP_AUTHORIZATION`), tapi
+begitu berhasil mengisi `PHP_AUTH_USER`, malah memicu proses lain di situs mencoba login normal dengan nilai itu
+sebagai password biasa (error "Nama pengguna tidak dikenal") — kemungkinan ada plugin Basic-Auth-to-login yang tidak
+terduga. Snippet sudah dicabut. Perlu investigasi hosting/plugin dulu sebelum coba lagi.
+
+### Draft artikel SEO (30 Sep 2026) — landing page Elementor, siap direview
+Dibuat dari materi brosur PDF asli (bukan konten template), style pakai token yang sama dengan `widget/kartu-harga-live.html`
+(`.eh-art`: navy `#1f3553`, biru `#004AAD`, font Raleway/Mulish/Poppins, checklist ikon centang, badge tier gradient, CTA WA pil hijau).
+Template halaman: `elementor_canvas` (landing page, tanpa header/footer tema).
+
+| Domain | Post ID | Judul | Status |
+|---|---|---|---|
+| elharamainwisata.com | 9733 | Paket Umroh Musim Dingin Desember 2026 | draft |
+| elharamainwisata.com | 9735 | Panduan Lengkap Haji Plus 1448H | draft |
+| elharamainhaji.com | 3509 | Panduan Lengkap Haji Plus 1448H | draft, robots di-override `index` (post type "post" di-noindex massal, lihat bawah) |
+| elharamain.id | 801 | Paket Umroh Musim Dingin Desember 2026 | draft |
+
+### elharamainhaji.com — 1.376 post spam terdeteksi & di-noindex (30 Sep 2026)
+Post type "post" berisi 1.376 halaman auto-generate 1/kabupaten-kota se-Indonesia (judul diawali nomor WA,
+isi cuma daftar keyword diulang, pola "Scaled Content Abuse"). Sumber generator **belum ditemukan** — bukan plugin,
+bukan mu-plugin, bukan Application Password, bukan XML-RPC (diblokir 403); hanya ada 1 user di situs. Sudah di-mitigasi:
+seluruh post type "post" di-set noindex + dikeluarkan dari sitemap lewat `rank-math/set-post-type-seo-settings` +
+`set-sitemap-settings`. Artikel baru yang genuine (id 3509 di atas) di-override manual jadi `index` per-post.
+**Perlu:** cari sumber generator (cek Cron Job cPanel hosting), ganti password login akun `elharamainhaji`.
+
 ## Sinkron Windows ↔ Mac
 - Branch kerja utama: **`main`** (gabungan semua branch `claude/*` per 2026-09-26).
 - Sebelum mulai kerja: `git pull`. Setelah selesai: commit lalu `git push`.
@@ -80,7 +128,11 @@ Rotasi tombol WA melayang (Click to Chat Pro, diatur di WP Admin karena endpoint
    Crawler aktif; cek CLS 0,9 di beranda (hanya muncul di Lighthouse).
 2. Pasang `landing-pages/umroh-riyadh-air-10-hari.html` sebagai halaman **Draft** (konfirmasi nomor WA dulu).
 3. Sisa audit beranda: link telepon `http://0812-8729-2422` → `tel:081287292422`, "ZIN UMRAH" → "IZIN UMRAH",
-   bahasa situs → id_ID, gambar 404 `Assets-Elaramin-Umroh.webp`.
+   gambar 404 `Assets-Elaramin-Umroh.webp`. (Bahasa situs → id_ID **sudah selesai** 29 Sep.)
 4. Konfirmasi nomor WA Bandung dan nomor rotasi 6285843372026 di plugin Click to Chat.
 5. Cek plugin mencurigakan "Block Widget" (Auto generated plugin, by Admin).
 6. Setelah selesai: hapus snippet WPCode bantu-login dan cabut Application Password.
+7. **Baru (30 Sep):** review & publish 4 draft artikel SEO di atas; putuskan auto-fix `post_titles` (7 artikel
+   elharamainwisata.com, lihat ability `rank-math/audit-site-seo`); cari sumber generator spam kabupaten di
+   elharamainhaji.com; investigasi ulang auth REST haji.biz sebelum pasang snippet lagi; pertimbangkan pindah
+   artikel edukasi haji dari elharamainhaji.com ke haji.biz sesuai peran domain baru.
