@@ -16,7 +16,7 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 
 ## Akses
 - MCP WordPress tersambung: `elharamainwisata_com`, `haji_biz` (tool: elementor/*, rank-math/*, marketplace/*).
-- Belum diotorisasi (perlu dilakukan pemilik di pengaturan konektor claude.ai): `Elharamainhaji`, `Elharamain_id`.
+- `Elharamainhaji` & `Elharamain_id` **sudah tersambung** (30 Sep 2026), tool sama (elementor/*, rank-math/*, marketplace/*).
 - REST API elharamainwisata.com: lihat `README.md` (snippet WPCode `wordpress/wpcode-bantu-login-api.php`, kredensial dari env `WP_USER` / `WP_APP_PASSWORD`, jangan pernah tulis kredensial di repo).
 - Tool marketplace hanya memasang plugin dari URL download; plugin berbayar butuh file zip/lisensi dari pemilik.
 
@@ -31,5 +31,5 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 ## Status & tugas
 Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
-- Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
-- Konektor MCP `Elharamainhaji` & `Elharamain_id` belum diotorisasi di claude.ai.
+- Header/footer haji.biz **siap tempel**: `wordpress/uae/haji-biz-*.html` + langkah di `wordpress/uae/README.md` (menu HP hamburger, link dicek). Menunggu pemilik menempel manual di UAE (MCP tak bisa buat `elementor-hf`; build-composition butuh Atomic Editor).
+- Audit Rank Math 30 Sep: elharamainhaji.com skor 78 (59 post + 12 halaman tanpa focus keyword, GSC belum ditautkan); elharamain.id skor 80 (meta deskripsi beranda 170 kar., 42 gambar tanpa alt, og:image kosong, GSC belum ditautkan).
