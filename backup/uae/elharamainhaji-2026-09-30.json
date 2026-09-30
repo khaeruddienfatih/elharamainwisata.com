@@ -1,0 +1,30 @@
+[
+ {
+  "id": 3514,
+  "title": "Footer",
+  "status": "publish",
+  "meta": {
+   "ehf_target_include_locations": [],
+   "ehf_target_exclude_locations": [],
+   "ehf_target_user_roles": [
+    ""
+   ],
+   "ehf_template_type": "type_footer"
+  },
+  "data": null
+ },
+ {
+  "id": 3512,
+  "title": "Header",
+  "status": "publish",
+  "meta": {
+   "ehf_target_include_locations": [],
+   "ehf_target_exclude_locations": [],
+   "ehf_target_user_roles": [
+    ""
+   ],
+   "ehf_template_type": "type_header"
+  },
+  "data": null
+ }
+]

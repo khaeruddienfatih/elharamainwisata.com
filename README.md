@@ -28,9 +28,9 @@ masih jalan untuk meta per-post kalau ability belum cukup; `rankmath/v1/updateSe
 | Situs | Login REST | Template UAE via REST |
 |---|---|---|
 | elharamainwisata.com | OK | OK (snippet lama) |
-| elharamainhaji.com | OK (env `ELHARAMAINHAJI_USER`) | perlu snippet `wordpress/wpcode-uae-rest.php` |
-| elharamain.id | OK (username `elharamain`, administrator) | perlu snippet |
-| haji.biz | **OK tanpa snippet** (sekarang jalan) | perlu snippet |
+| elharamainhaji.com | OK (env `ELHARAMAINHAJI_USER`) | OK (snippet `wpcode-uae-rest.php`) |
+| elharamain.id | OK (username `elharamain`, administrator) | OK (snippet) |
+| haji.biz | **OK tanpa snippet** (sekarang jalan) | OK (snippet) |
 
 Hosting kadang membalas halaman HTML "reload 5 detik" (anti-bot) untuk request ber-login; cukup ulangi
 beberapa detik kemudian (`tools/deploy_uae.py` sudah otomatis mengulang). Setelah snippet terpasang:

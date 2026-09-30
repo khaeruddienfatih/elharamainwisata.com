@@ -27,7 +27,11 @@ def call(site, method, body=None):
         try:
             raw = urllib.request.urlopen(req, timeout=60).read().decode()
         except urllib.error.HTTPError as e:
-            sys.exit(f'{e.code}: {e.read().decode()[:300]}')
+            msg = e.read().decode()
+            if e.code == 403 and msg.lstrip().startswith('<'):  # blokir WAF sesekali (openresty); coba lagi
+                time.sleep(6)
+                continue
+            sys.exit(f'{e.code}: {msg[:300]}')
         if raw.lstrip().startswith(('[', '{')):
             return json.loads(raw)
         time.sleep(6)  # halaman anti-bot "reload" hosting kadang muncul; coba lagi

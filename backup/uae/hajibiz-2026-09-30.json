@@ -1,0 +1,2020 @@
+[
+ {
+  "id": 419,
+  "title": "Footer",
+  "status": "publish",
+  "meta": {
+   "_elementor_edit_mode": "builder",
+   "_elementor_template_type": "wp-post",
+   "ehf_target_include_locations": "a:2:{s:4:\"rule\";a:1:{i:0;s:12:\"basic-global\";}s:8:\"specific\";a:0:{}}",
+   "ehf_target_exclude_locations": "a:0:{}",
+   "ehf_target_user_roles": "a:1:{i:0;s:0:\"\";}",
+   "ehf_template_type": "type_footer"
+  },
+  "data": [
+   {
+    "id": "2bf78417",
+    "elType": "section",
+    "settings": {
+     "gap": "wide",
+     "padding": {
+      "unit": "px",
+      "top": "30",
+      "right": "0",
+      "bottom": "0",
+      "left": "0",
+      "isLinked": false
+     },
+     "background_color": "#0C74D5",
+     "content_position": "top",
+     "padding_mobile": {
+      "unit": "px",
+      "top": "30",
+      "right": "0",
+      "bottom": "50",
+      "left": "0",
+      "isLinked": false
+     },
+     "_title": "Fasilitas",
+     "background_background": "classic",
+     "content_width": {
+      "unit": "px",
+      "size": 1250,
+      "sizes": []
+     },
+     "margin_mobile": {
+      "unit": "px",
+      "top": "0",
+      "right": 0,
+      "bottom": "0",
+      "left": 0,
+      "isLinked": false
+     },
+     "margin": {
+      "unit": "px",
+      "top": "0",
+      "right": 0,
+      "bottom": "0",
+      "left": 0,
+      "isLinked": false
+     },
+     "background_color_stop": {
+      "unit": "%",
+      "size": 5,
+      "sizes": []
+     },
+     "background_color_b": "#5C0000",
+     "background_color_b_stop": {
+      "unit": "%",
+      "size": 74,
+      "sizes": []
+     },
+     "background_gradient_angle": {
+      "unit": "deg",
+      "size": 65,
+      "sizes": []
+     },
+     "hover_parallax": [
+      {
+       "layer_position_vr": {
+        "unit": "%",
+        "size": 30
+       },
+       "layer_position_hr": {
+        "unit": "%",
+        "size": 40
+       },
+       "_id": "e2a1842"
+      },
+      {
+       "layer_position_vr": {
+        "unit": "%",
+        "size": 60
+       },
+       "layer_position_hr": {
+        "unit": "%",
+        "size": 20
+       },
+       "_id": "640e892"
+      }
+     ],
+     "element_pack_agbg_color_list": [
+      {
+       "_id": "5e4d43b"
+      },
+      {
+       "start_color": "#567445",
+       "end_color": "#1D1BE0",
+       "_id": "c2c3ebf"
+      }
+     ],
+     "structure": "30",
+     "background_image": {
+      "url": "",
+      "id": "",
+      "size": "",
+      "alt": "",
+      "source": "library"
+     }
+    },
+    "elements": [
+     {
+      "id": "965f4cd",
+      "elType": "column",
+      "settings": {
+       "_column_size": 33,
+       "_inline_size": 20,
+       "content_position": "center",
+       "margin": {
+        "unit": "px",
+        "top": "20",
+        "right": "20",
+        "bottom": "20",
+        "left": "20",
+        "isLinked": true
+       },
+       "margin_mobile": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": true
+       }
+      },
+      "elements": [
+       {
+        "id": "68ab333d",
+        "elType": "widget",
+        "settings": {
+         "image": {
+          "id": 164,
+          "url": "https://www.haji.biz/wp-content/uploads/2026/01/AAssets-haji-biz.webp"
+         },
+         "align": "left",
+         "width": {
+          "unit": "%",
+          "size": 100,
+          "sizes": []
+         },
+         "_margin": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+         },
+         "element_pack_widget_tooltip_text": "This is Tooltip",
+         "element_pack_widget_effect_transition_duration": "300",
+         "element_pack_widget_effect_transition_easing": "ease-out",
+         "align_mobile": "center",
+         "width_mobile": {
+          "unit": "%",
+          "size": 26,
+          "sizes": []
+         },
+         "fb_value": "0"
+        },
+        "elements": [],
+        "widgetType": "image"
+       }
+      ],
+      "isInner": false
+     },
+     {
+      "id": "7e06ae38",
+      "elType": "column",
+      "settings": {
+       "_column_size": 33,
+       "_inline_size": 46.332,
+       "content_position": "top",
+       "margin": {
+        "unit": "px",
+        "top": "20",
+        "right": "20",
+        "bottom": "20",
+        "left": "20",
+        "isLinked": true
+       },
+       "margin_mobile": {
+        "unit": "px",
+        "top": "15",
+        "right": "15",
+        "bottom": "15",
+        "left": "15",
+        "isLinked": true
+       }
+      },
+      "elements": [
+       {
+        "id": "6eb9237c",
+        "elType": "widget",
+        "settings": {
+         "title": "PT. Dhiyaa El Haramain El Mubarakah",
+         "header_size": "h3",
+         "align_mobile": "center",
+         "typography_typography": "custom",
+         "typography_font_size": {
+          "unit": "px",
+          "size": 25,
+          "sizes": []
+         },
+         "typography_font_size_mobile": {
+          "unit": "px",
+          "size": 14,
+          "sizes": []
+         },
+         "typography_line_height": {
+          "unit": "em",
+          "size": 2,
+          "sizes": []
+         },
+         "typography_line_height_mobile": {
+          "unit": "em",
+          "size": 1.3,
+          "sizes": []
+         },
+         "typography_letter_spacing": {
+          "unit": "px",
+          "size": 0,
+          "sizes": []
+         },
+         "animation_duration": "fast",
+         "title_color": "#FFFFFF",
+         "typography_font_family": "Inter",
+         "typography_font_weight": "400",
+         "_padding": {
+          "unit": "em",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+         },
+         "typography_text_transform": "capitalize",
+         "_margin_mobile": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+         },
+         "_padding_mobile": {
+          "unit": "px",
+          "top": "10",
+          "right": "10",
+          "bottom": "10",
+          "left": "10",
+          "isLinked": true
+         },
+         "align": "left",
+         "_margin": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+         },
+         "element_pack_widget_tooltip_text": "This is Tooltip",
+         "element_pack_widget_effect_transition_duration": "300",
+         "element_pack_widget_effect_transition_easing": "ease-out"
+        },
+        "elements": [],
+        "widgetType": "heading"
+       },
+       {
+        "id": "13306987",
+        "elType": "widget",
+        "settings": {
+         "title": "Penyelenggara Ibadah Haji Khusus (PIHK) Resmi kementerian Haji dan umrah (Kemenhaj) SK Kemenag RI No. 846 Tahun 2020",
+         "header_size": "h3",
+         "align_mobile": "center",
+         "typography_typography": "custom",
+         "typography_font_size": {
+          "unit": "px",
+          "size": 15,
+          "sizes": []
+         },
+         "typography_font_size_mobile": {
+          "unit": "px",
+          "size": 14,
+          "sizes": []
+         },
+         "typography_line_height": {
+          "unit": "em",
+          "size": 2,
+          "sizes": []
+         },
+         "typography_line_height_mobile": {
+          "unit": "em",
+          "size": 1.3,
+          "sizes": []
+         },
+         "typography_letter_spacing": {
+          "unit": "px",
+          "size": 0,
+          "sizes": []
+         },
+         "title_color": "#FFFFFF",
+         "typography_font_family": "Inter",
+         "typography_font_weight": "300",
+         "typography_text_transform": "capitalize",
+         "align": "left",
+         "element_pack_widget_tooltip_text": "This is Tooltip",
+         "element_pack_widget_effect_transition_duration": "300",
+         "element_pack_widget_effect_transition_easing": "ease-out"
+        },
+        "elements": [],
+        "widgetType": "heading"
+       }
+      ],
+      "isInner": false
+     },
+     {
+      "id": "2500a6bb",
+      "elType": "column",
+      "settings": {
+       "_column_size": 33,
+       "_inline_size": null,
+       "content_position": "top",
+       "margin": {
+        "unit": "px",
+        "top": "20",
+        "right": "20",
+        "bottom": "20",
+        "left": "20",
+        "isLinked": true
+       },
+       "margin_mobile": {
+        "unit": "px",
+        "top": "15",
+        "right": "15",
+        "bottom": "15",
+        "left": "15",
+        "isLinked": true
+       }
+      },
+      "elements": [
+       {
+        "id": "44d74ffb",
+        "elType": "widget",
+        "settings": {
+         "icon_list": [
+          {
+           "text": "Haji Plus / Haji Khusus",
+           "_id": "3c0fe4b"
+          },
+          {
+           "text": "Bimbingan & Manasik Haji",
+           "_id": "e511c36"
+          },
+          {
+           "text": "Pendampingan Ibadah",
+           "_id": "92ca6b2"
+          },
+          {
+           "text": "Konsultasi Pendaftaran Haji",
+           "_id": "64fc7fa"
+          }
+         ],
+         "space_between": {
+          "unit": "px",
+          "size": 8,
+          "sizes": []
+         },
+         "icon_color": "#FFFFFF",
+         "icon_size": {
+          "unit": "px",
+          "size": 15,
+          "sizes": []
+         },
+         "text_indent": {
+          "unit": "px",
+          "size": 3,
+          "sizes": []
+         },
+         "icon_typography_typography": "custom",
+         "icon_typography_font_family": "Inter",
+         "icon_typography_font_weight": "300",
+         "text_color": "#FFFFFF",
+         "element_pack_widget_tooltip_text": "This is Tooltip",
+         "element_pack_widget_effect_transition_duration": "300",
+         "element_pack_widget_effect_transition_easing": "ease-out",
+         "divider": "yes",
+         "divider_width": {
+          "unit": "%",
+          "size": 46,
+          "sizes": []
+         },
+         "icon_typography_font_size": {
+          "unit": "px",
+          "size": 12,
+          "sizes": []
+         }
+        },
+        "elements": [],
+        "widgetType": "icon-list"
+       },
+       {
+        "id": "727204e4",
+        "elType": "widget",
+        "settings": {
+         "social_icon_list": [
+          {
+           "social_icon": {
+            "value": "fab fa-facebook",
+            "library": "fa-brands"
+           },
+           "_id": "4790e6a"
+          },
+          {
+           "social_icon": {
+            "value": "fab fa-twitter",
+            "library": "fa-brands"
+           },
+           "_id": "ed0b63f"
+          },
+          {
+           "social_icon": {
+            "value": "fab fa-youtube",
+            "library": "fa-brands"
+           },
+           "_id": "57bca3f"
+          },
+          {
+           "_id": "34ab627",
+           "social_icon": {
+            "value": "fab fa-whatsapp",
+            "library": "fa-brands"
+           }
+          }
+         ],
+         "align": "left",
+         "align_mobile": "center",
+         "icon_color": "custom",
+         "icon_primary_color": "#152163",
+         "element_pack_widget_tooltip_text": "This is Tooltip",
+         "element_pack_widget_effect_transition_duration": "300",
+         "element_pack_widget_effect_transition_easing": "ease-out"
+        },
+        "elements": [],
+        "widgetType": "social-icons"
+       }
+      ],
+      "isInner": false
+     }
+    ],
+    "isInner": false
+   },
+   {
+    "id": "5ea4cec3",
+    "elType": "section",
+    "settings": {
+     "gap": "wide",
+     "padding": {
+      "unit": "px",
+      "top": "0",
+      "right": "0",
+      "bottom": "30",
+      "left": "0",
+      "isLinked": false
+     },
+     "background_color": "#0C74D5",
+     "content_position": "top",
+     "padding_mobile": {
+      "unit": "px",
+      "top": "30",
+      "right": "0",
+      "bottom": "50",
+      "left": "0",
+      "isLinked": false
+     },
+     "_title": "Fasilitas",
+     "background_background": "classic",
+     "content_width": {
+      "unit": "px",
+      "size": 1250,
+      "sizes": []
+     },
+     "margin_mobile": {
+      "unit": "px",
+      "top": "0",
+      "right": 0,
+      "bottom": "0",
+      "left": 0,
+      "isLinked": false
+     },
+     "margin": {
+      "unit": "px",
+      "top": "0",
+      "right": 0,
+      "bottom": "0",
+      "left": 0,
+      "isLinked": false
+     },
+     "background_color_stop": {
+      "unit": "%",
+      "size": 5,
+      "sizes": []
+     },
+     "background_color_b": "#5C0000",
+     "background_color_b_stop": {
+      "unit": "%",
+      "size": 74,
+      "sizes": []
+     },
+     "background_gradient_angle": {
+      "unit": "deg",
+      "size": 65,
+      "sizes": []
+     },
+     "hover_parallax": [
+      {
+       "layer_position_vr": {
+        "unit": "%",
+        "size": 30
+       },
+       "layer_position_hr": {
+        "unit": "%",
+        "size": 40
+       },
+       "_id": "e2a1842"
+      },
+      {
+       "layer_position_vr": {
+        "unit": "%",
+        "size": 60
+       },
+       "layer_position_hr": {
+        "unit": "%",
+        "size": 20
+       },
+       "_id": "640e892"
+      }
+     ],
+     "element_pack_agbg_color_list": [
+      {
+       "_id": "5e4d43b"
+      },
+      {
+       "start_color": "#567445",
+       "end_color": "#1D1BE0",
+       "_id": "c2c3ebf"
+      }
+     ],
+     "background_image": {
+      "url": "",
+      "id": "",
+      "size": "",
+      "alt": "",
+      "source": "library"
+     }
+    },
+    "elements": [
+     {
+      "id": "61abba1d",
+      "elType": "column",
+      "settings": {
+       "_column_size": 100,
+       "_inline_size": null,
+       "content_position": "center",
+       "margin": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": true
+       },
+       "margin_mobile": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": true
+       }
+      },
+      "elements": [
+       {
+        "id": "7e52b68c",
+        "elType": "widget",
+        "settings": {
+         "title": "Alamat Kantor Resmi Elharamain",
+         "header_size": "h3",
+         "align_mobile": "center",
+         "typography_typography": "custom",
+         "typography_font_size": {
+          "unit": "px",
+          "size": 25,
+          "sizes": []
+         },
+         "typography_font_size_mobile": {
+          "unit": "px",
+          "size": 14,
+          "sizes": []
+         },
+         "typography_line_height": {
+          "unit": "em",
+          "size": 2,
+          "sizes": []
+         },
+         "typography_line_height_mobile": {
+          "unit": "em",
+          "size": 1.3,
+          "sizes": []
+         },
+         "typography_letter_spacing": {
+          "unit": "px",
+          "size": 0,
+          "sizes": []
+         },
+         "animation_duration": "fast",
+         "title_color": "#FFFFFF",
+         "typography_font_family": "Inter",
+         "typography_font_weight": "400",
+         "_padding": {
+          "unit": "em",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+         },
+         "typography_text_transform": "capitalize",
+         "_margin_mobile": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": true
+         },
+         "_padding_mobile": {
+          "unit": "px",
+          "top": "10",
+          "right": "10",
+          "bottom": "10",
+          "left": "10",
+          "isLinked": true
+         },
+         "align": "center",
+         "_margin": {
+          "unit": "px",
+          "top": "0",
+          "right": "0",
+          "bottom": "0",
+          "left": "0",
+          "isLinked": false
+         },
+         "element_pack_widget_tooltip_text": "This is Tooltip",
+         "element_pack_widget_effect_transition_duration": "300",
+         "element_pack_widget_effect_transition_easing": "ease-out"
+        },
+        "elements": [],
+        "widgetType": "heading"
+       },
+       {
+        "id": "1b686246",
+        "elType": "section",
+        "settings": {
+         "layout": "full_width",
+         "structure": "60",
+         "hover_parallax": [
+          {
+           "layer_position_vr": {
+            "unit": "%",
+            "size": 30
+           },
+           "layer_position_hr": {
+            "unit": "%",
+            "size": 40
+           },
+           "_id": "c1a834b"
+          },
+          {
+           "layer_position_vr": {
+            "unit": "%",
+            "size": 60
+           },
+           "layer_position_hr": {
+            "unit": "%",
+            "size": 20
+           },
+           "_id": "4a07de7"
+          }
+         ],
+         "element_pack_agbg_color_list": [
+          {
+           "_id": "3cd1556"
+          },
+          {
+           "start_color": "#567445",
+           "end_color": "#1D1BE0",
+           "_id": "626aa42"
+          }
+         ],
+         "margin": {
+          "unit": "px",
+          "top": "0",
+          "right": 0,
+          "bottom": "0",
+          "left": 0,
+          "isLinked": false
+         }
+        },
+        "elements": [
+         {
+          "id": "77671b59",
+          "elType": "column",
+          "settings": {
+           "_column_size": 16,
+           "_inline_size": null,
+           "content_position": "top",
+           "margin": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           },
+           "margin_mobile": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           }
+          },
+          "elements": [
+           {
+            "id": "3561559a",
+            "elType": "widget",
+            "settings": {
+             "title": "Kantor Pusat",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 20,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 23,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.2,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Montserrat",
+             "typography_font_weight": "700",
+             "typography_text_transform": "capitalize",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "10",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_font_size_tablet": {
+              "unit": "px",
+              "size": 40,
+              "sizes": []
+             },
+             "align": "left",
+             "text_shadow_text_shadow": {
+              "horizontal": 0,
+              "vertical": 0,
+              "blur": 40,
+              "color": "rgba(0, 0, 0, 0.39)"
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           },
+           {
+            "id": "1aed6fdb",
+            "elType": "widget",
+            "settings": {
+             "title": "Ruko Emerald No 5 Blok EB 1, Jl. Harapan Indah Raya, Kecamatan Medan Satria, Kota Bks, Jawa Barat 17132",
+             "header_size": "h3",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 12,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 14,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.9,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Inter",
+             "typography_font_weight": "400",
+             "_padding": {
+              "unit": "em",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_text_transform": "capitalize",
+             "_margin_mobile": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+             },
+             "_padding_mobile": {
+              "unit": "px",
+              "top": "10",
+              "right": "10",
+              "bottom": "10",
+              "left": "10",
+              "isLinked": true
+             },
+             "align": "left",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           }
+          ],
+          "isInner": true
+         },
+         {
+          "id": "a3e25ba",
+          "elType": "column",
+          "settings": {
+           "_column_size": 16,
+           "_inline_size": null,
+           "content_position": "top",
+           "margin": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           },
+           "margin_mobile": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           }
+          },
+          "elements": [
+           {
+            "id": "59c22e04",
+            "elType": "widget",
+            "settings": {
+             "title": "Jakarta",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 20,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 23,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.2,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Montserrat",
+             "typography_font_weight": "700",
+             "typography_text_transform": "capitalize",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "10",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_font_size_tablet": {
+              "unit": "px",
+              "size": 40,
+              "sizes": []
+             },
+             "align": "left",
+             "text_shadow_text_shadow": {
+              "horizontal": 0,
+              "vertical": 0,
+              "blur": 40,
+              "color": "rgba(0, 0, 0, 0.39)"
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           },
+           {
+            "id": "3eacaad2",
+            "elType": "widget",
+            "settings": {
+             "title": "Jl. Tebet Raya No.39 B, Tebet Tim., Kec. Tebet, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12820",
+             "header_size": "h3",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 12,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 14,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.9,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Inter",
+             "typography_font_weight": "400",
+             "_padding": {
+              "unit": "em",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_text_transform": "capitalize",
+             "_margin_mobile": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+             },
+             "_padding_mobile": {
+              "unit": "px",
+              "top": "10",
+              "right": "10",
+              "bottom": "10",
+              "left": "10",
+              "isLinked": true
+             },
+             "align": "left",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           }
+          ],
+          "isInner": true
+         },
+         {
+          "id": "5a616b30",
+          "elType": "column",
+          "settings": {
+           "_column_size": 16,
+           "_inline_size": null,
+           "content_position": "top",
+           "margin": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           },
+           "margin_mobile": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           }
+          },
+          "elements": [
+           {
+            "id": "7e998873",
+            "elType": "widget",
+            "settings": {
+             "title": "Depok",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 20,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 23,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.2,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Montserrat",
+             "typography_font_weight": "700",
+             "typography_text_transform": "capitalize",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "10",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_font_size_tablet": {
+              "unit": "px",
+              "size": 40,
+              "sizes": []
+             },
+             "align": "left",
+             "text_shadow_text_shadow": {
+              "horizontal": 0,
+              "vertical": 0,
+              "blur": 40,
+              "color": "rgba(0, 0, 0, 0.39)"
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           },
+           {
+            "id": "32a0816b",
+            "elType": "widget",
+            "settings": {
+             "title": "Jl. Margonda No.252 D, Kemiri Muka, Kecamatan Beji, Kota Depok",
+             "header_size": "h3",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 12,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 14,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.9,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Inter",
+             "typography_font_weight": "400",
+             "_padding": {
+              "unit": "em",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_text_transform": "capitalize",
+             "_margin_mobile": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+             },
+             "_padding_mobile": {
+              "unit": "px",
+              "top": "10",
+              "right": "10",
+              "bottom": "10",
+              "left": "10",
+              "isLinked": true
+             },
+             "align": "left",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           }
+          ],
+          "isInner": true
+         },
+         {
+          "id": "12217d3f",
+          "elType": "column",
+          "settings": {
+           "_column_size": 16,
+           "_inline_size": null,
+           "content_position": "top",
+           "margin": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           },
+           "margin_mobile": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           }
+          },
+          "elements": [
+           {
+            "id": "5de10d0a",
+            "elType": "widget",
+            "settings": {
+             "title": "Tangerang",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 20,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 23,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.2,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Montserrat",
+             "typography_font_weight": "700",
+             "typography_text_transform": "capitalize",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "10",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_font_size_tablet": {
+              "unit": "px",
+              "size": 40,
+              "sizes": []
+             },
+             "align": "left",
+             "text_shadow_text_shadow": {
+              "horizontal": 0,
+              "vertical": 0,
+              "blur": 40,
+              "color": "rgba(0, 0, 0, 0.39)"
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           },
+           {
+            "id": "3f4f9d33",
+            "elType": "widget",
+            "settings": {
+             "title": "Ruko Ps. Modern, No.18 BSD, Rw. Mekar Jaya, Kec. Serpong, Kota Tangerang Selatan, Banten 15318",
+             "header_size": "h3",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 12,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 14,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.9,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Inter",
+             "typography_font_weight": "400",
+             "_padding": {
+              "unit": "em",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_text_transform": "capitalize",
+             "_margin_mobile": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+             },
+             "_padding_mobile": {
+              "unit": "px",
+              "top": "10",
+              "right": "10",
+              "bottom": "10",
+              "left": "10",
+              "isLinked": true
+             },
+             "align": "left",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           }
+          ],
+          "isInner": true
+         },
+         {
+          "id": "14f326b9",
+          "elType": "column",
+          "settings": {
+           "_column_size": 16,
+           "_inline_size": null,
+           "content_position": "top",
+           "margin": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           },
+           "margin_mobile": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           }
+          },
+          "elements": [
+           {
+            "id": "a87b494",
+            "elType": "widget",
+            "settings": {
+             "title": "Bandung",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 20,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 23,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.2,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Montserrat",
+             "typography_font_weight": "700",
+             "typography_text_transform": "capitalize",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "10",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_font_size_tablet": {
+              "unit": "px",
+              "size": 40,
+              "sizes": []
+             },
+             "align": "left",
+             "text_shadow_text_shadow": {
+              "horizontal": 0,
+              "vertical": 0,
+              "blur": 40,
+              "color": "rgba(0, 0, 0, 0.39)"
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           },
+           {
+            "id": "211cb9cc",
+            "elType": "widget",
+            "settings": {
+             "title": "jl. bulevar Utama blok RC no. 18 Ruby Commercial – Summarecon Bandung Kota Bandung",
+             "header_size": "h3",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 12,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 14,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.9,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Inter",
+             "typography_font_weight": "400",
+             "_padding": {
+              "unit": "em",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_text_transform": "capitalize",
+             "_margin_mobile": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+             },
+             "_padding_mobile": {
+              "unit": "px",
+              "top": "10",
+              "right": "10",
+              "bottom": "10",
+              "left": "10",
+              "isLinked": true
+             },
+             "align": "left",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           }
+          ],
+          "isInner": true
+         },
+         {
+          "id": "174e58d1",
+          "elType": "column",
+          "settings": {
+           "_column_size": 16,
+           "_inline_size": null,
+           "content_position": "top",
+           "margin": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           },
+           "margin_mobile": {
+            "unit": "px",
+            "top": "10",
+            "right": "10",
+            "bottom": "10",
+            "left": "10",
+            "isLinked": true
+           }
+          },
+          "elements": [
+           {
+            "id": "20d9d2a8",
+            "elType": "widget",
+            "settings": {
+             "title": "Bogor",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 20,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 23,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.2,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Montserrat",
+             "typography_font_weight": "700",
+             "typography_text_transform": "capitalize",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "10",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_font_size_tablet": {
+              "unit": "px",
+              "size": 40,
+              "sizes": []
+             },
+             "align": "left",
+             "text_shadow_text_shadow": {
+              "horizontal": 0,
+              "vertical": 0,
+              "blur": 40,
+              "color": "rgba(0, 0, 0, 0.39)"
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           },
+           {
+            "id": "3b0d9f1",
+            "elType": "widget",
+            "settings": {
+             "title": "Ruko graha boulevard, Jl. Summarecon Bogor GBVD No.10 , Sukatani, Kec. Sukaraja, Kabupaten Bogor, Jawa Barat 16144",
+             "header_size": "h3",
+             "align_mobile": "center",
+             "typography_typography": "custom",
+             "typography_font_size": {
+              "unit": "px",
+              "size": 12,
+              "sizes": []
+             },
+             "typography_font_size_mobile": {
+              "unit": "px",
+              "size": 14,
+              "sizes": []
+             },
+             "typography_line_height": {
+              "unit": "em",
+              "size": 1.9,
+              "sizes": []
+             },
+             "typography_line_height_mobile": {
+              "unit": "em",
+              "size": 1.3,
+              "sizes": []
+             },
+             "typography_letter_spacing": {
+              "unit": "px",
+              "size": 0,
+              "sizes": []
+             },
+             "animation_duration": "fast",
+             "title_color": "#FFFFFF",
+             "typography_font_family": "Inter",
+             "typography_font_weight": "400",
+             "_padding": {
+              "unit": "em",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "typography_text_transform": "capitalize",
+             "_margin_mobile": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": true
+             },
+             "_padding_mobile": {
+              "unit": "px",
+              "top": "10",
+              "right": "10",
+              "bottom": "10",
+              "left": "10",
+              "isLinked": true
+             },
+             "align": "left",
+             "_margin": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "0",
+              "isLinked": false
+             },
+             "element_pack_widget_tooltip_text": "This is Tooltip",
+             "element_pack_widget_effect_transition_duration": "300",
+             "element_pack_widget_effect_transition_easing": "ease-out"
+            },
+            "elements": [],
+            "widgetType": "heading"
+           }
+          ],
+          "isInner": true
+         }
+        ],
+        "isInner": true
+       }
+      ],
+      "isInner": false
+     }
+    ],
+    "isInner": false
+   }
+  ]
+ },
+ {
+  "id": 423,
+  "title": "Header",
+  "status": "publish",
+  "meta": {
+   "_elementor_edit_mode": "builder",
+   "_elementor_template_type": "wp-post",
+   "ehf_target_include_locations": "a:2:{s:4:\"rule\";a:1:{i:0;s:12:\"basic-global\";}s:8:\"specific\";a:0:{}}",
+   "ehf_target_exclude_locations": "a:0:{}",
+   "ehf_target_user_roles": "a:1:{i:0;s:0:\"\";}",
+   "ehf_template_type": "type_header"
+  },
+  "data": [
+   {
+    "id": "3a7f8ed9",
+    "elType": "container",
+    "settings": {
+     "flex_direction": "row",
+     "flex_justify_content": "space-between",
+     "flex_align_items": "center",
+     "flex_wrap_mobile": "nowrap",
+     "padding": {
+      "unit": "px",
+      "top": "15",
+      "right": "0",
+      "bottom": "15",
+      "left": "0",
+      "isLinked": false
+     },
+     "padding_tablet": {
+      "unit": "px",
+      "top": "0",
+      "right": "30",
+      "bottom": "0",
+      "left": "30",
+      "isLinked": false
+     },
+     "padding_mobile": {
+      "unit": "px",
+      "top": "5",
+      "right": "20",
+      "bottom": "5",
+      "left": "20",
+      "isLinked": false
+     },
+     "css_classes": "wrapper",
+     "_title": "Header",
+     "min_height": {
+      "unit": "px",
+      "size": 0,
+      "sizes": []
+     },
+     "min_height_tablet": {
+      "unit": "px",
+      "size": 60,
+      "sizes": []
+     },
+     "background_background": "classic",
+     "background_color": "#0C74D5"
+    },
+    "elements": [
+     {
+      "id": "29293cc4",
+      "elType": "widget",
+      "settings": {
+       "site_logo_size_size": "full",
+       "width": {
+        "unit": "px",
+        "size": 170,
+        "sizes": []
+       },
+       "width_tablet": {
+        "unit": "px",
+        "size": 210,
+        "sizes": []
+       },
+       "width_mobile": {
+        "unit": "px",
+        "size": 150,
+        "sizes": []
+       },
+       "align": "left",
+       "custom_image": {
+        "id": 108,
+        "url": "https://www.haji.biz/wp-content/uploads/2026/01/AAssets-haji-biz-7.webp",
+        "alt": "",
+        "source": "library",
+        "size": ""
+       },
+       "_flex_align_self_tablet": "center",
+       "site_logo_fallback": "yes"
+      },
+      "elements": [],
+      "widgetType": "site-logo"
+     },
+     {
+      "id": "1b85567f",
+      "elType": "widget",
+      "settings": {
+       "menu": "menu-1",
+       "resp_align": "right",
+       "dropdown_icon": {
+        "value": {
+         "id": 425,
+         "url": "https://www.haji.biz/wp-content/uploads/2026/02/tgl.svg"
+        },
+        "library": "svg"
+       },
+       "dropdown_close_icon": {
+        "value": {
+         "id": 426,
+         "url": "https://www.haji.biz/wp-content/uploads/2026/02/close.svg"
+        },
+        "library": "svg"
+       },
+       "menu_typography_typography": "custom",
+       "menu_typography_font_size": {
+        "unit": "px",
+        "size": 16,
+        "sizes": []
+       },
+       "menu_typography_font_weight": "600",
+       "dropdown_border_border": "none",
+       "padding_horizontal_dropdown_item": {
+        "unit": "px",
+        "size": 0,
+        "sizes": []
+       },
+       "padding_horizontal_dropdown_item_tablet": {
+        "unit": "px",
+        "size": 30,
+        "sizes": []
+       },
+       "padding_vertical_dropdown_item": {
+        "unit": "px",
+        "size": 12,
+        "sizes": []
+       },
+       "padding_vertical_dropdown_item_tablet": {
+        "unit": "px",
+        "size": 15,
+        "sizes": []
+       },
+       "distance_from_menu_tablet": {
+        "unit": "px",
+        "size": 0,
+        "sizes": []
+       },
+       "divider_border_color": "#0000000D",
+       "toggle_color": "#000000",
+       "toggle_size": {
+        "unit": "px",
+        "size": 30,
+        "sizes": []
+       },
+       "_element_width_mobile": "initial",
+       "_element_custom_width_mobile": {
+        "unit": "px",
+        "size": 120,
+        "sizes": []
+       },
+       "__globals__": {
+        "toggle_color": "",
+        "divider_border_color": "",
+        "color_menu_item": "",
+        "color_dropdown_item": ""
+       },
+       "distance_from_menu_mobile": {
+        "unit": "px",
+        "size": 0,
+        "sizes": []
+       },
+       "toggle_size_tablet": {
+        "unit": "px",
+        "size": 24,
+        "sizes": []
+       },
+       "_margin_mobile": {
+        "unit": "px",
+        "top": "0",
+        "right": "-10",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": false
+       },
+       "padding_horizontal_menu_item": {
+        "unit": "px",
+        "size": 0,
+        "sizes": []
+       },
+       "_css_classes": "top_nav",
+       "navmenu_align": "justify",
+       "padding_vertical_menu_item": {
+        "unit": "px",
+        "size": 8,
+        "sizes": []
+       },
+       "dropdown_box_shadow_box_shadow": {
+        "horizontal": 0,
+        "vertical": 0,
+        "blur": 10,
+        "spread": 0,
+        "color": "rgba(157, 157, 157, 0.15)"
+       },
+       "width_dropdown_item": {
+        "unit": "px",
+        "size": 280,
+        "sizes": []
+       },
+       "distance_from_menu": {
+        "unit": "px",
+        "size": 12,
+        "sizes": []
+       },
+       "menu_space_between": {
+        "unit": "px",
+        "size": 41,
+        "sizes": []
+       },
+       "color_menu_item": "#FFFFFF",
+       "color_dropdown_item": "#000000",
+       "color_menu_item_hover": "#FE5B3E",
+       "color_menu_item_active": "#FE5B3E",
+       "menu_row_space_mobile": {
+        "unit": "px",
+        "size": 5,
+        "sizes": []
+       },
+       "padding_horizontal_dropdown_item_mobile": {
+        "unit": "px",
+        "size": 20,
+        "sizes": []
+       },
+       "dropdown_border_width_tablet": {
+        "unit": "px",
+        "top": "10",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": false
+       },
+       "dropdown_border_color": "#FFFFFF",
+       "dropdown_border_radius_tablet": {
+        "unit": "px",
+        "top": "0",
+        "right": "0",
+        "bottom": "0",
+        "left": "0",
+        "isLinked": false
+       }
+      },
+      "elements": [],
+      "widgetType": "navigation-menu"
+     }
+    ],
+    "isInner": false
+   }
+  ]
+ }
+]

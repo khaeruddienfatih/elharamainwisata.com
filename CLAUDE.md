@@ -32,6 +32,6 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 ## Status & tugas
 Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
-- Akses otomatis: lihat tabel "Status akses otomatis" di README. Menunggu pemilik pasang `wordpress/wpcode-uae-rest.php` (WPCode) di haji.biz, elharamainhaji.com, elharamain.id; setelah itu header/footer dipasang via `tools/deploy_uae.py`.
+- Akses otomatis: snippet `wordpress/wpcode-uae-rest.php` **sudah aktif** di haji.biz, elharamainhaji.com, elharamain.id → header/footer UAE dipasang via `tools/deploy_uae.py <situs> header|footer <file> --id N`. Cadangan template lama: `backup/uae/`.
 - Header/footer haji.biz **siap tempel**: `wordpress/uae/haji-biz-*.html` + langkah di `wordpress/uae/README.md` (menu HP hamburger, link dicek, tanpa link umroh). Menunggu pemilik menempel manual di UAE (MCP tak bisa buat `elementor-hf`; build-composition butuh Atomic Editor).
 - Audit Rank Math 30 Sep: elharamainhaji.com skor 78 (59 post + 12 halaman tanpa focus keyword, GSC belum ditautkan); elharamain.id skor 80 (meta deskripsi beranda 170 kar., 42 gambar tanpa alt, og:image kosong, GSC belum ditautkan).
