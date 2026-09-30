@@ -29,7 +29,7 @@ def rest(site, method, path, body=None):
            '-H', 'Content-Type: application/json', '-w', '\n%{http_code}', base + '/wp-json' + path]
     if body is not None:
         cmd[1:1] = ['--data-binary', '@' + _tmp_json(body)]
-    for attempt in range(5):
+    for wait in (10, 20, 40, 60, 90, 120, 0):
         out = subprocess.run(cmd, input=cfg, capture_output=True, text=True).stdout
         raw, _, code = out.rpartition('\n')
         if not raw.lstrip().startswith(('[', '{')) and '{"' in raw and '<html' not in raw[:2000].lower():
@@ -44,7 +44,7 @@ def rest(site, method, path, body=None):
             if int(code) >= 400:
                 sys.exit(f'{code}: {raw[:300]}')
             return val
-        time.sleep(8)  # halaman anti-bot "reload" / 403 WAF sesekali; coba lagi
+        time.sleep(wait)  # halaman anti-bot "reload"/403 = pembatas laju hosting; tunggu makin lama lalu coba lagi
     sys.exit(f'Tetap diblokir anti-bot hosting ({code})')
 
 

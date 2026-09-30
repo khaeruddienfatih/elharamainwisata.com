@@ -92,7 +92,7 @@ def main():
         if '--publish' in sys.argv and (only and a['site'] != only or prev.get('status') == 'future'):
             rec.update({k: prev[k] for k in ('id', 'status', 'link') if k in prev})
         elif '--publish' in sys.argv:
-            time.sleep(15)  # WAF hosting memblokir IP bila request terlalu rapat
+            time.sleep(20)  # WAF hosting memblokir IP bila request terlalu rapat
             data = {'title': a['title'], 'slug': a['slug'], 'status': 'future', 'excerpt': a['desc'],
                     'content': f'<!-- wp:html -->\n{html}\n<!-- /wp:html -->', 'categories': [a['cat']],
                     'date_gmt': a['when'].astimezone(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%S')}
