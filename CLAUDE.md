@@ -33,7 +33,7 @@ Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
 - Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
 - Konektor `Elharamainhaji` & `Elharamain_id` sudah tersambung; audit kedua situs ada di `catatan/2026-09-30-sesi.md`.
-- Spam elharamainhaji.com = drip post terjadwal (153 masih `future`). Tunggu keputusan pemilik: trash/draft via wp-admin
-  (filter Scheduled). Jangan cari "generator" lagi.
-- Usulan (butuh izin): bahasa id_ID + timezone Asia/Jakarta di elharamain.id, LiteSpeed Cache di elharamainhaji.com & elharamain.id,
+- Spam elharamainhaji.com: 1.530 post sudah di-Trash (30 Sep). Sisa: pemilik buat 1 redirect regex Rank Math (isian di README),
+  lalu cek `rank-math/get-redirections`. Jangan cari "generator" lagi (itu drip post terjadwal, sudah dibuang).
+- Usulan (butuh izin): bahasa id_ID + timezone Asia/Jakarta di elharamain.id, LiteSpeed Cache di elharamain.id (elharamainhaji.com sudah aktif),
   update Elementor Pro di elharamain.id.
