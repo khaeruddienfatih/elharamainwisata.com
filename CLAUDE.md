@@ -17,6 +17,9 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 ## Akses
 - MCP WordPress tersambung: `elharamainwisata_com`, `haji_biz` (tool: elementor/*, rank-math/*, marketplace/*).
 - Tersambung juga: `Elharamainhaji`, `Elharamain_id` (sejak 3 Okt 2026).
+- Konektor WordPress.com (`WordPress_com`, tool `wpcom-*`): 2 situs gratis (masa tenggang MCP 30 hari, akses terbatas), dibuat 3 Okt 2026:
+  `elharamainhaji.wordpress.com` (blog ID 257739192, coming soon) = **dipakai pemilik untuk haji.biz**;
+  `elharamainwisatanews.wordpress.com` (blog ID 257737206, "News.elharamainwisata.com", tujuan belum dijelaskan).
 - REST API elharamainwisata.com: lihat `README.md` (snippet WPCode `wordpress/wpcode-bantu-login-api.php`, kredensial dari env `WP_USER` / `WP_APP_PASSWORD`, jangan pernah tulis kredensial di repo).
 - Tool marketplace hanya memasang plugin dari URL download; plugin berbayar butuh file zip/lisensi dari pemilik.
 
