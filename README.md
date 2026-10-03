@@ -89,7 +89,7 @@ seluruh post type "post" di-set noindex + dikeluarkan dari sitemap lewat `rank-m
 | `widget/perlengkapan.html` | 13 halaman* | Foto 2560px dari Canva: `perlengkapan-pria-2026`, `perlengkapan-wanita-2026-a` (ada juga `-b`) |
 | `widget/fasilitas-ketentuan-tab.html` | 12 halaman (tanpa beranda) | Tab CSS: Sudah Termasuk / Belum Termasuk / Dokumen / Pendaftaran & Pembayaran |
 | `widget/wa-cabang-template.html` | 6 halaman cabang (ditempel di akhir widget fasilitas) | Semua klik WA ke nomor pusat → nomor cabang, termasuk tombol melayang Click to Chat |
-| `widget/fasilitas-hotel-bus.html` | 9581 (menggantikan Image Carousel "Fasilitas Elharamain Wisata", 3 Okt) | Slider (scroll-snap + panah/titik/autoplay 4 dtk) 7 hotel Makkah, 4 hotel Madinah, 1 bus; foto gabungan dari brosur di Cloudinary `Elharamainwisata/Fasilitas`. Builder: `tools/fasilitas_hotel.py` (`DEPLOY=1`) |
+| `widget/fasilitas-hotel-bus.html` | 13 halaman elharamainwisata.com (9581, beranda, 5 tier, 6 cabang) + 12 halaman umroh elharamain.id + 4 halaman umroh elharamainhaji.com (menggantikan carousel "Fasilitas Elharamain Wisata" 2025, 3 Okt) | Slider (scroll-snap + panah/titik/autoplay 4 dtk) 7 hotel Makkah, 4 hotel Madinah, 1 bus; foto gabungan dari brosur di Cloudinary `Elharamainwisata/Fasilitas`. Builder: `tools/fasilitas_hotel.py` (`DEPLOY=1 SITE=wisata\|id\|haji`) |
 | `widget/pembimbing-slider.html` | 13 halaman* | Slider 8 ustadz, 4/3/2/1,3 per tampilan, autoplay 4 dtk |
 
 \* 13 halaman = Beranda 7840, Musim Dingin 9581, Bronze 8869, Silver 8896, Platinum 8908, Premium 8909, Silver 12 Hari 8910,
@@ -117,6 +117,10 @@ Rotasi tombol WA melayang (Click to Chat Pro, diatur di WP Admin karena endpoint
 - Catatan: trigger konversi Ads lama (label `adEmCOr05NIbEIO-0fEq`) hanya aktif di `umroh.elharamainwisata.com`.
 
 ## Pelajaran teknis
+- REST elharamain.id & elharamainhaji.com: pakai host **www.** (tanpa www diblokir proxy) dan **curl** (Cloudflare kadang menolak
+  urllib Python). Respons REST elharamain.id diawali `<style id="elementor-post-N">` bocoran plugin — lewati sampai awal JSON.
+- Image Carousel Elementor + lazyload: placeholder GIF 1x1 dirender persegi sehingga slider jadi terlalu tinggi (ruang kosong di bawah
+  foto). Obat: CSS `aspect-ratio` pada `.swiper-slide-image` (lihat `tools/fix_judul_dan_carousel.py`).
 - **Jangan tulis tag HTML (mis. teks `<script>`) di dalam komentar HTML pada widget**: pengoptimal LiteSpeed membacanya sebagai
   tag sungguhan dan sebagian besar halaman hilang dari output.
 - LiteSpeed menunda semua JavaScript sampai pengunjung berinteraksi → konten penting harus HTML statis. Script yang harus

@@ -36,5 +36,7 @@ Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - (3 Okt) Konektor `Elharamainhaji` & `Elharamain_id` sudah tersambung.
 - (3 Okt) Brosur Riyadh Air November (update 29/09) & Ramadhan 1448 H sudah live di 12 halaman paket elharamainwisata.com
   (atas permintaan pemilik). Skrip: `tools/update_paket_2026_10.py`, backup `backup/2026-10-03/`. Sisa: SEO 9581, tab "Semua", sinkron builder.
-- (3 Okt) Bagian "Fasilitas Elharamain Wisata" di 9581 diganti slider semua hotel + bus (`tools/fasilitas_hotel.py`, backup `backup/2026-10-03/9581_sebelum_fasilitas.json`). Belum dipasang di halaman tier/cabang.
+- (3 Okt) Carousel "Fasilitas Elharamain Wisata" lama diganti slider semua hotel + bus (`tools/fasilitas_hotel.py`) di 13 halaman
+  elharamainwisata.com, 12 halaman elharamain.id, 4 halaman umroh elharamainhaji.com. Halaman haji & haji.biz tidak diubah.
+- (3 Okt) Judul "Apa Kata Jamaah…" dikecilkan (36/30/22 px) di 15 halaman; ruang kosong di bawah carousel 8289 diperbaiki.
 - Hosting elharamainwisata.com kadang membalas halaman anti-bot "One moment, please..." (juga ke REST) → tunggu ±20 dtk lalu ulangi.

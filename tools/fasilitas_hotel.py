@@ -5,15 +5,15 @@ Elharamainwisata/Fasilitas (public_id fasilitas-hotel-<slug>, fasilitas-bus). Sl
 panah, titik & autoplay pakai JS kecil yang dikecualikan dari optimasi LiteSpeed (pola sama dengan pembimbing-slider).
 
 Jalankan: python3 tools/fasilitas_hotel.py              -> tulis landing-pages/widget/fasilitas-hotel-bus.html
-          DEPLOY=1 python3 tools/fasilitas_hotel.py     -> juga pasang di halaman 9581 (ganti carousel 73bd261 / widget f4c1b05)
+          DEPLOY=1 [SITE=wisata|id|haji] [PAGES=id,id] [DRY=1] python3 tools/fasilitas_hotel.py
+              -> ganti carousel fasilitas lama (atau slider versi sebelumnya) di halaman SITES[site]
 """
-import json, os, sys, time
-sys.path.insert(0, os.path.dirname(__file__))
+import base64, json, os, re, sys, time, urllib.error, urllib.request
 
 ROOT = os.path.join(os.path.dirname(__file__), '..')
 OUT = os.path.join(ROOT, 'landing-pages', 'widget', 'fasilitas-hotel-bus.html')
 IMG = 'https://res.cloudinary.com/v6gwkqrb/image/upload/c_fill,w_{w},h_{h},q_auto,f_auto/{id}.jpg'
-PAGE, OLD_WIDGET, NEW_WIDGET = 9581, '73bd261', 'f4c1b05'
+NEW_WIDGET = 'f4c1b05'
 
 # (slug, nama, bintang, jarak, paket)
 MAKKAH = [
@@ -128,39 +128,100 @@ def build():
             + JS)
 
 
-def deploy(html):
-    from wp_rest import req
+# Carousel "Fasilitas Elharamain Wisata" lama: 7 slide 2025 (bus, Swissotel, Marwa Rotana, Anjum, Al-Aqeeq, Taiba Front,
+# Taiba) dengan nama file 10 / 2-1 ... 7-1 (+ akhiran duplikat WordPress), dipakai di ketiga situs.
+OLD_RE = re.compile(r'^(10|[2-7]-1)(-\d+)*(\.jpg)?(-\d+)*\.(jpg|webp)$')
+SITES = {  # situs: (base REST, env user, env app password, halaman)
+    'wisata': ('https://www.elharamainwisata.com/wp-json', 'WP_USER', 'WP_APP_PASSWORD',
+               [9581, 7840, 8869, 8896, 8908, 8909, 8910, 9584, 9585, 9586, 9587, 9588, 9589]),
+    'id': ('https://www.elharamain.id/wp-json', 'ELHARAMAINID_USER', 'ELHARAMAINID_WP_APP_PASSWORD',
+           [309, 783, 496, 480, 476, 472, 468, 464, 439, 385, 351, 210]),
+    'haji': ('https://www.elharamainhaji.com/wp-json', 'ELHARAMAINHAJI_USER', 'ELHARAMAINHAJI_WP_APP_PASSWORD',
+             [230, 220, 210, 175]),
+}
+
+
+def requester(site):
+    # Pakai curl: Cloudflare di elharamain.id / elharamainhaji.com kadang menolak urllib Python (403 / halaman challenge).
+    import subprocess, tempfile
+    base, u, pw, _ = SITES[site]
+
+    def req(method, path, data=None):
+        cmd = ['curl', '-sS', '--max-time', '120', '-X', method, '-u', f"{os.environ[u]}:{os.environ[pw]}",
+               '-A', 'Mozilla/5.0 eh-admin', '-H', 'Content-Type: application/json', '-w', '\n%{http_code}']
+        tmp = None
+        if data is not None:
+            tmp = tempfile.NamedTemporaryFile('w', suffix='.json', delete=False)
+            json.dump(data, tmp)
+            tmp.close()
+            cmd += ['--data-binary', '@' + tmp.name]
+        out = subprocess.run(cmd + [base + path], capture_output=True, text=True).stdout
+        if tmp:
+            os.unlink(tmp.name)
+        body, _, code = out.rpartition('\n')
+        try:
+            return int(code), (json.loads(body) if body else None)
+        except ValueError:
+            # elharamain.id membocorkan <style id="elementor-post-N"> di depan JSON respons REST: lewati sampai awal JSON.
+            for m in re.finditer(r'[\[{]"', body):
+                try:
+                    return int(code), json.JSONDecoder().raw_decode(body, m.start())[0]
+                except ValueError:
+                    continue
+            return int(code or 0), body[:300]
+    return req
+
+
+def is_old_carousel(e):
+    if e.get('widgetType') != 'image-carousel':
+        return False
+    c = e.get('settings', {}).get('carousel') or []
+    if isinstance(c, str):
+        c = json.loads(c)
+    names = [os.path.basename(x.get('url', '')) for x in c if isinstance(x, dict)]
+    return len(names) == 7 and sum(bool(OLD_RE.match(n)) for n in names) >= 6
+
+
+def deploy(html, pid, req, site):
     for i in range(6):
         try:
-            st, raw = req('GET', f'/wp/v2/pages/{PAGE}?context=edit')
+            st, raw = req('GET', f'/wp/v2/pages/{pid}?context=edit')
             if st == 200 and isinstance(raw, dict):
                 break
-        except json.JSONDecodeError:
+        except (json.JSONDecodeError, urllib.error.URLError, ValueError):
             pass
         time.sleep(20)
+    else:
+        raise SystemExit(f'gagal GET {site} {pid}')
     data = raw['meta']['_elementor_data']
     bdir = os.path.join(ROOT, 'backup', '2026-10-03')
     os.makedirs(bdir, exist_ok=True)
-    with open(os.path.join(bdir, f'{PAGE}_sebelum_fasilitas_{time.strftime("%H%M")}.json'), 'w') as f:
+    prefix = '' if site == 'wisata' else site + '-'
+    with open(os.path.join(bdir, f'{prefix}{pid}_sebelum_fasilitas_{time.strftime("%H%M")}.json'), 'w') as f:
         f.write(data)
     els = json.loads(data)
+    n = 0
 
     def swap(es):
+        nonlocal n
         for i, e in enumerate(es):
-            if e.get('id') in (OLD_WIDGET, NEW_WIDGET):
-                assert e.get('widgetType') in ('image-carousel', 'html'), e.get('widgetType')
-                es[i] = {'id': NEW_WIDGET, 'elType': 'widget', 'widgetType': 'html', 'elements': [],
+            st = e.get('settings', {})
+            mine = e.get('widgetType') == 'html' and 'id="ehfs"' in st.get('html', '')
+            if is_old_carousel(e) or mine:
+                es[i] = {'id': e['id'] if mine else NEW_WIDGET, 'elType': 'widget', 'widgetType': 'html', 'elements': [],
                          'settings': {'html': html, '_margin': {'unit': 'px', 'top': '10', 'right': '0', 'bottom': '25', 'left': '0', 'isLinked': False}}}
-                return True
-            if swap(e.get('elements', [])):
-                return True
-        return False
+                n += 1
+            else:
+                swap(e.get('elements', []))
 
-    assert swap(els), 'widget carousel tidak ditemukan'
-    st, r = req('POST', f'/wp/v2/pages/{PAGE}', {'meta': {'_elementor_data': json.dumps(els, ensure_ascii=False)}})
-    print('POST', PAGE, st)
+    swap(els)
+    assert n == 1, (site, pid, n)
+    if os.environ.get('DRY') == '1':
+        print('DRY', site, pid, 'OK')
+        return
+    st, r = req('POST', f'/wp/v2/pages/{pid}', {'meta': {'_elementor_data': json.dumps(els, ensure_ascii=False)}})
+    print('POST', site, pid, st)
     assert st == 200, r
-    print('hapus cache elementor:', req('DELETE', '/elementor/v1/cache')[0])
 
 
 if __name__ == '__main__':
@@ -170,4 +231,9 @@ if __name__ == '__main__':
         f.write(html + '\n')
     print('tulis', OUT, len(html), 'byte')
     if os.environ.get('DEPLOY') == '1':
-        deploy(html)
+        site = os.environ.get('SITE', 'wisata')
+        req = requester(site)
+        for pid in [int(x) for x in os.environ.get('PAGES', '').split(',') if x] or SITES[site][3]:
+            deploy(html, pid, req, site)
+        if os.environ.get('DRY') != '1':
+            print('hapus cache elementor:', req('DELETE', '/elementor/v1/cache')[0])
