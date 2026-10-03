@@ -7,6 +7,10 @@
    foto 16:9 cuma ±240px. Perbaikan: widget HTML kecil (posisi absolute, tidak makan tempat) berisi CSS yang
    mengunci rasio foto carousel itu ke 16:9.
 
+Catatan: file CSS Elementor (post-N.css) di-cache browser 1 tahun dan parameter ?ver= TIDAK berubah walau file dibuat ulang
+(semua halaman ver=1790305183). Jadi perubahan gaya lewat setting Elementor tidak terlihat oleh browser yang sudah pernah
+membuka halaman. Karena itu ukuran judul juga ditanam inline (widget HTML kecil di samping judul).
+
 Jalankan: DRY=1 python3 tools/fix_judul_dan_carousel.py   /   python3 tools/fix_judul_dan_carousel.py
 """
 import json, os, sys, time
@@ -34,14 +38,27 @@ def get(path):
     raise SystemExit('gagal GET ' + path)
 
 
+def judul_css(hid):
+    t = f'.elementor-element-{hid} .elementor-heading-title'
+    return (f'<style>{t}{{font-size:36px!important;line-height:1.2!important}}'
+            f'@media(max-width:1024px){{{t}{{font-size:30px!important}}}}'
+            f'@media(max-width:767px){{{t}{{font-size:22px!important;line-height:1.3!important}}}}'
+            f'.elementor-element-j{hid[:6]}{{position:absolute!important;width:0;height:0;overflow:hidden}}</style>')
+
+
 def fix_judul(els):
     n = 0
-    for e in els:
+    for i, e in enumerate(list(els)):
         st = e.get('settings', {})
         if e.get('widgetType') == 'heading' and JUDUL in st.get('title', ''):
             for k, v in UKURAN.items():
                 st[k] = {'unit': 'px', 'size': v, 'sizes': []}
             st['typography_line_height'] = {'unit': 'em', 'size': 1.2, 'sizes': []}
+            wid = 'j' + e['id'][:6]
+            if not any(x.get('id') == wid for x in els):
+                els.insert(els.index(e) + 1, {'id': wid, 'elType': 'widget', 'widgetType': 'html', 'elements': [],
+                                              'settings': {'html': judul_css(e['id']), '_position': 'absolute',
+                                                           '_margin': {'unit': 'px', 'top': '0', 'right': '0', 'bottom': '0', 'left': '0', 'isLinked': True}}})
             n += 1
         n += fix_judul(e.get('elements', []))
     return n
@@ -70,15 +87,20 @@ def main():
         pid, data = p['id'], p['meta']['_elementor_data']
         els = json.loads(data)
         n = fix_judul(els)
-        c = fix_carousel(els) if pid == CAROUSEL_PAGE else False
+        c = fix_carousel(els) if pid == CAROUSEL_PAGE and CSS_WIDGET not in data else False
         if not n and not c:
             continue
         if DRY:
             print('DRY', pid, 'judul', n, 'carousel', c)
             continue
-        with open(f'{BACKUP}/{pid}_sebelum_judul_carousel.json', 'w') as f:
+        with open(f'{BACKUP}/{pid}_sebelum_judul_carousel_{time.strftime("%H%M")}.json', 'w') as f:
             f.write(data)
-        st, r = req('POST', f'/wp/v2/pages/{pid}', {'meta': {'_elementor_data': json.dumps(els, ensure_ascii=False)}})
+        for i in range(5):  # hosting kadang membalas halaman anti-bot (bukan JSON)
+            try:
+                st, r = req('POST', f'/wp/v2/pages/{pid}', {'meta': {'_elementor_data': json.dumps(els, ensure_ascii=False)}})
+                break
+            except json.JSONDecodeError:
+                time.sleep(20)
         print('POST', pid, st, 'judul', n, 'carousel', c)
         assert st == 200, r
     if not DRY:

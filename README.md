@@ -117,6 +117,10 @@ Rotasi tombol WA melayang (Click to Chat Pro, diatur di WP Admin karena endpoint
 - Catatan: trigger konversi Ads lama (label `adEmCOr05NIbEIO-0fEq`) hanya aktif di `umroh.elharamainwisata.com`.
 
 ## Pelajaran teknis
+- **File CSS Elementor (`post-N.css`) di-cache browser/Cloudflare 1 tahun, dan `?ver=` tidak berubah** walau file dibuat ulang
+  (semua halaman `ver=1790305183`). Mengubah gaya lewat setting Elementor (font, warna, ukuran) TIDAK terlihat oleh pengunjung
+  yang pernah membuka halaman. Untuk perubahan gaya yang harus langsung terlihat: tanam `<style>` inline di widget HTML
+  (HTML halaman tidak di-cache, `no-store`). Contoh: `tools/fix_judul_dan_carousel.py`.
 - REST elharamain.id & elharamainhaji.com: pakai host **www.** (tanpa www diblokir proxy) dan **curl** (Cloudflare kadang menolak
   urllib Python). Respons REST elharamain.id diawali `<style id="elementor-post-N">` bocoran plugin — lewati sampai awal JSON.
 - Image Carousel Elementor + lazyload: placeholder GIF 1x1 dirender persegi sehingga slider jadi terlalu tinggi (ruang kosong di bawah
