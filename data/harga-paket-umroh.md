@@ -1,17 +1,34 @@
-# Harga Paket Umroh Elharamain Wisata — Nov 2026 s.d. Jan 2027
+# Harga Paket Umroh Elharamain Wisata — Nov 2026 s.d. Feb 2027 (Ramadhan 1448 H)
 
-Sumber: brosur PDF di `data/brosur/` (dibaca 26/09/2026). Harga per jamaah, dalam Rupiah.
-Quad = sekamar ber-empat, Triple = ber-tiga, Double = ber-dua. Semua hotel bintang 5 ("atau setaraf").
+Sumber: brosur PDF di `data/brosur/` (dibaca 26/09/2026; November & Ramadhan diperbarui 03/10/2026). Harga per jamaah, dalam Rupiah.
+Quad = sekamar ber-empat, Triple = ber-tiga, Double = ber-dua. Hotel bintang 5 ("atau setaraf") kecuali disebut lain.
 Harga dapat berubah sewaktu-waktu sesuai ketentuan di brosur.
 
-## November 2026 — Musim Sejuk 10 Hari (brosur update 22/09/2026)
-Program 10 hari + Thaif + kereta cepat + city tour Jeddah.
+## November 2026 — Musim Sejuk Riyadh Air 10 Hari (brosur update 29/09/2026)
+Program 10 hari + Thaif + kereta cepat (Gold: 2x) + city tour Jeddah. Riyadh Air (JED-JED), terbang perdana dari Jakarta.
+Free GMC tour night Jabal Uhud. Jadwal: RX870 26 Nov JKT–RUH 13.00–18.40 · RX027 26 Nov RUH–JED 19.40–21.30 ·
+RX018 04 Des JED–RUH 17.20–19.45 · RX869 04 Des RUH–JKT 21.45–10.30(+1).
 
-| Paket | Maskapai | Hotel Makkah | Hotel Madinah | Berangkat | Quad | Triple | Double |
+| Paket | Hotel Makkah | Hotel Madinah | Berangkat | Quad | Triple | Double |
+|---|---|---|---|---|---|---|
+| Bronze | Anjum / Prestige | Al-Aqeeq | 26 Nov 2026 | 37.000.000 | 40.000.000 | 43.000.000 |
+| Gold | Marwa Rotana / Movenpick | Al-Aqeeq | 26 Nov 2026 | 46.000.000 | 49.000.000 | 52.000.000 |
+
+Catatan: di brosur harga Triple tertulis "IDR 40.00.000" (Bronze) dan "IDR 49.00.000" (Gold); dibaca sebagai 40 jt dan 49 jt.
+Paket Bronze di Madinah naik bus, Gold naik kereta.
+
+## Februari 2027 — Ramadhan 1448 H, Saudia Airlines JED-JED (brosur update 01/10/2026)
+Program 9 hari (atau 17 hari I'tikaf) + Thaif + kereta cepat. Buka puasa & tarawih bersama.
+
+| Paket | Hari | Hotel Makkah | Hotel Madinah | Berangkat | Quad | Triple | Double |
 |---|---|---|---|---|---|---|---|
-| Bronze | Riyadh Air* | Prestige / Anjum | Peninsula / Al-Aqeeq | 26 Nov 2026 | 37.000.000 | 40.000.000 | 43.000.000 |
+| Bronze | 9 | Al Shohada ★5 | Royal Andalus ★4 | 8, 14, 15 Feb | 39.500.000 | 41.500.000 | 43.500.000 |
+| Platinum | 9 | Marwa Rotana | Al-Aqeeq | 14, 21 Feb | 56.000.000 | 59.000.000 | 63.000.000 |
+| Premium | 9 | Fairmont | Al-Aqeeq | 14 Feb | 60.000.000 | 64.000.000 | 68.000.000 |
+| Silver 17D (I'tikaf – Lailatul Qadr) | 17 | Royal Majestic ★4 | Al-Aqeeq | 28 Feb | 71.000.000 | 80.000.000 | 97.000.000 |
 
-\* Sampul brosur: "Riyadh Air, terbang perdana dari Jakarta". Tapi judul halaman harga tertulis "Saudia Airlines (JED-JED)". Perlu dikonfirmasi.
+Bonus Platinum & Premium: 2x kereta cepat, free 1x umroh & sa'i by golf car, free abaya & jaket eksklusif.
+Bonus Silver 17D: 2x kereta cepat, free GMC tour night Jabal Uhud.
 
 ## Awal–Tengah Desember 2026 — Musim Dingin, Saudia Airlines (brosur update 18/08/2026)
 Program 9 hari (atau 12 hari) + Thaif + kereta cepat.

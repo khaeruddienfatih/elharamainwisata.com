@@ -1,5 +1,5 @@
 {
- "_catatan": "Sumber: brosur di data/brosur/. q/t/d = harga per jamaah sekamar ber-empat/ber-tiga/ber-dua. img = public_id Cloudinary folder Elharamainwisata/Header. unggulan:true = tampil di tab Semua (maks 6). Setelah mengubah file ini jalankan: node landing-pages/build-section-harga.js",
+ "_catatan": "Sumber: brosur di data/brosur/. q/t/d = harga per jamaah sekamar ber-empat/ber-tiga/ber-dua. img = public_id Cloudinary folder Elharamainwisata/Header. unggulan:true = tampil di tab Semua (maks 6). Setelah mengubah file ini jalankan: node landing-pages/build-section-harga.js CATATAN 3 Okt 2026: kartu live di-patch langsung (tools/update_paket_2026_10.py), builder ini belum memuat baris Hotel Madinah & foto kartu-paket-XX; img kartu-paket-* = public_id di folder Elharamainwisata/Kartu Paket.",
  "paket": [
   {
    "img": "1",
@@ -11,11 +11,27 @@
    "hari": 10,
    "maskapai": "Riyadh Air",
    "makkah": "Prestige / Anjum",
-   "madinah": "Peninsula / Al-Aqeeq",
+   "madinah": "Al-Aqeeq",
    "berangkat": "26 Nov 2026",
    "q": 37000000,
    "t": 40000000,
    "d": 43000000
+  },
+  {
+   "img": "kartu-paket-23",
+   "bulan": "November",
+   "label": "Gold",
+   "tier": "gold",
+   "unggulan": false,
+   "desc": "Musim Sejuk by Riyadh Air: Thaif + 2x kereta cepat + city tour Jeddah.",
+   "hari": 10,
+   "maskapai": "Riyadh Air",
+   "makkah": "Marwa Rotana / Movenpick",
+   "madinah": "Al-Aqeeq",
+   "berangkat": "26 Nov 2026",
+   "q": 46000000,
+   "t": 49000000,
+   "d": 52000000
   },
   {
    "img": "2",
@@ -261,6 +277,70 @@
    "q": 54000000,
    "t": 57000000,
    "d": 61000000
+  },
+  {
+   "img": "kartu-paket-24",
+   "bulan": "Ramadhan",
+   "label": "Ramadhan Bronze",
+   "tier": "bronze",
+   "unggulan": false,
+   "desc": "Umroh Ramadhan musim dingin by Saudia: Thaif + kereta cepat, in & out Jeddah.",
+   "hari": 9,
+   "maskapai": "Saudia Airlines",
+   "makkah": "Al Shohada",
+   "madinah": "Royal Andalus (bintang 4)",
+   "berangkat": "8, 14 & 15 Feb 2027",
+   "q": 39500000,
+   "t": 41500000,
+   "d": 43500000
+  },
+  {
+   "img": "kartu-paket-25",
+   "bulan": "Ramadhan",
+   "label": "Ramadhan Platinum",
+   "tier": "platinum",
+   "unggulan": false,
+   "desc": "Umroh Ramadhan by Saudia: Thaif + 2x kereta cepat, free umroh & sa'i golf car, abaya & jaket.",
+   "hari": 9,
+   "maskapai": "Saudia Airlines",
+   "makkah": "Marwa Rotana",
+   "madinah": "Al-Aqeeq",
+   "berangkat": "14 & 21 Feb 2027",
+   "q": 56000000,
+   "t": 59000000,
+   "d": 63000000
+  },
+  {
+   "img": "kartu-paket-26",
+   "bulan": "Ramadhan",
+   "label": "Ramadhan Premium",
+   "tier": "premium",
+   "unggulan": false,
+   "desc": "Umroh Ramadhan by Saudia: Thaif + 2x kereta cepat, free umroh & sa'i golf car, abaya & jaket.",
+   "hari": 9,
+   "maskapai": "Saudia Airlines",
+   "makkah": "Fairmont",
+   "madinah": "Al-Aqeeq",
+   "berangkat": "14 Feb 2027",
+   "q": 60000000,
+   "t": 64000000,
+   "d": 68000000
+  },
+  {
+   "img": "kartu-paket-27",
+   "bulan": "Ramadhan",
+   "label": "I'tikaf Silver 17 Hari",
+   "tier": "silver",
+   "unggulan": false,
+   "desc": "I'tikaf & Lailatul Qadr by Saudia: Thaif + 2x kereta cepat + GMC tour Jabal Uhud.",
+   "hari": 17,
+   "maskapai": "Saudia Airlines",
+   "makkah": "Royal Majestic (bintang 4)",
+   "madinah": "Al-Aqeeq",
+   "berangkat": "28 Feb 2027",
+   "q": 71000000,
+   "t": 80000000,
+   "d": 97000000
   }
  ]
 }
