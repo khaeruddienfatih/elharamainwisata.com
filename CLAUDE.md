@@ -6,7 +6,7 @@ Baca file ini di awal sesi. Bahasa kerja: Indonesia. Jangan minta pemilik mengul
 | Domain | Peran |
 |---|---|
 | elharamainwisata.com | Web utama, hub brand (umroh + haji). **Sudah bagus — JANGAN diubah.** |
-| elharamainhaji.com | Web haji utama (jualan/transaksional). Ada 1.376 post spam di-noindex; lihat README |
+| elharamainhaji.com | Web haji utama (jualan/transaksional). 1.530 post spam sudah di-Trash (30 Sep); lihat README |
 | elharamain.id | Info/edukasi umroh |
 | haji.biz | Info/edukasi haji. **Auth REST rusak** — jangan pasang snippet WPCode lagi tanpa investigasi |
 
@@ -33,7 +33,7 @@ Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
 - Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
 - Konektor `Elharamainhaji` & `Elharamain_id` sudah tersambung; audit kedua situs ada di `catatan/2026-09-30-sesi.md`.
-- Spam elharamainhaji.com: 1.530 post sudah di-Trash (30 Sep). Sisa: pemilik buat 1 redirect regex Rank Math (isian di README),
-  lalu cek `rank-math/get-redirections`. Jangan cari "generator" lagi (itu drip post terjadwal, sudah dibuang).
+- Spam elharamainhaji.com: 1.530 post sudah di-Trash (30 Sep). Sisa: pemilik buat 1 redirect regex Rank Math (isian di README;
+  per 3 Okt belum ada), lalu cek `rank-math/get-redirections`. Helper REST: `tools/wp_rest_elharamainhaji.py`. Jangan cari "generator" lagi (itu drip post terjadwal, sudah dibuang).
 - Usulan (butuh izin): bahasa id_ID + timezone Asia/Jakarta di elharamain.id, LiteSpeed Cache di elharamain.id (elharamainhaji.com sudah aktif),
   update Elementor Pro di elharamain.id.
