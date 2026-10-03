@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contoh: Layanan Eksklusif (simple)</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--hb:#004AAD;--hb2:#1684CF;--hg:#DBC033;--ink:#10213d}
+*{box-sizing:border-box}body{margin:0;font-family:Poppins,sans-serif;color:var(--ink);background:#fff}
+.demo{padding:40px 16px;border-bottom:8px solid #eef2f8}
+.demo>small{display:block;text-align:center;color:#6b7a90;margin-bottom:18px;font-weight:600;letter-spacing:.04em;text-transform:uppercase}
+.sec{max-width:1040px;margin:0 auto;text-align:center}
+.sec h2{font-size:clamp(24px,4vw,34px);margin:0 0 6px;color:var(--hb)}
+.sec .line{width:64px;height:4px;background:var(--hg);border-radius:4px;margin:10px auto 28px}
+/* Opsi 1: daftar centang */
+.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;text-align:left}
+.list li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:#f3f7fd;font-weight:500;font-size:15.5px}
+.list li:before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--hb);color:#fff;font-size:14px;font-weight:700;display:grid;place-items:center}
+/* Opsi 2: 3 kartu inti */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
+.card{background:#fff;border:1px solid #dbe6f6;border-top:4px solid var(--hb);border-radius:14px;padding:22px}
+.card h3{margin:0 0 10px;font-size:18px;color:var(--hb)}
+.card ul{margin:0;padding-left:18px;font-size:15px;line-height:1.7}
+.more{margin-top:18px;font-size:14.5px;color:#4a5b75}
+.cta{display:inline-block;margin-top:22px;background:#25D366;color:#fff;font-weight:700;padding:12px 22px;border-radius:10px;text-decoration:none}
+@media(max-width:720px){.list{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
+</style></head><body>
+
+<div class="demo"><small>Contoh A — Opsi 1: Daftar centang 2 kolom (12 butir lengkap)</small>
+<div class="sec"><h2>Layanan Eksklusif Elharamain Wisata</h2><div class="line"></div>
+<ul class="list">
+<li>Penerbangan langsung maskapai Saudia</li><li>Hotel bintang lima</li>
+<li>Transportasi bus terbaru</li><li>Manasik teori di hotel berbintang</li>
+<li>Program ziarah Thaif</li><li>VIP Lounge umroh</li>
+<li>Tahajjud dan kajian di Tanah Suci</li><li>Bimbingan sesuai sunnah dengan asatidz pilihan</li>
+<li>Perlengkapan umroh eksklusif</li><li>Umroh 3x dengan audio receiver</li>
+<li>Kuliner khas: nasi mandi, kunafa, albaik</li><li>Oleh-oleh khas Tanah Suci</li>
+</ul></div></div>
+
+<div class="demo"><small>Contoh B — Opsi 2: 3 kartu inti (semua butir tetap muncul, dikelompokkan)</small>
+<div class="sec"><h2>Layanan Eksklusif Elharamain Wisata</h2><div class="line"></div>
+<div class="cards">
+<div class="card"><h3>Perjalanan Nyaman</h3><ul><li>Penerbangan langsung Saudia</li><li>Hotel bintang lima</li><li>Bus terbaru</li><li>VIP Lounge umroh</li></ul></div>
+<div class="card"><h3>Bimbingan Ibadah</h3><ul><li>Bimbingan sesuai sunnah, asatidz pilihan</li><li>Manasik teori di hotel berbintang</li><li>Tahajjud dan kajian di Tanah Suci</li><li>Ziarah Thaif, umroh 3x + audio receiver</li></ul></div>
+<div class="card"><h3>Fasilitas &amp; Oleh-oleh</h3><ul><li>Perlengkapan umroh eksklusif</li><li>Kuliner khas Saudi</li><li>Oleh-oleh khas Tanah Suci</li></ul></div>
+</div>
+<a class="cta" href="#">Konsultasi via WhatsApp</a></div></div>
+</body></html>
