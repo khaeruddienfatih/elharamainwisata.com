@@ -89,7 +89,7 @@ seluruh post type "post" di-set noindex + dikeluarkan dari sitemap lewat `rank-m
 | `widget/perlengkapan.html` | 13 halaman* | Foto 2560px dari Canva: `perlengkapan-pria-2026`, `perlengkapan-wanita-2026-a` (ada juga `-b`) |
 | `widget/fasilitas-ketentuan-tab.html` | 12 halaman (tanpa beranda) | Tab CSS: Sudah Termasuk / Belum Termasuk / Dokumen / Pendaftaran & Pembayaran |
 | `widget/wa-cabang-template.html` | 6 halaman cabang (ditempel di akhir widget fasilitas) | Semua klik WA ke nomor pusat → nomor cabang, termasuk tombol melayang Click to Chat |
-| `widget/fasilitas-hotel-bus.html` | 9581 (menggantikan Image Carousel "Fasilitas Elharamain Wisata", 3 Okt) | Tab CSS Hotel Makkah (7) / Hotel Madinah (4) / Bus; foto gabungan dari brosur di Cloudinary `Elharamainwisata/Fasilitas`. Builder: `tools/fasilitas_hotel.py` (`DEPLOY=1`) |
+| `widget/fasilitas-hotel-bus.html` | 9581 (menggantikan Image Carousel "Fasilitas Elharamain Wisata", 3 Okt) | Slider (scroll-snap + panah/titik/autoplay 4 dtk) 7 hotel Makkah, 4 hotel Madinah, 1 bus; foto gabungan dari brosur di Cloudinary `Elharamainwisata/Fasilitas`. Builder: `tools/fasilitas_hotel.py` (`DEPLOY=1`) |
 | `widget/pembimbing-slider.html` | 13 halaman* | Slider 8 ustadz, 4/3/2/1,3 per tampilan, autoplay 4 dtk |
 
 \* 13 halaman = Beranda 7840, Musim Dingin 9581, Bronze 8869, Silver 8896, Platinum 8908, Premium 8909, Silver 12 Hari 8910,
