@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Contoh: Layanan Eksklusif (simple)</title>
+<title>Contoh: Layanan Eksklusif (simple + ikon)</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 <style>
 :root{--hb:#004AAD;--hb2:#1684CF;--hg:#DBC033;--ink:#10213d}
 *{box-sizing:border-box}body{margin:0;font-family:Poppins,sans-serif;color:var(--ink);background:#fff}
@@ -10,37 +11,48 @@
 .sec{max-width:1040px;margin:0 auto;text-align:center}
 .sec h2{font-size:clamp(24px,4vw,34px);margin:0 0 6px;color:var(--hb)}
 .sec .line{width:64px;height:4px;background:var(--hg);border-radius:4px;margin:10px auto 28px}
-/* Opsi 1: daftar centang */
-.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;text-align:left}
-.list li{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:#f3f7fd;font-weight:500;font-size:15.5px}
-.list li:before{content:"✓";flex:none;width:24px;height:24px;border-radius:50%;background:var(--hb);color:#fff;font-size:14px;font-weight:700;display:grid;place-items:center}
-/* Opsi 2: 3 kartu inti */
+.ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--hb);color:#fff;display:grid;place-items:center;font-size:18px}
+/* A: daftar ikon 2 kolom */
+.list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 24px;text-align:left}
+.list li{display:flex;gap:14px;align-items:center;padding:12px 14px;border-radius:14px;background:#f3f7fd;font-weight:500;font-size:15.5px}
+/* B: 3 kartu */
 .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;text-align:left}
 .card{background:#fff;border:1px solid #dbe6f6;border-top:4px solid var(--hb);border-radius:14px;padding:22px}
-.card h3{margin:0 0 10px;font-size:18px;color:var(--hb)}
-.card ul{margin:0;padding-left:18px;font-size:15px;line-height:1.7}
-.more{margin-top:18px;font-size:14.5px;color:#4a5b75}
+.card .ic{width:54px;height:54px;border-radius:50%;font-size:22px;margin-bottom:12px}
+.card h3{margin:0 0 12px;font-size:18px;color:var(--hb)}
+.card ul{list-style:none;margin:0;padding:0;font-size:15px}
+.card li{display:flex;gap:10px;align-items:flex-start;padding:5px 0;line-height:1.5}
+.card li i{color:var(--hb2);width:18px;text-align:center;margin-top:3px}
 .cta{display:inline-block;margin-top:22px;background:#25D366;color:#fff;font-weight:700;padding:12px 22px;border-radius:10px;text-decoration:none}
 @media(max-width:720px){.list{grid-template-columns:1fr}.cards{grid-template-columns:1fr}}
 </style></head><body>
 
-<div class="demo"><small>Contoh A — Opsi 1: Daftar centang 2 kolom (12 butir lengkap)</small>
+<div class="demo"><small>Contoh A — daftar 2 kolom, 1 ikon per butir (12 butir)</small>
 <div class="sec"><h2>Layanan Eksklusif Elharamain Wisata</h2><div class="line"></div>
 <ul class="list">
-<li>Penerbangan langsung maskapai Saudia</li><li>Hotel bintang lima</li>
-<li>Transportasi bus terbaru</li><li>Manasik teori di hotel berbintang</li>
-<li>Program ziarah Thaif</li><li>VIP Lounge umroh</li>
-<li>Tahajjud dan kajian di Tanah Suci</li><li>Bimbingan sesuai sunnah dengan asatidz pilihan</li>
-<li>Perlengkapan umroh eksklusif</li><li>Umroh 3x dengan audio receiver</li>
-<li>Kuliner khas: nasi mandi, kunafa, albaik</li><li>Oleh-oleh khas Tanah Suci</li>
+<li><span class="ic"><i class="fa-solid fa-plane"></i></span>Penerbangan langsung maskapai Saudia</li>
+<li><span class="ic"><i class="fa-solid fa-hotel"></i></span>Hotel bintang lima</li>
+<li><span class="ic"><i class="fa-solid fa-bus"></i></span>Transportasi bus terbaru</li>
+<li><span class="ic"><i class="fa-solid fa-person-chalkboard"></i></span>Manasik teori di hotel berbintang</li>
+<li><span class="ic"><i class="fa-solid fa-mountain-sun"></i></span>Program ziarah Thaif</li>
+<li><span class="ic"><i class="fa-solid fa-couch"></i></span>VIP Lounge umroh</li>
+<li><span class="ic"><i class="fa-solid fa-moon"></i></span>Tahajjud dan kajian di Tanah Suci</li>
+<li><span class="ic"><i class="fa-solid fa-book-quran"></i></span>Bimbingan sesuai sunnah, asatidz pilihan</li>
+<li><span class="ic"><i class="fa-solid fa-suitcase-rolling"></i></span>Perlengkapan umroh eksklusif</li>
+<li><span class="ic"><i class="fa-solid fa-headphones"></i></span>Umroh 3x dengan audio receiver</li>
+<li><span class="ic"><i class="fa-solid fa-utensils"></i></span>Kuliner khas: nasi mandi, kunafa, albaik</li>
+<li><span class="ic"><i class="fa-solid fa-gift"></i></span>Oleh-oleh khas Tanah Suci</li>
 </ul></div></div>
 
-<div class="demo"><small>Contoh B — Opsi 2: 3 kartu inti (semua butir tetap muncul, dikelompokkan)</small>
+<div class="demo"><small>Contoh B — 3 kartu, ikon besar per kelompok + ikon kecil per butir</small>
 <div class="sec"><h2>Layanan Eksklusif Elharamain Wisata</h2><div class="line"></div>
 <div class="cards">
-<div class="card"><h3>Perjalanan Nyaman</h3><ul><li>Penerbangan langsung Saudia</li><li>Hotel bintang lima</li><li>Bus terbaru</li><li>VIP Lounge umroh</li></ul></div>
-<div class="card"><h3>Bimbingan Ibadah</h3><ul><li>Bimbingan sesuai sunnah, asatidz pilihan</li><li>Manasik teori di hotel berbintang</li><li>Tahajjud dan kajian di Tanah Suci</li><li>Ziarah Thaif, umroh 3x + audio receiver</li></ul></div>
-<div class="card"><h3>Fasilitas &amp; Oleh-oleh</h3><ul><li>Perlengkapan umroh eksklusif</li><li>Kuliner khas Saudi</li><li>Oleh-oleh khas Tanah Suci</li></ul></div>
+<div class="card"><span class="ic"><i class="fa-solid fa-plane-departure"></i></span><h3>Perjalanan Nyaman</h3><ul>
+<li><i class="fa-solid fa-plane"></i>Penerbangan langsung Saudia</li><li><i class="fa-solid fa-hotel"></i>Hotel bintang lima</li><li><i class="fa-solid fa-bus"></i>Bus terbaru</li><li><i class="fa-solid fa-couch"></i>VIP Lounge umroh</li></ul></div>
+<div class="card"><span class="ic"><i class="fa-solid fa-kaaba"></i></span><h3>Bimbingan Ibadah</h3><ul>
+<li><i class="fa-solid fa-book-quran"></i>Bimbingan sesuai sunnah, asatidz pilihan</li><li><i class="fa-solid fa-person-chalkboard"></i>Manasik teori di hotel berbintang</li><li><i class="fa-solid fa-moon"></i>Tahajjud dan kajian di Tanah Suci</li><li><i class="fa-solid fa-headphones"></i>Umroh 3x + audio receiver, ziarah Thaif</li></ul></div>
+<div class="card"><span class="ic"><i class="fa-solid fa-gift"></i></span><h3>Fasilitas &amp; Oleh-oleh</h3><ul>
+<li><i class="fa-solid fa-suitcase-rolling"></i>Perlengkapan umroh eksklusif</li><li><i class="fa-solid fa-utensils"></i>Kuliner khas Saudi</li><li><i class="fa-solid fa-gift"></i>Oleh-oleh khas Tanah Suci</li></ul></div>
 </div>
-<a class="cta" href="#">Konsultasi via WhatsApp</a></div></div>
+<a class="cta" href="#"><i class="fa-brands fa-whatsapp"></i> Konsultasi via WhatsApp</a></div></div>
 </body></html>
