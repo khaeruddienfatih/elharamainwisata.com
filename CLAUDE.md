@@ -35,5 +35,5 @@ Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Konektor `Elharamainhaji` & `Elharamain_id` sudah tersambung; audit kedua situs ada di `catatan/2026-09-30-sesi.md`.
 - Spam elharamainhaji.com: 1.530 post sudah di-Trash (30 Sep). Sisa: pemilik buat 1 redirect regex Rank Math (isian di README;
   per 3 Okt belum ada), lalu cek `rank-math/get-redirections`. Helper REST: `tools/wp_rest_elharamainhaji.py`. Jangan cari "generator" lagi (itu drip post terjadwal, sudah dibuang).
-- Usulan (butuh izin): bahasa id_ID + timezone Asia/Jakarta di elharamain.id, LiteSpeed Cache di elharamain.id (elharamainhaji.com sudah aktif),
-  update Elementor Pro di elharamain.id.
+- elharamain.id (3 Okt): timezone Asia/Jakarta ✅, LiteSpeed Cache aktif ✅. Menunggu pemilik di wp-admin: Site Language →
+  Bahasa Indonesia (paket bahasa belum ada, REST tak bisa) dan update Elementor Pro 3.28.3 → 4.3.0 (berlisensi). Lihat `catatan/2026-10-03-sesi.md`.
