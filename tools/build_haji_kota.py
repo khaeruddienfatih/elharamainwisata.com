@@ -80,7 +80,8 @@ def maps_link(c):
 def build(c):
     k = c['kota']
     esc = html.escape
-    area = ', '.join(c['area'])
+    a = c['area']
+    area = ', '.join(a[:-1]) + ' dan ' + a[-1]
     wa1 = wa_link(c, "Assalamu'alaikum Elharamain Wisata %s, saya mau konsultasi Haji Plus." % k)
     rows = ''.join('<tr><td><a href="%s">Paket %s</a></td><td>mulai %s</td><td>%s</td></tr>' % (u, n, h, d)
                    for n, h, d, u in PAKET)
@@ -88,7 +89,7 @@ def build(c):
         ('Di mana alamat kantor Elharamain Wisata di %s?' % k, c['alamat'] + '.'),
         ('Apakah saya harus ber-KTP %s untuk mendaftar?' % k,
          'Tidak. Pendaftaran Haji Plus bisa dilakukan dari kota mana saja, secara online maupun datang ke kantor kami. '
-         'Kantor %s hanya memudahkan konsultasi tatap muka bagi jamaah di %s dan sekitarnya.' % (k, area)),
+         'Kantor %s hanya memudahkan konsultasi tatap muka bagi jamaah di %s serta sekitarnya.' % (k, area)),
         ('Berapa setoran awal Haji Plus?',
          'Setoran awal 4.000 USD per jamaah, sama untuk semua paket dan semua kantor. Pembayaran hanya ke rekening resmi '
          'PT Dhiyaa El Haramain El Mubarakah.'),
@@ -105,7 +106,7 @@ def build(c):
 <style>{CSS}</style>
 <div class="ehk">
 <div class="ans"><b>Ringkasan:</b> Paket Haji Plus {k} dari Elharamain Wisata tersedia mulai 12.000 USD dengan setoran awal 4.000 USD. Elharamain Wisata adalah PIHK resmi Kemenag RI (SK No. 846 Tahun 2020) dan melayani konsultasi tatap muka di {esc(c['kantor'])}. Daftar bisa dari mana saja, termasuk online.</div>
-<p>Bagi calon jamaah di {area}, bisa berkonsultasi langsung dengan petugas yang paham proses pendaftaran Haji Plus adalah nilai penting. Elharamain Wisata melayani konsultasi paket, pendaftaran, dan pendampingan dokumen untuk jamaah dari {k} dan sekitarnya.</p>
+<p>Calon jamaah di {area} kini bisa berkonsultasi langsung dengan petugas yang paham proses pendaftaran Haji Plus. Elharamain Wisata melayani konsultasi paket, pendaftaran, dan pendampingan dokumen untuk jamaah dari {k} dan sekitarnya.</p>
 <div class="toc"><b>Daftar isi</b><ul>
 <li><a href="#kantor-{k.lower()}">Kantor Haji Plus di {k}</a></li>
 <li><a href="#paket-{k.lower()}">Pilihan paket dan harga</a></li>
