@@ -8,7 +8,7 @@ Baca file ini di awal sesi. Bahasa kerja: Indonesia. Jangan minta pemilik mengul
 | elharamainwisata.com | Web utama, hub brand (umroh + haji). **Sudah bagus — JANGAN diubah.** |
 | elharamainhaji.com | Web haji utama (jualan/transaksional). Ada 1.376 post spam di-noindex; lihat README |
 | elharamain.id | Info/edukasi umroh |
-| haji.biz | Info/edukasi haji. **Auth REST rusak** — jangan pasang snippet WPCode lagi tanpa investigasi |
+| haji.biz | Info/edukasi haji. **Sudah pindah ke WordPress.com (4 Okt 2026)**; kelola via konektor `WordPress_com` |
 
 **Sumber kebenaran: `README.md` (branch `main`).** Baca itu dulu; berisi peran domain, tools, widget live, tracking GTM,
 pelajaran teknis LiteSpeed, dan daftar "Pekerjaan berikutnya". Branch kerja utama = `main`; jangan mulai dari branch `claude/*` lama.
@@ -17,9 +17,10 @@ Kredensial: env var per domain (nama ada di README), jangan tulis di repo.
 ## Akses
 - MCP WordPress tersambung: `elharamainwisata_com`, `haji_biz` (tool: elementor/*, rank-math/*, marketplace/*).
 - Tersambung juga: `Elharamainhaji`, `Elharamain_id` (sejak 3 Okt 2026).
-- Konektor WordPress.com (`WordPress_com`, tool `wpcom-*`): 2 situs gratis (masa tenggang MCP 30 hari, akses terbatas), dibuat 3 Okt 2026:
-  `elharamainhaji.wordpress.com` (blog ID 257739192, coming soon) = **dipakai pemilik untuk haji.biz**;
-  `elharamainwisatanews.wordpress.com` (blog ID 257737206, "News.elharamainwisata.com", tujuan belum dijelaskan).
+- Konektor WordPress.com (`WordPress_com`, tool `wpcom-*`), per 4 Okt 2026:
+  **haji.biz sekarang di WordPress.com** (blog ID 257739192, atomic, domain custom aktif; Elementor, Rank Math Pro, UAE, Click to Chat Pro, WPCode sudah terpasang);
+  `news.elharamainwisata.com` (blog ID 257737206, atomic, portal berita); `sublime-collector.wordpress.com` (blog ID 257742537, kosong, tujuan belum dijelaskan).
+  Konektor MCP `haji_biz` (hosting lama) sudah tidak relevan; auth REST lama haji.biz yang rusak = tidak berlaku lagi (uji ulang jika perlu REST di hosting baru).
 - REST API elharamainwisata.com: lihat `README.md` (snippet WPCode `wordpress/wpcode-bantu-login-api.php`, kredensial dari env `WP_USER` / `WP_APP_PASSWORD`, jangan pernah tulis kredensial di repo).
 - Tool marketplace hanya memasang plugin dari URL download; plugin berbayar butuh file zip/lisensi dari pemilik.
 
