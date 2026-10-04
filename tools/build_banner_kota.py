@@ -1,11 +1,11 @@
 """Banner 1200x630 per kota untuk haji.biz (featured image / OG). Render dengan Chromium (playwright).
 Teks dirender sendiri (bukan gambar AI) supaya ejaan, harga, dan nama kota selalu benar.
-Pakai: python3 tools/build_banner_kota.py   -> build/haji-biz/gambar/haji-plus-<kota>.png
+Pakai: python3 tools/build_banner_kota.py   -> wordpress/haji-biz/gambar/haji-plus-<kota>.png
 """
 import os, base64, subprocess, json, tempfile, importlib.util
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, '..', 'build', 'haji-biz', 'gambar')
+OUT = os.path.join(HERE, '..', 'wordpress', 'haji-biz', 'gambar')
 spec = importlib.util.spec_from_file_location('bk', os.path.join(HERE, 'build_haji_kota.py'))
 bk = importlib.util.module_from_spec(spec); spec.loader.exec_module(bk)
 

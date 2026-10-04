@@ -4,12 +4,12 @@ Sumber fakta: halaman 'Lokasi Kantor' haji.biz (alamat, WA) dan artikel haji.biz
 (harga 4 paket, setoran awal 4.000 USD, SK Kemenag 846/2020). Tidak ada klaim masa tunggu dalam tahun:
 ditautkan ke artikel estimasi keberangkatan agar angkanya satu sumber.
 
-Output: build/haji-biz/kota/<slug>.html (isi post) dan build/haji-biz/kota/preview.html (semua kota).
+Output: wordpress/haji-biz/kota/<slug>.html (isi post) dan wordpress/haji-biz/kota/preview.html (semua kota).
 Pakai: python3 tools/build_haji_kota.py
 """
 import os, urllib.parse, html
 
-OUT = os.path.join(os.path.dirname(__file__), '..', 'build', 'haji-biz', 'kota')
+OUT = os.path.join(os.path.dirname(__file__), '..', 'wordpress', 'haji-biz', 'kota')
 
 # id = ID post di haji.biz (WordPress.com blog 257739192)
 KOTA = [
