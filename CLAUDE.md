@@ -37,3 +37,5 @@ Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
 - Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
 - Konektor MCP `Elharamainhaji` & `Elharamain_id` sudah tersambung (3 Okt 2026); audit SEO keduanya skor 80, detail di `catatan/2026-10-03-sesi.md`.
+
+Tambahan sesi 2026-10-05: halaman /haji/ elharamainwisata.com disalin sebagai Draft di haji.biz (page ID 894, `brosur-haji-plus-2027`); lihat `catatan/2026-10-05-sesi.md`. Belum publish; cek risiko konten duplikat dulu.
