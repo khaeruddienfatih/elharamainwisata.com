@@ -83,8 +83,37 @@ with sync_playwright() as p:
     HOME = 'https://search.google.com/search-console?resource_id=' + urllib.parse.quote(site, safe='')
 
     def seen(rx):
-        try: return pg.get_by_text(re.compile(rx, re.I)).first.is_visible()
+        """True jika ada SALAH SATU elemen yang cocok dan terlihat (elemen pertama bisa tersembunyi)."""
+        try:
+            loc = pg.get_by_text(re.compile(rx, re.I))
+            for i in range(min(loc.count(), 12)):
+                if loc.nth(i).is_visible(): return True
+        except Exception: pass
+        try:
+            return bool(pg.evaluate("""rx => { const r = new RegExp(rx, 'i');
+              const w = document.createTreeWalker(document.body, NodeFilter.SHOW_ELEMENT);
+              const seenEls = (root) => { for (const el of root.querySelectorAll('*')) {
+                  if (el.shadowRoot && seenEls(el.shadowRoot)) return true;
+                  if (el.children.length === 0 && r.test(el.textContent || '')) {
+                    const b = el.getBoundingClientRect(); if (b.width > 0 && b.height > 0) return true; } } return false; };
+              return seenEls(document); }""", rx))
         except Exception: return False
+
+    def dismiss():
+        """Tutup dialog: klik tombol Dismiss/Tutup (termasuk di shadow DOM), lalu Escape sebagai cadangan."""
+        try:
+            ok = pg.evaluate("""() => { const names = /^(dismiss|tutup|got it|mengerti|ok)$/i;
+              const find = (root) => { for (const el of root.querySelectorAll('*')) {
+                  if (el.shadowRoot) { const f = find(el.shadowRoot); if (f) return f; }
+                  const t = (el.textContent || '').trim();
+                  if (names.test(t) && (el.tagName === 'BUTTON' || el.getAttribute('role') === 'button' || /button/i.test(el.tagName))) {
+                    const b = el.getBoundingClientRect(); if (b.width > 0 && b.height > 0) return el; } } return null; };
+              const el = find(document); if (el) { el.click(); return true; } return false; }""")
+            if ok: return True
+        except Exception: pass
+        try: pg.keyboard.press('Escape')
+        except Exception: pass
+        return False
 
     def wait_any(rxs, timeout):
         """Tunggu sampai salah satu teks muncul; kembalikan regex yang cocok atau None."""
@@ -118,12 +147,7 @@ with sync_playwright() as p:
             if r in QUO: log(u, 'KUOTA_HABIS'); break
             if r in FAIL: log(u, 'DITOLAK_GOOGLE'); continue
             log(u, 'OK')
-            for nm in (r'Dismiss', r'Tutup', r'Got it', r'Mengerti', r'OK'):
-                d = pg.get_by_role('button', name=re.compile('^' + nm + '$', re.I))
-                if d.count():
-                    try: d.first.click(timeout=3000); break
-                    except Exception: pass
-            time.sleep(3)
+            dismiss(); time.sleep(2)
         except PWTimeout as e:
             log(u, 'TIMEOUT ' + str(e)[:60])
             pg.screenshot(path=os.path.join(base, 'timeout-%d.png' % int(time.time())))
