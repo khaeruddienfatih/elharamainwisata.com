@@ -80,28 +80,55 @@ with sync_playwright() as p:
         sys.exit('Properti haji.biz tidak ditemukan di akun ini. Pastikan sudah login dengan akun yang benar dan properti sudah ditambahkan. Lihat gagal-properti.png')
     print('Properti dipakai:', site)
     BOX = pg.locator('input[aria-label*="Inspect" i], input[aria-label*="Periksa" i], input[placeholder*="Inspect" i], input[placeholder*="Periksa" i]')
+    HOME = 'https://search.google.com/search-console?resource_id=' + urllib.parse.quote(site, safe='')
+
+    def seen(rx):
+        try: return pg.get_by_text(re.compile(rx, re.I)).first.is_visible()
+        except Exception: return False
+
+    def wait_any(rxs, timeout):
+        """Tunggu sampai salah satu teks muncul; kembalikan regex yang cocok atau None."""
+        end = time.time() + timeout
+        while time.time() < end:
+            for rx in rxs:
+                if seen(rx): return rx
+            time.sleep(1)
+        return None
+
+    RESULT = [r'URL is on Google', r'URL is not on Google', r'URL ada di Google', r'URL tidak ada di Google',
+              r'URL is unknown', r'URL tidak diketahui', r'Page is not indexed', r'Halaman tidak diindeks']
+    DONE = [r'Indexing requested', r'Pengindeksan diminta']
+    QUO = [r'Quota exceeded', r'Kuota terlampaui']
+    FAIL = [r'Indexing request rejected', r'Permintaan pengindeksan ditolak', r'Something went wrong', r'Terjadi kesalahan']
+
     for u in todo:
         try:
-            if BOX.count() == 0:
-                pg.goto('https://search.google.com/search-console?resource_id=' + urllib.parse.quote(site, safe=''))
-                pg.wait_for_load_state('networkidle')
+            print('-> ', u)
+            pg.goto(HOME); pg.wait_for_load_state('networkidle'); time.sleep(1)
             BOX.first.click(); BOX.first.fill(u); BOX.first.press('Enter')
-            pg.wait_for_selector('text=/URL is on Google|URL is not on Google|URL ada di Google|URL tidak ada di Google|URL is unknown|URL tidak diketahui/i', timeout=180000)
+            print('   menunggu hasil inspeksi...')
+            if not wait_any(RESULT, 180): raise PWTimeout('hasil inspeksi tidak muncul')
             btn = pg.get_by_role('button', name=BTN)
             if btn.count() == 0:
                 log(u, 'TIDAK_ADA_TOMBOL'); continue
+            print('   klik Minta pengindeksan (Google menguji URL live, bisa 1-2 menit)...')
             btn.first.click()
-            pg.wait_for_selector('text=/Indexing requested|Pengindeksan diminta|Quota exceeded|Kuota terlampaui/i', timeout=300000)
-            t = pg.inner_text('body')
-            if QUOTA.search(t): log(u, 'KUOTA_HABIS'); break
+            r = wait_any(DONE + QUO + FAIL, 360)
+            if r is None: raise PWTimeout('dialog hasil tidak muncul')
+            if r in QUO: log(u, 'KUOTA_HABIS'); break
+            if r in FAIL: log(u, 'DITOLAK_GOOGLE'); continue
             log(u, 'OK')
-            pg.keyboard.press('Escape'); time.sleep(3)
-            pg.goto('https://search.google.com/search-console?resource_id=' + urllib.parse.quote(site, safe=''))
-            pg.wait_for_load_state('networkidle')
-        except PWTimeout:
-            log(u, 'TIMEOUT')
+            for nm in (r'Dismiss', r'Tutup', r'Got it', r'Mengerti', r'OK'):
+                d = pg.get_by_role('button', name=re.compile('^' + nm + '$', re.I))
+                if d.count():
+                    try: d.first.click(timeout=3000); break
+                    except Exception: pass
+            time.sleep(3)
+        except PWTimeout as e:
+            log(u, 'TIMEOUT ' + str(e)[:60])
             pg.screenshot(path=os.path.join(base, 'timeout-%d.png' % int(time.time())))
         except Exception as e:
             log(u, 'ERROR ' + str(e)[:80])
+            pg.screenshot(path=os.path.join(base, 'error-%d.png' % int(time.time())))
     br.close()
 print('Selesai. Lihat hasil-indexing.csv')
