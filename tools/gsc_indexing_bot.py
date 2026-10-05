@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bot "Request Indexing" Search Console untuk Windows (dibuat jadi .exe via GitHub Actions).
 
-Cara kerja: membuka Google Chrome milik Anda dengan profil khusus (login Google sekali, tersimpan),
+Cara kerja: membuka Google Chrome milik Anda dengan profil khusus (login Google SENDIRI sekali, tersimpan),
 lalu untuk tiap URL di urls.txt membuka URL Inspection dan menekan "Minta pengindeksan".
 Tidak menyimpan/menanyakan password. Hasil dicatat ke hasil-indexing.csv.
 Pakai:  gsc-indexing-bot.exe [urls.txt] [--site sc-domain:haji.biz] [--max 10]
@@ -37,13 +37,35 @@ def log(url, status):
         csv.writer(f).writerow([datetime.now().isoformat(timespec='seconds'), url, status])
     print(status, url)
 
+import glob, socket, subprocess
+def find_chrome():
+    for pat in (r'C:\Program Files\Google\Chrome\Application\chrome.exe',
+                r'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe',
+                os.path.expandvars(r'%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe')):
+        if os.path.exists(pat): return pat
+    sys.exit('Google Chrome tidak ditemukan. Pasang Chrome dulu.')
+
+PORT = 9222
+def port_open():
+    with socket.socket() as k:
+        k.settimeout(0.5); return k.connect_ex(('127.0.0.1', PORT)) == 0
+
+# Chrome dibuka SEPERTI BIASA (tanpa kontrol otomatis) supaya Google mau menerima login.
+# Profil khusus disimpan di folder profil-chrome (login sekali, tersimpan).
+if not port_open():
+    subprocess.Popen([find_chrome(), f'--remote-debugging-port={PORT}', '--no-first-run',
+                      '--user-data-dir=' + os.path.join(base, 'profil-chrome'),
+                      'https://search.google.com/search-console'])
+    for _ in range(40):
+        if port_open(): break
+        time.sleep(0.5)
+print('Chrome terbuka. Login ke Google di jendela itu sampai halaman Search Console tampil.')
+input('Setelah login selesai, tekan ENTER di sini untuk mulai... ')
+
 with sync_playwright() as p:
-    ctx = p.chromium.launch_persistent_context(os.path.join(base, 'profil-chrome'), channel='chrome', headless=False,
-                                               viewport={'width': 1280, 'height': 900})
-    pg = ctx.pages[0] if ctx.pages else ctx.new_page()
-    pg.goto('https://search.google.com/search-console')
-    print('Jika diminta, login Google di jendela Chrome (sekali saja). Menunggu sampai Search Console terbuka...')
-    pg.wait_for_url(re.compile(r'search\.google\.com/search-console'), timeout=600000)
+    br = p.chromium.connect_over_cdp(f'http://127.0.0.1:{PORT}')
+    ctx = br.contexts[0]
+    pg = ctx.new_page()
     for u in todo:
         try:
             pg.goto('https://search.google.com/search-console/inspect?resource_id=' + urllib.parse.quote(a.site, safe='')
@@ -63,5 +85,5 @@ with sync_playwright() as p:
             log(u, 'TIMEOUT')
         except Exception as e:
             log(u, 'ERROR ' + str(e)[:80])
-    ctx.close()
+    br.close()
 print('Selesai. Lihat hasil-indexing.csv')
