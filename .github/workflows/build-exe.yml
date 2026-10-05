@@ -1,0 +1,19 @@
+name: Build gsc-indexing-bot.exe
+on:
+  workflow_dispatch:
+  push:
+    paths: ['tools/gsc_indexing_bot.py', '.github/workflows/build-exe.yml']
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: '3.12' }
+      - run: pip install playwright pyinstaller
+      - run: pyinstaller --onefile --name gsc-indexing-bot --collect-all playwright tools/gsc_indexing_bot.py
+      - run: copy wordpress\haji-biz\urls.txt dist\urls.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gsc-indexing-bot-windows
+          path: dist/
