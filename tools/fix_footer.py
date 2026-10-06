@@ -5,7 +5,7 @@ Needs the WPCode snippet that exposes elementor-hf + _elementor_data to REST.
 Usage: python3 tools/fix_footer.py [--dry-run]"""
 import base64, json, os, sys, urllib.request
 
-API = 'https://www.elharamainwisata.com/wp-json/wp/v2/elementor-hf/8566'
+API = 'https://elharamainwisata.com/wp-json/wp/v2/elementor-hf/8566'
 SITE = 'https://www.elharamainwisata.com'
 AUTH = 'Basic ' + base64.b64encode(f"{os.environ['WP_USER']}:{os.environ['WP_APP_PASSWORD']}".encode()).decode()
 
@@ -76,5 +76,5 @@ print('changed:', len(set(done)), sorted(set(done)))
 if '--dry-run' not in sys.argv:
     r = req('POST', API, {'meta': {'_elementor_data': json.dumps(data, ensure_ascii=True)}})
     print('saved', 'ok' if json.loads(r['meta']['_elementor_data']) == data else 'MISMATCH')
-    req('DELETE', 'https://www.elharamainwisata.com/wp-json/elementor/v1/cache')
+    req('DELETE', 'https://elharamainwisata.com/wp-json/elementor/v1/cache')
     print('elementor cache cleared')

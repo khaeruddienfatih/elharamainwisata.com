@@ -3,7 +3,7 @@ per-page CSS files after an Elementor cache clear. Run after every deploy."""
 import json, os, base64, random, subprocess, urllib.request
 
 AUTH = 'Basic ' + base64.b64encode(f"{os.environ['WP_USER']}:{os.environ['WP_APP_PASSWORD']}".encode()).decode()
-req = urllib.request.Request('https://www.elharamainwisata.com/wp-json/wp/v2/pages?per_page=100&status=publish&_fields=id,link',
+req = urllib.request.Request('https://elharamainwisata.com/wp-json/wp/v2/pages?per_page=100&status=publish&_fields=id,link',
                              headers={'Authorization': AUTH, 'User-Agent': 'curl/8.5.0'})
 pages = json.load(urllib.request.urlopen(req, timeout=60))
 bad = []

@@ -13,7 +13,7 @@ except ImportError:
     def _env(name):
         return os.environ[name]
 
-BASE = 'https://www.elharamainwisata.com/wp-json'
+BASE = 'https://elharamainwisata.com/wp-json'
 AUTH = 'Basic ' + base64.b64encode(f"{_env('WP_USER')}:{_env('WP_APP_PASSWORD')}".encode()).decode()
 
 

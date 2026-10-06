@@ -5,7 +5,7 @@ Baca file ini di awal sesi. Bahasa kerja: Indonesia. Jangan minta pemilik mengul
 ## 4 domain (WordPress + Elementor + Rank Math)
 | Domain | Peran |
 |---|---|
-| elharamainwisata.com | Web utama, hub brand (umroh + haji). **Sudah bagus — JANGAN diubah.** |
+| elharamainwisata.com | Web utama, hub brand (umroh + haji). **Sudah bagus — JANGAN diubah.** Sejak 5 Okt 2026 di WordPress.com (blog ID 257762850); REST pakai apex tanpa www (www 301 → POST jadi GET). |
 | elharamainhaji.com | Web haji utama (jualan/transaksional). Ada 1.376 post spam di-noindex; lihat README |
 | elharamain.id | Info/edukasi umroh |
 | haji.biz | Info/edukasi haji. **Sudah pindah ke WordPress.com (4 Okt 2026)**; kelola via konektor `WordPress_com` |

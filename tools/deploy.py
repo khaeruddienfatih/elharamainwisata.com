@@ -4,7 +4,7 @@ Usage: WP_USER=... WP_APP_PASSWORD=... python3 tools/deploy.py [page_id ...] [--
 Clears the Elementor CSS cache afterwards."""
 import base64, json, os, sys, urllib.request
 
-SITE = 'https://www.elharamainwisata.com/wp-json'
+SITE = 'https://elharamainwisata.com/wp-json'
 AUTH = 'Basic ' + base64.b64encode(f"{os.environ['WP_USER']}:{os.environ['WP_APP_PASSWORD']}".encode()).decode()
 BUILD = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'build')
 
