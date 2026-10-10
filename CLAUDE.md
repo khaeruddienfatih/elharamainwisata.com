@@ -8,7 +8,7 @@ Baca file ini di awal sesi. Bahasa kerja: Indonesia. Jangan minta pemilik mengul
 | elharamainwisata.com | Web utama, hub brand (umroh + haji). **Sudah bagus — JANGAN diubah.** |
 | elharamainhaji.com | Web haji utama (jualan/transaksional). Ada 1.376 post spam di-noindex; lihat README |
 | elharamain.id | Info/edukasi umroh |
-| haji.biz | Info/edukasi haji. **Auth REST rusak** — jangan pasang snippet WPCode lagi tanpa investigasi |
+| haji.biz | Info/edukasi haji. Theme **GeneratePress** (sejak Okt 2026). Auth REST jalan lagi per 10 Okt 2026 |
 
 **Sumber kebenaran: `README.md` (branch `main`).** Baca itu dulu; berisi peran domain, tools, widget live, tracking GTM,
 pelajaran teknis LiteSpeed, dan daftar "Pekerjaan berikutnya". Branch kerja utama = `main`; jangan mulai dari branch `claude/*` lama.
@@ -33,3 +33,6 @@ Lihat "Pekerjaan berikutnya" di `README.md`. Tambahan sesi 2026-09-30:
 - Plugin UAE (= Ultimate Addons for Elementor gratis, slug `header-footer-elementor`) aktif di haji.biz, elharamain.id, elharamainhaji.com.
 - Draf header/footer haji.biz: `wordpress/uae/haji-biz-*.html` (brand dari `tools/build_header.py`/`build_footer.py`). Belum dipasang: MCP haji.biz tak bisa membuat post type `elementor-hf`, REST haji.biz rusak → tempel manual di UAE.
 - Konektor MCP `Elharamainhaji` & `Elharamain_id` belum diotorisasi di claude.ai.
+
+Tambahan sesi 2026-10-10: haji.biz ganti theme ke GeneratePress; template halaman LandingPress diganti ke Elementor Full Width,
+CSS perbaikan di footer UAE (post 419, `<style id="hb-gp-fix">`), sidebar dirapikan. Detail: `catatan/2026-10-10-sesi.md`.
